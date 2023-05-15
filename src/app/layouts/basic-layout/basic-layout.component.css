@@ -1,0 +1,66 @@
+.trigger {
+  font-size: 18px;
+  line-height: 64px;
+  padding: 0 24px;
+  cursor: pointer;
+  transition: color 0.3s;
+}
+
+.trigger:hover {
+  color: #1890ff;
+}
+
+.logo {
+  /* background: rgba(255, 255, 255, 0.2); */
+  margin: 16px;
+  text-align: center;
+}
+.style_logo_opened {
+  width: 140px;
+  height: 70px;
+}
+.style_logo_closed {
+  width: 25px;
+  height: 25px;
+  transition: all 0.2s;
+}
+
+nz-header {
+  background: #fff;
+  padding: 0;
+  display: flex;
+  justify-content: space-between;
+}
+
+nz-content {
+  margin: 16px;
+}
+
+.inner-content {
+  padding: 24px;
+  background: #fff;
+  min-height: 80vh;
+}
+
+nz-footer {
+  text-align: center;
+  padding: 12px 25px;
+  /* position: fixed;
+  left: 0;
+  bottom: 0;
+  width: 100%; */
+}
+nz-layout {
+  height: auto;
+}
+
+.avatar_icon {
+  margin: 0 24px;
+  cursor: pointer;
+  width: 35px;
+  height: 35px;
+}
+.style_item_menu {
+  background-color: #1890ff;
+  color: #fff;
+}

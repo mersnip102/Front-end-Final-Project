@@ -1,0 +1,458 @@
+<div class="list-student-page">
+    <div class="row text-center">
+        <h3>Danh sách sinh viên</h3>
+    </div>
+    <nz-tabset nzCentered>
+        <nz-tab nzTitle="Tất cả sinh viên">
+            <div class="content-wrap">
+                <div class="row fillter-wrap">
+                    <!--<div class="col-12 col-sm-4 col-md-6 search-input">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm" aria-describedby="inputGroup-sizing-default">
+                        <button class="btn btn-primary"><i class="bi bi-search"></i></button>
+                    </div>-->
+                    <div class="col-12 col-sm-3 col-md-2">
+                        <div class="item-fillter">
+                            <!--<select [(ngModel)]="selectedValue" (ngModelChange)="log($event)" class="form-select" id="year">
+                                <option>
+                                    2021
+                                </option>
+                                <option>
+                                    2022
+                                </option>
+                                <option>
+                                    2024
+                                </option>
+                                <option>
+                                    2024
+                                </option>
+                            </select>-->
+                            <nz-date-picker (ngModelChange)="getValueYearChangeAll($event)" [(ngModel)]="year" nzMode="year"></nz-date-picker>
+                            <label for="year">Năm</label>
+                        </div>
+
+                    </div>
+                    <div class="col-12 col-sm-2 col-md-2">
+                        <div class="item-fillter">
+                            <nz-select (ngModelChange)="getValueSemesterChangeAll($event)" [(ngModel)]="semester" nzAllowClear nzPlaceHolder="Choose">
+                                <nz-option nzValue="Spring" nzLabel="Spring"></nz-option>
+                                <nz-option nzValue="Summer" nzLabel="Summer"></nz-option>
+                                <nz-option nzValue="Fall" nzLabel="Fall"></nz-option>
+
+                            </nz-select>
+                            <!--<select class="form-select">
+                                <option value="">Kỳ 1</option>
+                                <option value="">Kỳ 2</option>
+                            </select>-->
+                            <label>Kỳ</label>
+                        </div>
+
+                    </div>
+                    <div class="col-12 col-sm-3 col-md-2">
+                        <div class="item-fillter mutilFilter">
+                            <button class="btn btn-primary" nz-button nz-popover nzPopoverTitle="Filter" [nzPopoverContent]="contentTemplate" nzPopoverPlacement="bottom" nzPopoverTrigger="click"><i
+                                    class="bi bi-funnel"></i>Filter</button>
+                            <ng-template #contentTemplate>
+                                <div>
+                                    <div class="section-fillter">
+                                        <div class="section-title">
+                                            <span>Tình trạng hồ sơ</span>
+                                        </div>
+                                        <div class="section-content">
+                                            <nz-checkbox-group [(ngModel)]="checkOptionsListStudentOne" (ngModelChange)="log(checkOptionsListStudentOne)"></nz-checkbox-group>
+
+                                            <!--<label nz-checkbox>Trưởng phòng xác nhận hồ sơ hoàn thiện</label>
+                                            <label nz-checkbox>Sinh viên xác nhận đi học</label>-->
+                                        </div>
+                                    </div>
+
+                                    <div class="section-fillter">
+                                        <div class="section-title">
+                                            <span>Phí</span>
+                                        </div>
+                                        <div class="section-content">
+                                            <nz-checkbox-group [(ngModel)]="checkOptionsListStudentTwo" (ngModelChange)="log(checkOptionsListStudentTwo)"></nz-checkbox-group>
+                                        </div>
+                                    </div>
+                                    <div class="section-fillter">
+                                        <div class="section-title">
+                                            <span>Nguồn hồ sơ</span>
+                                        </div>
+                                        <div class="section-content">
+                                            <nz-checkbox-group [(ngModel)]="checkOptionsListStudentThree" (ngModelChange)="log(checkOptionsListStudentThree)"></nz-checkbox-group>
+                                        </div>
+                                    </div>
+                                    <div class="section-fillter">
+                                        <div class="section-title">
+                                            <span>Trình độ Tiếng Anh</span>
+                                        </div>
+                                        <div class="section-content">
+                                            <label nz-checkbox>Chưa Xếp Lớp</label>
+                                            <label nz-checkbox>Level 1</label>
+                                            <label nz-checkbox>Level 2</label>
+                                            <label nz-checkbox>Level 3</label>
+                                            <label nz-checkbox>Level 4</label>
+                                            <label nz-checkbox>Summit 1</label>
+                                            <label nz-checkbox>Summit 2</label>
+                                        </div>
+                                    </div>
+                                    <div class="footer-modal text-end mt-2">
+                                        <button (click)="filterAll()" class="btn btn-primary btn-apply"><i class="bi bi-check2-circle"></i></button>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+                <div class="tbl-wrap">
+                    <nz-table #rowSelectionTable1 nzShowPagination nzShowSizeChanger [nzData]="listOfAllStudentData" class="tbl">
+                        <thead>
+                            <tr>
+                                <th class="text-center">STT</th>
+
+                                <th>Tên sinh viên
+                                    <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
+                                        <span nz-icon nzType="search"><i style="color: red;" class="bi bi-search"></i></span>
+                                    </nz-filter-trigger>
+
+                                </th>
+                                <th>Tên tư vấn</th>
+                                <th>Số điện thoại</th>
+                                <th>Email</th>
+
+                                <th class="text-center">Chuyên ngành</th>
+                                <th class="text-center">Trạng thái</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of rowSelectionTable1.data, let i = index">
+                                <td class="text-center">{{i + 1}}</td>
+
+                                <td (click)="showProfile(data.studentId)" role="button">{{data.FullName}}</td>
+                                <td>{{data.AdmissionName}}</td>
+                                <td>{{data.Phone}}</td>
+                                <td>{{data.Email}}</td>
+
+                                <td class="text-center">{{data.Majors}}</td>
+                                <td class="text-center">
+                                    <div class="card-status " [ngClass]="{'card-status--notFee': data.StatusFee === 1, 'card-status--completeFee': data.StatusFee === 0}">
+                                        <span *ngIf="data.StatusFee === 1">Đã nộp đủ phí</span>
+                                        <span *ngIf="data.StatusFee === 0">Chưa nộp đủ phí</span>
+
+
+
+                                    </div>
+                                    <div class="card-status " [ngClass]="{'card-status--notFee': data.EnoughProfile === 1, 'card-status--completeFee': data.EnoughProfile === 0}">
+                                        <span *ngIf="data.EnoughProfile === 1">Hồ sơ đủ</span>
+                                        <span *ngIf="data.EnoughProfile === 0">Hồ sơ thiếu</span>
+
+
+                                    </div>
+                                    <div class="card-status " [ngClass]="{'card-status--notFee': data.EnoughProfile === 2}">
+
+                                        <span *ngIf="data.EnoughProfile === 2">Hồ được xác nhận</span>
+
+                                    </div>
+                                </td>
+                                <!--<td class="text-center">
+                                    <div class="btn-icon">
+                                        <a><i class="bi bi-check-square"></i></a>
+                                    </div>
+
+                                </td>-->
+                                <td class="text-center">
+                                    <div class="btn-icon">
+                                        <a><i class="bi bi-trash3"></i></a>
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </nz-table>
+                    <nz-dropdown-menu #menu="nzDropdownMenu">
+                        <div class="ant-table-filter-dropdown">
+                            <div class="search-box">
+                                <input type="text" nz-input placeholder="Search name" [(ngModel)]="searchValue" />
+                                <button nz-button nzSize="small" nzType="primary" (click)="search()" class="search-button">Search</button>
+                                <button nz-button nzSize="small" (click)="reset()">Reset</button>
+                            </div>
+                        </div>
+                    </nz-dropdown-menu>
+
+                </div>
+            </div>
+        </nz-tab>
+        <nz-tab nzTitle="Danh sách sinh viên đủ điều kiện nhập học">
+            <div class="content-wrap">
+                <div class="row fillter-wrap">
+                    <!--<div class="col-12 col-sm-4 col-md-6 search-input">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm" aria-describedby="inputGroup-sizing-default">
+                        <button class="btn btn-primary"><i class="bi bi-search"></i></button>
+                    </div>-->
+                    <div class="col-12 col-sm-3 col-md-2">
+                        <div class="item-fillter">
+                            <nz-date-picker nzMode="year"></nz-date-picker>
+                            <label for="year">Năm</label>
+                        </div>
+
+                    </div>
+                    <div class="col-12 col-sm-2 col-md-2">
+                        <div class="item-fillter">
+                            <nz-select ngModel="semester" nzAllowClear nzPlaceHolder="Choose">
+                                <nz-option nzValue="Spring" nzLabel="Spring"></nz-option>
+                                <nz-option nzValue="Summer" nzLabel="Summer"></nz-option>
+                                <nz-option nzValue="Fall" nzLabel="Fall"></nz-option>
+
+                            </nz-select>
+                            <label>Kỳ</label>
+                        </div>
+
+                    </div>
+                    <div class="col-12 col-sm-3 col-md-2">
+                        <div class="item-fillter mutilFilter">
+                            <button class="btn btn-primary" nz-button nz-popover nzPopoverTitle="Filter" [nzPopoverContent]="contentTemplate" nzPopoverPlacement="bottom" nzPopoverTrigger="click"><i
+                                    class="bi bi-funnel"></i>Filter</button>
+                            <ng-template #contentTemplate>
+                                <div>
+
+
+                                    <div class="section-fillter">
+                                        <div class="section-title">
+                                            <span>Nguồn hồ sơ</span>
+                                        </div>
+                                        <div class="section-content">
+                                            <nz-checkbox-group [(ngModel)]="checkOptionsListStudentThree" (ngModelChange)="log(checkOptionsListStudentThree)"></nz-checkbox-group>
+                                        </div>
+                                    </div>
+                                    <div class="section-fillter">
+                                        <div class="section-title">
+                                            <span>Trình độ Tiếng Anh</span>
+                                        </div>
+                                        <div class="section-content">
+                                            <label nz-checkbox>Chưa Xếp Lớp</label>
+                                            <label nz-checkbox>Level 1</label>
+                                            <label nz-checkbox>Level 2</label>
+                                            <label nz-checkbox>Level 3</label>
+                                            <label nz-checkbox>Level 4</label>
+                                            <label nz-checkbox>Summit 1</label>
+                                            <label nz-checkbox>Summit 2</label>
+                                        </div>
+                                    </div>
+                                    <div class="footer-modal text-end mt-2">
+                                        <button class="btn btn-primary btn-apply"><i class="bi bi-check2-circle"></i></button>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+                <div class="tbl-wrap">
+                    <nz-table #rowSelectionTable2 nzShowPagination nzShowSizeChanger [nzData]="listOfEligibleStudentData" class="tbl">
+                        <thead>
+                            <tr>
+                                <th class="text-center">STT</th>
+                                <th>Mã học sinh</th>
+                                <th>Tên sinh viên
+                                    <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
+                                        <span nz-icon nzType="search"><i style="color: red;" class="bi bi-search"></i></span>
+                                    </nz-filter-trigger>
+                                </th>
+                                <th>Tên tư vấn</th>
+                                <th>Số điện thoại</th>
+                                <th>Email</th>
+                                <th>Link hóa đơn</th>
+                                <th class="text-center">Chuyên ngành</th>
+                                <th class="text-center">Trạng thái</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of rowSelectionTable2.data, let i = index">
+                                <td class="text-center">{{i + 1}}</td>
+
+                                <td (click)="showProfile(data.studentId)" role="button">{{data.FullName}}</td>
+                                <td>{{data.AdmissionName}}</td>
+                                <td>{{data.Phone}}</td>
+                                <td>{{data.Email}}</td>
+
+                                <td class="text-center">{{data.Majors}}</td>
+                                <td class="text-center">
+                                    <div class="card-status " [ngClass]="{'card-status--notFee': data.StatusFee === 1, 'card-status--completeFee': data.StatusFee === 0}">
+                                        <span *ngIf="data.StatusFee === 1">Đã nộp đủ phí</span>
+                                        <span *ngIf="data.StatusFee === 0">Chưa nộp đủ phí</span>
+
+
+
+                                    </div>
+                                    <div class="card-status " [ngClass]="{'card-status--notFee': data.EnoughProfile === 1, 'card-status--completeFee': data.EnoughProfile === 0}">
+                                        <span *ngIf="data.EnoughProfile === 1">Hồ sơ đủ</span>
+                                        <span *ngIf="data.EnoughProfile === 0">Hồ sơ thiếu</span>
+
+
+                                    </div>
+                                    <div class="card-status " [ngClass]="{'card-status--notFee': data.EnoughProfile === 2}">
+
+                                        <span *ngIf="data.EnoughProfile === 2">Hồ được xác nhận</span>
+
+                                    </div>
+                                </td>
+                                <!--<td class="text-center">
+                                    <div class="btn-icon">
+                                        <a><i class="bi bi-check-square"></i></a>
+                                    </div>
+
+                                </td>-->
+                                <td class="text-center">
+                                    <div class="btn-icon">
+                                        <a><i class="bi bi-trash3"></i></a>
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </nz-table>
+                </div>
+            </div>
+        </nz-tab>
+        <nz-tab nzTitle="Danh sách sinh viên hồ sơ quá hạn">
+            <div class="content-wrap">
+                <div class="row fillter-wrap">
+                    <!--<div class="col-12 col-sm-4 col-md-6 search-input">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm" aria-describedby="inputGroup-sizing-default">
+                        <button class="btn btn-primary"><i class="bi bi-search"></i></button>
+                    </div>-->
+                    <div class="col-12 col-sm-3 col-md-2">
+                        <div class="item-fillter">
+                            <nz-date-picker nzMode="year"></nz-date-picker>
+                            <label for="year">Năm</label>
+                        </div>
+
+                    </div>
+                    <div class="col-12 col-sm-2 col-md-2">
+                        <div class="item-fillter">
+                            <nz-select ngModel="semester" nzAllowClear nzPlaceHolder="Choose">
+                                <nz-option nzValue="Spring" nzLabel="Spring"></nz-option>
+                                <nz-option nzValue="Summer" nzLabel="Summer"></nz-option>
+                                <nz-option nzValue="Fall" nzLabel="Fall"></nz-option>
+
+                            </nz-select>
+                            <label>Kỳ</label>
+                        </div>
+
+                    </div>
+                    <div class="col-12 col-sm-3 col-md-2">
+                        <div class="item-fillter mutilFilter">
+                            <button class="btn btn-primary" nz-button nz-popover nzPopoverTitle="Filter" [nzPopoverContent]="contentTemplate" nzPopoverPlacement="bottom" nzPopoverTrigger="click"><i
+                                    class="bi bi-funnel"></i>Filter</button>
+                            <ng-template #contentTemplate>
+                                <div>
+
+                                    <div class="section-fillter">
+                                        <div class="section-title">
+                                            <span>Hồ sơ</span>
+                                        </div>
+                                        <div class="section-content">
+                                            <nz-checkbox-group [(ngModel)]="checkOptionsListStudentOne" (ngModelChange)="log(checkOptionsListStudentOne)"></nz-checkbox-group>
+                                        </div>
+                                    </div>
+
+                                    <div class="section-fillter">
+                                        <div class="section-title">
+                                            <span>Nguồn hồ sơ</span>
+                                        </div>
+                                        <div class="section-content">
+                                            <nz-checkbox-group [(ngModel)]="checkOptionsListStudentThree" (ngModelChange)="log(checkOptionsListStudentThree)"></nz-checkbox-group>
+                                        </div>
+                                    </div>
+                                    <div class="section-fillter">
+                                        <div class="section-title">
+                                            <span>Trình độ Tiếng Anh</span>
+                                        </div>
+                                        <div class="section-content">
+                                            <label nz-checkbox>Chưa Xếp Lớp</label>
+                                            <label nz-checkbox>Level 1</label>
+                                            <label nz-checkbox>Level 2</label>
+                                            <label nz-checkbox>Level 3</label>
+                                            <label nz-checkbox>Level 4</label>
+                                            <label nz-checkbox>Summit 1</label>
+                                            <label nz-checkbox>Summit 2</label>
+                                        </div>
+                                    </div>
+                                    <div class="footer-modal text-end mt-2">
+                                        <button class="btn btn-primary btn-apply"><i class="bi bi-check2-circle"></i></button>
+                                    </div>
+                                </div>
+                            </ng-template>
+                        </div>
+                    </div>
+                </div>
+                <div class="tbl-wrap">
+                    <nz-table #rowSelectionTable3 nzShowPagination nzShowSizeChanger [nzData]="listOfOverdueStudentData" class="tbl">
+                        <thead>
+                            <tr>
+                                <th class="text-center">STT</th>
+                                <th>Mã học sinh</th>
+                                <th>Tên sinh viên
+                                    <nz-filter-trigger [(nzVisible)]="visible" [nzActive]="searchValue.length > 0" [nzDropdownMenu]="menu">
+                                        <span nz-icon nzType="search"><i style="color: red;" class="bi bi-search"></i></span>
+                                    </nz-filter-trigger>
+                                </th>
+                                <th>Tên tư vấn</th>
+                                <th>Số điện thoại</th>
+                                <th>Email</th>
+                                <th>Link hóa đơn</th>
+                                <th class="text-center">Chuyên ngành</th>
+                                <th class="text-center">Trạng thái</th>
+                                <th>Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of rowSelectionTable3.data, let i = index">
+                                <td class="text-center">{{i + 1}}</td>
+
+                                <td (click)="showProfile(data.studentId)" role="button">{{data.FullName}}</td>
+                                <td>{{data.AdmissionName}}</td>
+                                <td>{{data.Phone}}</td>
+                                <td>{{data.Email}}</td>
+
+                                <td class="text-center">{{data.Majors}}</td>
+                                <td class="text-center">
+                                    <div class="card-status " [ngClass]="{'card-status--notFee': data.StatusFee === 1, 'card-status--completeFee': data.StatusFee === 0}">
+                                        <span *ngIf="data.StatusFee === 1">Đã nộp đủ phí</span>
+                                        <span *ngIf="data.StatusFee === 0">Chưa nộp đủ phí</span>
+
+
+
+                                    </div>
+                                    <div class="card-status " [ngClass]="{'card-status--notFee': data.EnoughProfile === 1, 'card-status--completeFee': data.EnoughProfile === 0}">
+                                        <span *ngIf="data.EnoughProfile === 1">Hồ sơ đủ</span>
+                                        <span *ngIf="data.EnoughProfile === 0">Hồ sơ thiếu</span>
+
+
+                                    </div>
+                                    <div class="card-status " [ngClass]="{'card-status--notFee': data.EnoughProfile === 2}">
+
+                                        <span *ngIf="data.EnoughProfile === 2">Hồ được xác nhận</span>
+
+                                    </div>
+                                </td>
+                                <!--<td class="text-center">
+                                    <div class="btn-icon">
+                                        <a><i class="bi bi-check-square"></i></a>
+                                    </div>
+
+                                </td>-->
+                                <td class="text-center">
+                                    <div class="btn-icon">
+                                        <a><i class="bi bi-trash3"></i></a>
+
+                                    </div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </nz-table>
+                </div>
+            </div>
+        </nz-tab>
+    </nz-tabset>
+</div>

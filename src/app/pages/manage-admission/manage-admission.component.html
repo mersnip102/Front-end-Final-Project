@@ -1,0 +1,131 @@
+<div class="manage-admission-page">
+    <div class="confirm-fee-page">
+        <div class="row title-page text-center">
+            <span>Danh sách quản lý Admission</span>
+        </div>
+        <div class="row fillter-wrap">
+            <!--<div class="col-12 col-sm-4 col-md-6 search-input">
+        <input
+          type="text"
+          class="form-control"
+          placeholder="Tìm kiếm"
+          aria-describedby="inputGroup-sizing-default" />
+        <button class="btn btn-primary"><i class="bi bi-search"></i></button>
+      </div>
+      <div class="col-12 col-sm-3 col-md-2">
+        <div class="item-fillter">
+          <select class="form-select" id="year">
+            <option>2021</option>
+            <option>2022</option>
+            <option>2024</option>
+          </select>
+          <label for="year">Năm</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-2 col-md-2">
+        <div class="item-fillter">
+          <select class="form-select">
+            <option value="">Kỳ 1</option>
+            <option value="">Kỳ 2</option>
+          </select>
+          <label>Kỳ</label>
+        </div>
+      </div>-->
+            <div class="col-12 col-sm-3 col-md-2">
+                <button class="btn btn-primary" (click)="addModal = true">Thêm admission</button>
+            </div>
+        </div>
+        <div class="tbl-wrap">
+            <nz-table (nzCurrentPageDataChange)="onCurrentPageDataChange($event)" #rowSelectionTable nzShowPagination nzShowSizeChanger [nzData]="listOfData" class="tbl">
+                <thead>
+                    <tr>
+                        <th class="text-center">STT</th>
+                        <th>Mã Admission</th>
+                        <th>Tên Admission</th>
+                        <th>Số điện thoại</th>
+                        <th>Email</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of rowSelectionTable.data; let i = index">
+                        <td class="text-center">{{ i + 1 }}</td>
+                        <td>123467</td>
+                        <td>Nguyễn Văn Thăng</td>
+                        <td>0987654321</td>
+                        <td>ThangNguyen@gmail.com</td>
+                        <td class="text-center">
+                            <div class="btn-icon">
+                                <a (click)="deleteModal = !deleteModal"><i class="bi bi-trash3"></i></a>
+                                <a (click)="editModal = !editModal"><i class="bi bi-pencil-square"></i></a>
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </div>
+    </div>
+    <nz-modal [(nzVisible)]="deleteModal" nzTitle="Xác nhận xóa" (nzOnCancel)="handleCancelModalDelete()" (nzOnOk)="handleOkDeleteFee()">
+        <ng-container *nzModalContent>
+            <span>Bạn có chắc chán muốn xóa admission này khỏi danh sách?</span>
+        </ng-container>
+    </nz-modal>
+
+    <nz-modal [(nzVisible)]="editModal" nzTitle="Cập nhật thông tin" (nzOnCancel)="handleCancelModalEdit()" (nzOnOk)="handleOkEditFee()">
+        <ng-container *nzModalContent>
+            <div class="row mt-2">
+                <div class="item-input">
+                    <label>Họ và tên</label>
+                    <input type="text" class="form-control" value="Vũ Văn Đô" placeholder="Họ và tên" aria-describedby="inputGroup-sizing-default" />
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="item-input">
+                    <label>ID</label>
+                    <input type="text" value="0183834" class="form-control" placeholder="ID" aria-describedby="inputGroup-sizing-default" />
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="item-input">
+                    <label>Email</label>
+                    <input type="text" value="do@gmail.com" class="form-control" placeholder="Email" aria-describedby="inputGroup-sizing-default" />
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="item-input">
+                    <label>Số điện thoại</label>
+                    <input type="text" value="09842632823" class="form-control" placeholder="Số điện thoại" aria-describedby="inputGroup-sizing-default" />
+                </div>
+            </div>
+        </ng-container>
+    </nz-modal>
+
+    <nz-modal [(nzVisible)]="addModal" nzTitle="Thêm admission" (nzOnCancel)="handleCancelAddAdmission()" (nzOnOk)="handleOkAddAdmission()">
+        <ng-container *nzModalContent>
+            <div class="row mt-2">
+                <div class="item-input">
+                    <label>Họ và tên</label>
+                    <input type="text" class="form-control" placeholder="Họ và tên" aria-describedby="inputGroup-sizing-default" />
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="item-input">
+                    <label>ID</label>
+                    <input type="text" class="form-control" placeholder="ID" aria-describedby="inputGroup-sizing-default" />
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="item-input">
+                    <label>Email</label>
+                    <input type="text" class="form-control" placeholder="Email" aria-describedby="inputGroup-sizing-default" />
+                </div>
+            </div>
+            <div class="row mt-2">
+                <div class="item-input">
+                    <label>Số điện thoại</label>
+                    <input type="text" class="form-control" placeholder="Số điện thoại" aria-describedby="inputGroup-sizing-default" />
+                </div>
+            </div>
+        </ng-container>
+    </nz-modal>
+</div>

@@ -1,0 +1,51 @@
+<nz-layout>
+    <nz-sider nzCollapsible [(nzCollapsed)]="isCollapsed" nzBreakpoint="lg" [nzTrigger]="null">
+        <div class="logo cursor-pointer" routerLink="/">
+            <img *ngIf="!isCollapsed" class="style_logo_opened" src="../../../assets/icons/logoGW.jpg" alt="logo_greenwich">
+            <img *ngIf="isCollapsed" class="style_logo_closed" src="../../../assets/icons/icon_GW.PNG" alt="logo_greenwich_closed">
+        </div>
+        <ul nz-menu nzTheme="dark" [nzMode]="'inline'" *ngFor="let item of listMenuByRole">
+            <ng-container *ngFor="let menu of item.permission">
+                <li nz-menu-item routerLink="{{menu.routerLink}}" routerLinkActive="style_item_menu">
+                    <!-- <ul>
+          <li nz-menu-item routerLink="email/box-email/inbox">Email</li>
+          <li nz-menu-item routerLink="chat-admissions">Chat</li>
+          <li nz-menu-item>Alex</li>
+        </ul> -->
+                    <span nz-icon [nzType]="menu.icon"></span>
+                    <span>{{menu.screenName}}</span>
+                </li>
+                <!-- <li nz-menu-item>
+        <span nz-icon nzType="file"></span>
+        <span>File</span>
+      </li> -->
+            </ng-container>
+        </ul>
+    </nz-sider>
+    <nz-layout>
+        <nz-header>
+            <span class="trigger" nz-icon [nzType]="isCollapsed ? 'menu-unfold' : 'menu-fold'" (click)="isCollapsed = !isCollapsed"></span>
+            <div class="group_avatar">
+                <img nz-button nz-dropdown [nzDropdownMenu]="menu" class="avatar_icon" src="../../../assets/icons/user-circle-solid.svg" alt="avatar_icon">
+                <nz-dropdown-menu #menu="nzDropdownMenu">
+                    <ul nz-menu>
+                        <!-- <li nz-menu-item>Vai Trò</li> -->
+                        <li nz-menu-item [routerLink]="['/pages/reset-password']" routerLinkActive="router-link-active">Đổi mật khẩu
+                        </li>
+                        <li nz-menu-item (click)="logout()">Đăng xuất</li>
+                    </ul>
+                </nz-dropdown-menu>
+            </div>
+        </nz-header>
+        <nz-content>
+            <div class="inner-content">
+                <ng-content selector="router-outlet"></ng-content>
+            </div>
+        </nz-content>
+        <nz-footer>
+            <p>
+                <a href="https://greenwich.edu.vn/" target="_blank">GreenwichVN</a> Tuyen Sinh Greenwich Việt Nam <br> Powered by <a href="https://greenwich.edu.vn/">Greenwich University</a>
+            </p>
+        </nz-footer>
+    </nz-layout>
+</nz-layout>

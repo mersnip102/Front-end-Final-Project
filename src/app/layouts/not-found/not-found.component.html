@@ -1,0 +1,11 @@
+<nz-empty [nzNotFoundImage]="imgNotFound" [nzNotFoundContent]="contentTpl" [nzNotFoundFooter]="footerTpl">
+  <ng-template #imgNotFound>
+    <img src="assets/images/notFound.png" alt="image_not_found">
+  </ng-template>
+  <ng-template #contentTpl>
+    <span>Not found</span>
+  </ng-template>
+  <ng-template #footerTpl>
+    <button nz-button class="btn btn-primary" [routerLink]="[routerLinkHome]">Go home</button>
+  </ng-template>
+</nz-empty>

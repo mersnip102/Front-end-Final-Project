@@ -1,0 +1,247 @@
+<div class="management-event-list-page">
+    <div class="row text-center mb-2">
+        <h3>Danh sách các sự kiện</h3>
+    </div>
+    <div class="row">
+        <div class="col-12 col-sm-12 col-md-6 col-lg-8 box-shadow">
+            <!--<nz-calendar>
+        <ul *nzDateCell="let date" class="events">
+          <ng-container [ngSwitch]="date.getDate()">
+            <ng-container *ngSwitchCase="8">
+              <li *ngFor="let item of listDataMap.eight">
+                <nz-badge [nzStatus]="item.type" [nzText]="item.content"></nz-badge>
+              </li>
+            </ng-container>
+            <ng-container *ngSwitchCase="10">
+              <li *ngFor="let item of listDataMap.ten">
+                <nz-badge [nzStatus]="item.type" [nzText]="item.content"></nz-badge>
+              </li>
+            </ng-container>
+            <ng-container *ngSwitchCase="11">
+              <li *ngFor="let item of listDataMap.eleven">
+                <nz-badge [nzStatus]="item.type" [nzText]="item.content"></nz-badge>
+              </li>
+            </ng-container>
+          </ng-container>
+        </ul>
+        <ng-container *nzMonthCell="let month">
+          <div *ngIf="getMonthData(month) as monthData" class="notes-month">
+            <section>{{ monthData }}</section>
+            <span>Backlog number</span>
+          </div>
+        </ng-container>
+      </nz-calendar> -->
+            <full-calendar [options]="calendarOptions"></full-calendar>
+        </div>
+        <div class="col-12 col-sm-12 col-md-6 col-lg-4">
+            <div class="list-event">
+                <div class="item-event" *ngFor="let item of events; let i = index">
+                    <div class="col-6 advance-wrap text-end">
+                        <!--<button *ngIf="Role == 3" class="btn btn-primary" nz-button nzType="primary" nz-popover nzPopoverTitle="Title" [(nzPopoverVisible)]="visible" (nzPopoverVisibleChange)="change($event)" nzPopoverTrigger="click" [nzPopoverContent]="contentTemplate">
+              <i class="bi bi-three-dots-vertical"></i>
+            </button>-->
+                        <nz-radio-group>
+                            <label *ngIf="Role == 3" (click)="pressDel(item.id)" nz-radio-button nzValue="large"><i class="bi bi-trash3">Xóa</i></label>
+                            <label (click)="detailAnEvent(item.id)" nz-radio-button nzValue="default"><i class="bi bi-eye">Xem</i></label>
+
+                        </nz-radio-group>
+                    </div>
+                    <div class="row item-event__header">
+                        <div class="col-12 item-title">
+                            <span>Name: {{item.title}}</span>
+                        </div>
+                    </div>
+                    <div class="row item-content">
+                        <div class="col-12 amount-attend">
+                            <i class="bi bi-person-fill"></i>
+                            <span>Tickets: {{item.Tickets}}</span>
+                        </div>
+                        <div class="col-12">
+                            <i class="bi bi-stopwatch"></i>
+                            <span>Time: {{item.start | date:"dd/MM/yyyy hh:mm"}} - {{item.end | date:"dd/MM/yyyy hh:mm"}}</span>
+                        </div>
+                        <div class="col-12">
+                            <i class="bi bi-currency-dollar"></i>
+                            <span>Expense: {{item.Expense}}</span>
+                        </div>
+                    </div>
+                    <div class="row item-des">
+
+                        <span>Description: {{item.Description}}</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<ng-template #contentTemplate>
+    <div class="list-item-btn">
+        <a (click)="pressDel(3)"><i class="bi bi-trash3"></i>Xóa</a>
+        <a (click)="detailAnEvent(3)"><i class="bi bi-eye"></i>Xem</a>
+    </div>
+</ng-template>
+
+<nz-modal [(nzVisible)]="deleteModal" nzTitle="Xác nhận xóa" (nzOnCancel)="handleCancelModalDelete()" (nzOnOk)="handleOkDeleteFee()">
+    <ng-container *nzModalContent>
+        <span>Bạn có chắc chán muốn xóa sự kiện này khỏi danh sách?</span>
+    </ng-container>
+</nz-modal>
+
+<nz-modal class="modal-detail" [(nzVisible)]="detailEvent" nzTitle="Chi tiết sự kiện" (nzOnOk)="handleOkViewDetail()">
+    <!--(nzOnCancel)="handleCancelVeiwDetail()"-->
+    <ng-container *nzModalContent>
+        <div class="detail-event">
+            <div class="info-event-card">
+                <div class="event-card-title">
+                    <span>Name: {{event.Name}}</span>
+                </div>
+                <div class="event-card-info">
+                    <div class="item">
+                        <span>Time: {{event.StartDate | date:"dd/MM/yyyy hh:mm"}} - {{event.EndDate | date:"dd/MM/yyyy hh:mm"}}</span>
+                    </div>
+                    <div class="item">
+                        <span>Expense: {{event.Expense}}</span>
+                    </div>
+                    <div class="item">
+                        <span>Vé chống: 100</span>
+                    </div>
+                    <div class="item">
+                        <span>Tickets: {{event.Tickets}}</span>
+                    </div>
+                </div>
+                <div class="event-card-des">
+                    <span>Description: {{event.Description}}</span>
+                </div>
+            </div>
+            <div class="all-student-table mt-4">
+                <div class="row text-center mb-3">
+                    <h3>Danh sách tất cả sinh viên</h3>
+                </div>
+                <!--<div class="row fillter-wrap">
+                    <div class="col-12 col-sm-4 col-md-6 search-input">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm" aria-describedby="inputGroup-sizing-default" />
+                        <button class="btn btn-primary"><i class="bi bi-search"></i></button>
+                    </div>
+                    <div class="col-12 col-sm-3 col-md-2">
+                        <div class="item-fillter">
+                            <select class="form-select" id="year">
+                <option>2021</option>
+                <option>2022</option>
+                <option>2024</option>
+              </select>
+                            <label for="year">Năm</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-2 col-md-2">
+                        <div class="item-fillter">
+                            <select class="form-select">
+                <option value="">Kỳ 1</option>
+                <option value="">Kỳ 2</option>
+              </select>
+                            <label>Kỳ</label>
+                        </div>
+                    </div>
+                </div>-->
+                <div class="tbl-wrap">
+                    <nz-table #rowSelectionTable nzShowPagination [nzData]="listStudent" class="tbl">
+                        <thead>
+                            <tr>
+                                <th class="text-center"><input [(ngModel)]="parentSelector" (change)="onChange($event)" [value]="-1" class="form-check-input" type="checkbox" /></th>
+                                <th>No.</th>
+                                <th>Họ tên</th>
+                                <th class="text-center">Chuyên ngành</th>
+                                <th>Tư vấn phụ trách</th>
+                                <th>Số điện thoại</th>
+                                <th>Email</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let student of rowSelectionTable.data; let i = index">
+                                <td class="text-center"><input [value]="student.Id" (change)="onChange($event)" [checked]="student.select" class="form-check-input" type="checkbox" /></td>
+                                <td>{{i+1}}</td>
+                                <td>{{student.FullName}}</td>
+                                <td class="text-center">{{student.Major}}</td>
+                                <td>{{student.Admission}}</td>
+                                <td>{{student.Phone}}</td>
+                                <td>{{student.Email}}</td>
+                            </tr>
+                        </tbody>
+                    </nz-table>
+                </div>
+            </div>
+            <div class="row text-center btn-add">
+                <button (click)="addStudentsToEvent(event.Id)" class="btn btn-primary w-fit">
+          <i class="bi bi-plus-circle"></i>Thêm sinh viên vào sự kiện
+        </button>
+            </div>
+            <div class="attend-student-table mt-3">
+                <div class="row text-center mb-3">
+                    <h3>Danh sách sinh viên tham gia sự kiện</h3>
+                </div>
+                <!--<div class="row fillter-wrap">
+                    <div class="col-12 col-sm-4 col-md-6 search-input">
+                        <input type="text" class="form-control" placeholder="Tìm kiếm" aria-describedby="inputGroup-sizing-default" />
+                        <button class="btn btn-primary"><i class="bi bi-search"></i></button>
+                    </div>
+                    <div class="col-12 col-sm-3 col-md-2">
+                        <div class="item-fillter">
+                            <select class="form-select" id="year">
+                <option>2021</option>
+                <option>2022</option>
+                <option>2024</option>
+              </select>
+                            <label for="year">Năm</label>
+                        </div>
+                    </div>
+                    <div class="col-12 col-sm-2 col-md-2">
+                        <div class="item-fillter">
+                            <select class="form-select">
+                <option value="">Kỳ 1</option>
+                <option value="">Kỳ 2</option>
+              </select>
+                            <label>Kỳ</label>
+                        </div>
+                    </div>
+                </div>-->
+                <div class="tbl-wrap">
+                    <nz-table #rowSelectionTable2 nzShowPagination [nzData]="listStudentEvent" class="tbl">
+                        <thead>
+                            <tr>
+                                <th>ID</th>
+                                <th>Họ tên</th>
+                                <th class="text-center">Chuyên ngành</th>
+                                <th>Tư vấn phụ trách</th>
+                                <th>Số điện thoại</th>
+                                <th>Email</th>
+                                <th class="text-center">Trạng thái</th>
+                                <th class="text-center">Hành động</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr *ngFor="let data of rowSelectionTable2.data; let i = index">
+                                <td>123467</td>
+                                <td>Nguyễn Văn Thăng</td>
+                                <td class="text-center">CNTT</td>
+                                <td>Phạm Thành Long</td>
+                                <td>0987654321</td>
+                                <td>ThangNguyen@gmail.com</td>
+                                <td class="text-center">Trạng thái</td>
+                                <td class="text-center">
+                                    <button (click)="deleteStudentModal = true" class="btn btn-icon">
+                    <i class="bi bi-trash3"></i>
+                  </button>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </nz-table>
+                </div>
+            </div>
+        </div>
+    </ng-container>
+</nz-modal>
+
+<nz-modal [(nzVisible)]="deleteStudentModal" nzTitle="Xác nhận xóa" (nzOnCancel)="handleCancelStudentDelete()" (nzOnOk)="handleOkStudentModal()">
+    <ng-container *nzModalContent>
+        <span>Bạn có chắc chán muốn xóa sự kiện này khỏi danh sách?</span>
+    </ng-container>
+</nz-modal>

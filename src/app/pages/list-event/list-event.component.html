@@ -1,0 +1,7 @@
+<h2><strong>Danh sách sự kiện </strong></h2>
+<ng-container *ngFor="let event of eventsByStudent">
+    <app-event-card (changeStatus)="receiveEvent($event)" [eventData]="event"></app-event-card>
+</ng-container>
+<div class="paging">
+    <nz-pagination [nzPageIndex]="1" [nzTotal]="eventsByStudent.length" [nzPageSize]="itemPerPage" (nzPageIndexChange)="onPageIndexChange($event)"></nz-pagination>
+</div>

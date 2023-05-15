@@ -1,0 +1,21 @@
+.tbl-wrap{
+    border: 1px solid #3fb59e;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 12px;
+    border-radius: 8px;
+}
+
+::ng-deep .ant-table-thead > tr > th{
+    background: #5accd0;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+::ng-deep .ant-table-thead > tr > th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before{
+    background-color: #d7e7d8;
+}
+
+::ng-deep .ant-table-row{
+    color: #046e70;
+}
+

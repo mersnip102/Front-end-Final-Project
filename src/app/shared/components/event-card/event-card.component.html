@@ -1,0 +1,28 @@
+<div class="row card-container">
+    <div class="col-md-2 time-box d-flex flex-column align-items-center justify-content-center">
+        <p><strong>Start date: </strong>{{eventData.StartDate | date:"dd/MM/yyyy HH:mm"}}</p>
+        <p><strong>End date: </strong>{{eventData.EndDate | date:"dd/MM/yyyy HH:mm"}}</p>
+    </div>
+    <div class="col-md-8">
+        <h3>
+            <strong>{{eventData.Name}}</strong>
+        </h3>
+        <p>
+            {{eventData.Description}}
+        </p>
+
+
+        <p *ngIf="eventData.Confirm == 0" class="fst-italic text-danger">(Bạn đã xác nhận không tham gia)</p>
+        <p *ngIf="eventData.Confirm == 1" class="fst-italic text-success">(Bạn đã xác nhận tham gia)</p>
+
+    </div>
+    <div class="col-md-2 card-container__btn-container">
+        <!--*ngIf="eventData.Confirm == 0 else notJoin-->
+        <ng-container *ngIf="eventData.Confirm == 0">
+            <button (click)="confirmEvent(eventData.StudentID, eventData.EventID, 1)" class="btn card-container__btn">Tham gia</button>
+        </ng-container>
+        <ng-container *ngIf="eventData.Confirm == 1">
+            <button (click)="confirmEvent(eventData.StudentID, eventData.EventID, 0)" class="btn card-container__btn">Không tham gia</button>
+        </ng-container>
+    </div>
+</div>

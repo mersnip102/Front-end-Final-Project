@@ -1,0 +1,94 @@
+<div class="confirm-fee-page">
+    <div class="row title-page text-center">
+        <span>Danh sách xác nhận nộp học phí của sinh viên</span>
+    </div>
+    <div class="row fillter-wrap">
+        <div class="col-12 col-sm-4 col-md-6 search-input">
+            <input type="text" class="form-control" placeholder="Tìm kiếm" aria-describedby="inputGroup-sizing-default">
+            <button class="btn btn-primary"><i class="bi bi-search"></i></button>
+        </div>
+        <div class="col-12 col-sm-3 col-md-2">
+            <div class="item-fillter">
+                <select class="form-select" id="year">
+                    <option>
+                        2021
+                    </option>
+                    <option>
+                        2022
+                    </option>
+                    <option>
+                        2024
+                    </option>
+                </select>
+                <label for="year">Năm</label>
+            </div>
+
+        </div>
+        <div class="col-12 col-sm-2 col-md-2">
+            <div class="item-fillter">
+                <select class="form-select">
+                    <option value="">Kỳ 1</option>
+                    <option value="">Kỳ 2</option>
+                </select>
+                <label>Kỳ</label>
+            </div>
+
+        </div>
+        <div class="col-12 col-sm-3 col-md-2">
+            <div class="item-fillter">
+                <select class="form-select ">
+                    <option value="">Đã nộp</option>
+                    <option value="">Chưa nộp</option>
+                </select>
+                <label for="">Trạng thái</label>
+            </div>
+        </div>
+    </div>
+    <div class="tbl-wrap">
+        <nz-table #rowSelectionTable nzShowPagination nzShowSizeChanger [nzData]="listOfData" class="tbl">
+            <thead>
+                <tr>
+                    <th class="text-center">STT</th>
+                    <th>Mã học sinh</th>
+                    <th>Tên sinh viên</th>
+                    <th>Tên tư vấn</th>
+                    <th>Số điện thoại</th>
+                    <th>Email</th>
+                    <th>Link hóa đơn</th>
+                    <th class="text-center">Chuyên ngành</th>
+                    <th class="text-center">Trạng thái</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr *ngFor="let data of rowSelectionTable.data, let i = index">
+                    <td class="text-center">{{i + 1}}</td>
+                    <td>123467</td>
+                    <td>Nguyễn Văn Thăng</td>
+                    <td>Phạm Thành Long</td>
+                    <td>0987654321</td>
+                    <td>ThangNguyen@gmail.com</td>
+                    <td>Link hóa đơn</td>
+                    <td class="text-center">CNTT</td>
+                    <td class="text-center">
+                        <div class="card-status "
+                            [ngClass]="{'card-status--notFee': i % 2 == 0, 'card-status--completeFee': i%2 != 0}">
+                            <span>{{i % 2 == 0 ? 'Chưa nộp phí' : 'Đã nộp phí'}}</span></div>
+                    </td>
+                    <td class="text-center">
+                        <div class="btn-icon">
+                            <a (click)="deleteModal = !deleteModal"><i class="bi bi-check-square"></i></a>
+                        </div>
+
+                    </td>
+                </tr>
+            </tbody>
+        </nz-table>
+    </div>
+</div>
+<nz-modal [(nzVisible)]="deleteModal" nzTitle="Xác nhận đóng phí" (nzOnCancel)="handleCancelModalDelete()"
+    (nzOnOk)="handleOkDeleteFee()">
+    <ng-container *nzModalContent>
+        <span>Xác nhận phí cho sinh viên này?</span>
+    </ng-container>
+</nz-modal>

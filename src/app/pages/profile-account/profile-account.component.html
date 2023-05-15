@@ -1,0 +1,210 @@
+<div class="row">
+    <div class="col-lg-4 border-right">
+        <div class="d-flex flex-column align-items-center text-center">
+            <img class="rounded-circle" width="250px" src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" />
+            <h2 class="font-weight-bold">Thông tin cá nhân</h2>
+            <span class="text-black-50">{{Email}}</span>
+            <div class="row status-change">
+                <h3 class="text-center text-success">
+                    {{FullName}}
+                </h3>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8 pt-3">
+        <form class="form-horizontal" enctype="multipart/form-data">
+            <div class="profile-section">
+                <h2 class="title-page">Thông tin chung</h2>
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group pt-2 pt-2">
+                            <label class="col-sm-12 control-label font-20 font-20 label-input">Họ Và Tên</label>
+                            <div class="col-sm-12">
+                                <input name="FullName" [(ngModel)]="FullName" type="text" class="form-control" placeholder="Họ và Tên" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group pt-2">
+                            <label class="col-sm-12 control-label font-20 label-input">Quốc Tịch</label>
+                            <div class="col-sm-12">
+                                <input value="Việt Nam" [disabled]="true" type="text" class="form-control" placeholder="Quốc Tịch" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group pt-2 pt-2">
+                            <label class="col-sm-12 control-label font-20clabel-input">Giới Tính</label>
+                            <div class="col-sm-12">
+                                <select class="form-select">
+                  <option *ngFor="let opt of ['Nam', 'Nữ']" [value]="opt">
+                    {{ opt }}
+                  </option>
+                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group pt-2">
+                            <label class="col-sm-12 control-label font-20 label-input">Ngày khởi tạo tài khoản</label>
+                            <div class="col-sm-12">
+                                <input [disabled]="true" [(ngModel)]="InnitiatedDate" name="InnitiatedDate" type="date" class="form-control" />
+                            </div>
+                        </div>
+                    </div>
+                    <!--<div class="col-lg-4">
+                        <div class="form-group pt-2">
+                            <label class="col-sm-12 control-label font-20 label-input">Nơi Sinh</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" placeholder="Nơi Sinh" />
+                            </div>
+                        </div>
+                    </div>-->
+                </div>
+                <!--<div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group pt-2">
+                            <label class="col-sm-12 control-label font-20 label-input">CCCD</label>
+                            <div class="col-sm-12">
+                                <input type="number" class="form-control" placeholder="Căn cước công dân" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group pt-2">
+                            <label class="col-sm-12 control-label font-20 label-input">Ngày cấp</label>
+                            <div class="col-sm-12">
+                                <input type="date" class="form-control" placeholder="" />
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group pt-2">
+                            <label class="col-sm-12 control-label font-20 label-input">Nơi cấp</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" placeholder=" Nơi cấp" />
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+                <div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group pt-2">
+                            <label class="col-sm-12 control-label font-20 label-input">Số điện thoại cá nhân</label
+              >
+              <div class="col-sm-12">
+                <input
+                [(ngModel)]="Phone"
+                name="Phone"
+                  [disabled]="true"
+                  type="phone"
+                  class="form-control"
+                  placeholder="SDT cá nhân thường sử dụng"
+                 />
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-6">
+            <div class="form-group pt-2">
+              <label class="col-sm-12 control-label font-20 label-input">Email</label>
+                            <div class="col-sm-12">
+                                <input [(ngModel)]="Email" name="Email" type="email" class="form-control" placeholder="Email cá nhân" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!--<div class="row">
+                    <div class="col-lg-6">
+                        <div class="form-group pt-2">
+                            <label class="col-sm-12 control-label font-20 label-input">Ngành học</label>
+                            <div class="col-sm-12">
+                                <select class="form-select">
+                  <option *ngFor="let opt of ['CNTT', 'IT']" [value]="opt">
+                    {{ opt }}
+                  </option>
+                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-6">
+                        <div class="form-group pt-2">
+                            <label class="col-sm-12 control-label font-20 label-input">Link Facebook</label>
+                            <div class="col-sm-12">
+                                <input type="text" class="form-control" placeholder="Link Facebook cá nhân" />
+                            </div>
+                        </div>
+                    </div>
+                </div>-->
+            </div>
+
+            <div class="profile-section">
+                <h2>Địa chỉ</h2>
+                <!--<div class="row">
+                    <div class="col-lg-4">
+                        <div class="form-group pt-2">
+                            <label class="col-sm-12 control-label font-20 label-input">Tỉnh/Thành phố</label>
+                            <div class="col-sm-12">
+                                <select class="form-select" id="city">
+                  <option value="" selected>Chọn tỉnh thành</option>
+                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group pt-2">
+                            <label class="col-sm-12 control-label font-20 label-input">Quận/Huyện</label>
+                            <div class="col-sm-12">
+                                <select class="form-select" id="district">
+                  <option value="" selected>Chọn quận/huyện</option>
+                </select>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-lg-4">
+                        <div class="form-group pt-2">
+                            <label class="col-sm-12 control-label font-20 label-input">Phường/Xã</label>
+                            <div class="col-sm-12">
+                                <select class="form-select" id="ward">
+                  <option value="" selected>Chọn phường/xã</option>
+                </select>
+                            </div>
+                        </div>
+                    </div>
+                </div> -->
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="form-group pt-2">
+                            <label class="col-sm-12 control-label font-20 label-input">Địa chỉ cụ thể (số nhà riêng/thôn/xóm)</label
+              >
+              <div class="col-sm-12">
+                <input
+                [(ngModel)]="Address"
+                name="Address"
+                  type="text"
+                  placeholder="Ví dụ: Số 5,...."
+                  class="form-control"
+                  required />
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="profile-section text-center">
+        <button (click)="editProfile()" class="btn btn-submit-form" type="submit">Chỉnh sửa</button>
+      </div>
+      <!-- <div class="row button-infstudent text-center align-content-center ">
+                                        <div class="col-sm-6 form-group pt-2">
+                                            <br>
+                                            <button class="btn btn-sm btn-secondary" (click)="exportPdf()"
+                                                type="button">Xuất file PDF
+                                            </button>
+                                        </div>
+
+                                    </div> -->
+    </form>
+  </div>
+</div>

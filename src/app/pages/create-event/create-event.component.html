@@ -1,0 +1,156 @@
+<div class="create-event">
+    <div class="row text-center">
+        <h3>Tạo sự kiện</h3>
+    </div>
+    <div class="create-information-event">
+        <div class="row">
+            <div class="col-12 col-md-12 col-lg-4 item-input-info">
+                <label>Tên sự kiện:</label>
+                <input [(ngModel)]="Name" type="text" class="form-control" placeholder="Title" aria-describedby="basic-addon1" />
+            </div>
+            <div class="col-12 col-md-12 col-lg-4 item-input-info">
+                <label>Chi phí:</label>
+                <input [(ngModel)]="Expense" type="number" class="form-control" placeholder="Chi phí" aria-describedby="basic-addon1" />
+            </div>
+            <div class="col-12 col-md-12 col-lg-4 item-input-info">
+                <label>Số lượng vé:</label>
+                <input [(ngModel)]="Tickets" type="number" class="form-control" placeholder="Số lượng vé" aria-describedby="basic-addon1" />
+            </div>
+            <div class="col-12 col-md-12 col-lg-4 item-input-info">
+                <label>Mô tả:</label>
+                <textarea rows="4" nz-input [(ngModel)]="Description"></textarea>
+
+            </div>
+            <div class="col-12 col-md-12 col-lg-4 item-input-info">
+                <div class="item-input-info">
+                    <label>Chọn thời gian diễn ra:</label>
+                    <div class="calendar-input">
+                        <!--<nz-calendar [(ngModel)]="date" [(nzMode)]="mode"></nz-calendar>-->
+                        <nz-range-picker [(ngModel)]="DateTime" [nzShowTime]="true" (ngModelChange)="onChange($event)"></nz-range-picker>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-->div class="col-12 col-md-12 col-lg-4">
+        <div class="time-input item-input-info">
+            <label>Chọn giờ bắt đầu:</label>
+            <nz-time-picker [(ngModel)]="time" [nzDefaultOpenValue]="defaultOpenValue"></nz-time-picker>
+        </div>
+    </div>
+    <div class="col-12 col-md-12 col-lg-4">
+        <div class="time-input item-input-info">
+            <label>Chọn giờ kết thúc:</label>
+            <nz-time-picker [(ngModel)]="time" [nzDefaultOpenValue]="defaultOpenValue"></nz-time-picker>
+        </div>
+    </div> -->
+
+</div>
+<!--
+<div class="row">
+    <div class="all-student-table mt-4">
+        <div class="row text-center mb-3">
+            <h3>Danh sách tất cả sinh viên</h3>
+        </div>
+        <div class="row fillter-wrap">
+            <div class="col-12 col-sm-4 col-md-6 search-input">
+                <input type="text" class="form-control" placeholder="Tìm kiếm" aria-describedby="inputGroup-sizing-default" />
+                <button class="btn btn-primary"><i class="bi bi-search"></i></button>
+            </div>
+            <div class="col-12 col-sm-3 col-md-2">
+                <div class="item-fillter">
+                    <select class="form-select" id="year">
+              <option>2021</option>
+              <option>2022</option>
+              <option>2024</option>
+            </select>
+                    <label for="year">Năm</label>
+                </div>
+            </div>
+            <div class="col-12 col-sm-2 col-md-2">
+                <div class="item-fillter">
+                    <select class="form-select">
+              <option value="">Kỳ 1</option>
+              <option value="">Kỳ 2</option>
+            </select>
+                    <label>Kỳ</label>
+                </div>
+            </div>
+        </div>
+        <div class="tbl-wrap">
+            <nz-table #rowSelectionTable nzShowPagination [nzData]="listOfData" class="tbl">
+                <thead>
+                    <tr>
+                        <th class="text-center"><input class="form-check-input" type="checkbox" /></th>
+                        <th>ID</th>
+                        <th>Họ tên</th>
+                        <th class="text-center">Chuyên ngành</th>
+                        <th>Tư vấn phụ trách</th>
+                        <th>Số điện thoại</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of rowSelectionTable.data; let i = index">
+                        <td class="text-center"><input class="form-check-input" type="checkbox" /></td>
+                        <td>123467</td>
+                        <td>Nguyễn Văn Thăng</td>
+                        <td class="text-center">CNTT</td>
+                        <td>Phạm Thành Long</td>
+                        <td>0987654321</td>
+                        <td>ThangNguyen@gmail.com</td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </div>
+    </div>
+    <div class="row text-center btn-add">
+        <button class="btn btn-primary w-fit">
+        <i class="bi bi-plus-circle"></i>Thêm sinh viên vào sự kiện
+      </button>
+    </div>
+    <div class="attend-student-table mt-3">
+        <div class="row text-center mb-3">
+            <h3>Danh sách sinh viên tham gia sự kiện</h3>
+        </div>
+        <div class="tbl-wrap">
+            <nz-table #rowSelectionTable nzShowPagination [nzData]="listOfData" class="tbl">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Họ tên</th>
+                        <th class="text-center">Chuyên ngành</th>
+                        <th>Tư vấn phụ trách</th>
+                        <th>Số điện thoại</th>
+                        <th>Email</th>
+                        <th class="text-center">Trạng thái</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let data of rowSelectionTable.data; let i = index">
+                        <td>123467</td>
+                        <td>Nguyễn Văn Thăng</td>
+                        <td class="text-center">CNTT</td>
+                        <td>Phạm Thành Long</td>
+                        <td>0987654321</td>
+                        <td>ThangNguyen@gmail.com</td>
+                        <td class="text-center">
+                            <span *ngIf="i % 2 == 0" style="color: #ffa500">Đã xac nhận tham gia</span>
+                            <span *ngIf="i % 2 != 0" style="color: #666666">Chưa xác nhận tham gia</span>
+                        </td>
+                    </tr>
+                </tbody>
+            </nz-table>
+        </div>
+    </div>
+</div>
+-->
+<div class="row text-end mt-2">
+    <div class="col-4"></div>
+    <div class="col-4"></div>
+    <div class="col-4">
+        <button (click)="createEvent()" class="btn btn-primary text-end">Tạo sự kiện</button>
+    </div>
+</div>
+</div>

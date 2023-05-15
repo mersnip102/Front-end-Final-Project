@@ -1,0 +1,538 @@
+<div class="row">
+    <div class="col-md-4 d-flex flex-column align-items-center">
+        <img src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" alt="avatar" width="250px" />
+
+        <h3 class="text-center text-success" *ngIf="editStatus == 1">Thông tin đang được quyền Chỉnh Sửa</h3>
+        <h3 class="text-center text-warning" *ngIf="editStatus == 2">Đang chờ tuyển sinh cấp phép Chỉnh sửa...</h3>
+        <h3 class="text-center text-danger" *ngIf="editStatus == 0">Thông tin không cho phép Chỉnh sửa</h3>
+
+        <div class="d-flex">
+
+
+
+            <button (click)="updateAllowEditing(1)" *ngIf="editStatus == 2 || editStatus == 0" class="btn btn-sm btn-info text-white " type="submit">Mở quyền Edit
+                        
+                    </button>
+            <button (click)="updateAllowEditing(0)" *ngIf="editStatus == 1" class="btn btn-sm btn-danger text-white " type="submit">Đóng quyền Edit  </button>
+            <button class="btn btn-success ms-2" (click)="verifyFee = true">Yêu cầu xác minh tài chính</button>
+
+
+
+
+        </div>
+        <br>
+        <div>
+            <button (click)="updateProfileStatus(1)" *ngIf="profileStatus == 0" class="btn btn-sm btn-success text-white" type="submit">Xác nhận đủ hồ sơ</button>
+            <button (click)="updateProfileStatus(0)" *ngIf="profileStatus == 1" class="btn btn-sm btn-danger text-white" type="submit">Xác nhận chưa đủ hồ sơ</button>
+        </div>
+
+        <div class="card-status">
+            <h3>Trạng thái</h3>
+
+            <p class="status-invalid" *ngIf="profileStatus == 0"> Chưa đầy đủ hồ sơ </p>
+            <p class="status-valid" *ngIf="profileStatus == 1"> Đầy đủ hồ sơ </p>
+            <div *ngFor="let payment of payments">
+                <p class="status-invalid" *ngIf="payment.Status == 0">Chưa đủ {{ payment.FeeType.FeeType }}</p>
+                <p class="status-valid" *ngIf="payment.Status == 1">Đã đủ {{ payment.FeeType.FeeType }}</p>
+                <p class="status-invalid" *ngIf="payment.Status == 2">Đang chờ xét duyệt {{ payment.FeeType.FeeType }}</p>
+            </div>
+            <p class="status-invalid">Chưa xét duyệt Học bổng </p>
+        </div>
+
+        <!--<div class="card-status">
+            <h3>Trạng thái thay đổi</h3>
+
+            <div class="d-flex flex-column align-items-start ms-4">
+                <div>
+                    <input type="checkbox" id="change1" name="change1" value="Bike" />
+                    <label for="change1" class="mx-1">Thay đổi CMND</label><br />
+                </div>
+                <div>
+                    <input type="checkbox" id="change1" name="change1" value="Car" />
+                    <label for="change1" class="mx-1"> Thay đổi số điện thoại</label><br />
+                </div>
+            </div>
+
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-warning">Xoá bỏ</button>
+                <button class="btn btn-primary ms-2">Chấp thuận</button>
+            </div>
+        </div>-->
+        <!--<div class="card-status">
+            <h3>Học bổng</h3>
+
+            <div class="d-flex justify-content-end">
+                <button class="btn btn-warning">Chỉnh sửa</button>
+                <ng-container *ngIf="roleUserCurrent === 2; else role3">
+                    <button class="btn btn-primary ms-2">Gửi Trưởng Phòng</button>
+                </ng-container>
+                <ng-template #role3>
+                    <button class="btn btn-primary ms-2" (click)="show = true">Phê duyệt</button>
+                </ng-template>
+            </div>
+        </div>-->
+
+        <div class="card shadow-sm border-0 overflow-hidden  bg-warning">
+            <div class="card-body">
+                <div class=" text-center">
+                    <h2 class="mb-1">Học Bổng</h2>
+                </div>
+                <div class="text-center">
+                    <h3 *ngIf="scholarshipStudent" class="mb-1 text-success">{{scholarshipStudent.Status == 2 ? "Chờ phê duyệt" : ((scholarshipStudent.Status == 1)? "Đã được phê duyệt" : ((scholarshipStudent.Status == 4)? "Đã hết hạn" : "Không được phê duyệt"))}}</h3>
+                </div>
+                <div class=" align-items-center justify-content-around mt-2 gap-3">
+
+
+                    <h1 *ngIf="scholarshipStudent" class="text-primary text-center">{{scholarshipStudent.TypeScholarship}}</h1>
+
+                    <h4 *ngIf="scholarshipStudent" class=" text-center"> Deadline: {{scholarshipStudent.Deadline | date: 'dd-MM-yyyy'}}</h4>
+
+                </div>
+
+                <!-- <div class="row button-infstudent text-center align-content-center ">
+                  <div class="col-sm-12 form-group">
+                      <br>
+                      <button class="btn btn-sm btn-danger" type="submit">Edit
+                      </button>
+                  </div>
+
+              </div> -->
+                <div class="row button-infstudent text-center align-content-center ">
+                    <div class="col-sm-6 form-group">
+                        <br>
+                        <a [routerLink]="['/pages/scholarship', idStudent]"><button class="btn btn-sm btn-danger text-white" type="submit">Chỉnh Sửa
+                        </button></a>
+                    </div>
+
+                    <div class="col-sm-6 form-group">
+                        <br>
+                        <button (click)="showEdit = true" class="btn btn-sm btn-info text-white">Gửi Trưởng Phòng</button>
+                    </div>
+                </div>
+
+
+            </div>
+
+        </div>
+    </div>
+    <div class="col-md-8">
+        <form [formGroup]="uploadForm" enctype="multipart/form-data" (ngSubmit)="onSubmit()" novalidate>
+            <div class="form-froup">
+                <h2>Thông tin chung</h2>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <label for="full-name" class="form-label">Họ và tên </label>
+                        <input id="full-name" type="text" formControlName="FullName" class="form-control">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="nationality" class="form-label">Quốc tịch </label>
+                        <input id="nationality" type="text" formControlName="Nationality" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <!-- <label for="sex" class="form-label">Giới tính </label>
+        <input id="sex" type="text" formControlName="sex" class="form-control" /> -->
+                        <label for="sex" class="form-label">Giới tính </label>
+                        <select formControlName="Gender" class="form-select">
+          <option *ngFor="let opt of ngOptionsGender" [ngValue]="opt">
+            {{opt}}
+          </option>
+        </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="dateOfBirth" class="form-label">Ngày sinh</label>
+                        <input id="dateOfBirth" type="date" formControlName="Birthday" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="placeOfBirth" class="form-label">Nơi sinh </label>
+                        <input id="placeOfBirth" type="text" formControlName="PlaceOfBirth" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <label for="id" class="form-label">Số CCCD</label>
+                        <input id="id" type="text" formControlName="CitizenIdentificationNum" class="form-control">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="licienseDate" class="form-label">Ngày cấp </label>
+                        <input id="licienseDate" type="date" formControlName="DateCitizen" class="form-control">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="liciensePlace" class="form-label">Nơi cấp </label>
+                        <input id="liciensePlace" type="text" formControlName="PlaceCitizen" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <label for="phoneNumber" class="form-label">Số điện thoại</label>
+                        <input id="phoneNumber" type="text" formControlName="Phone" class="form-control">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="email" class="form-label">Email </label>
+                        <input id="email" type="text" formControlName="Email" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <!-- <label for="major" class="form-label">Chuyên ngành </label>
+        <input id="major" type="text" formControlName="major" class="form-control" /> -->
+                        <label for="major" class="form-label">Chuyên ngành </label>
+                        <select class="form-select" formControlName="Majors">
+                        <option *ngFor="let opt of ngOptionsMajors" [value]="opt">
+                            {{opt}}</option>
+                    </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="linkFb" class="form-label">Link facebook </label>
+                        <input id="linkFb" type="text" formControlName="LinkFacebook" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h2>Trường THPT</h2>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <!-- <label for="city" class="form-label">Tỉnh/Thành phố </label>
+        <input id="city" type="text" formControlName="city" class="form-control" /> -->
+                        <label for="city" class="form-label">Tỉnh/Thành phố</label>
+                        <select formControlName="provinceTHPT" class="form-select">
+          <option *ngFor="let city of cityOptions" [value]="city">
+            {{city}}
+          </option>
+        </select>
+                        <!--<select formControlName="District" class="form-select" id="district">
+            <option value="" selected></option>
+        </select>-->
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="graduateYear" class="form-label">Năm tốt nghiệp </label>
+                        <nz-date-picker id="graduateYear" class="form-control" nzMode="year" formControlName="GraduationYear"></nz-date-picker>
+
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="nameSchool" class="form-label">Tên trường THPT </label>
+                    <input id="nameSchool" formControlName="HightSchool" type="text" class="form-control" />
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h2>Địa chỉ</h2>
+
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <!-- <label for="city" class="form-label">Tỉnh/Thành phố</label>
+        <input id="city" type="text" formControlName="city" class="form-control" /> -->
+                        <!--<label for="city" class="form-label">Tỉnh/Thành phố</label>-->
+
+                        <select formControlName="Province" class="form-select" id="city">
+            <option value="" ></option>
+        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <!--<label for="district" class="form-label">Quận/Huyện</label>-->
+                        <select formControlName="District" class="form-select" id="district">
+                        <option value="" ></option>
+                    </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <!--<label for="ward" class="form-label">Phường/Xã</label>-->
+                        <select formControlName="Commune" class="form-select" id="ward">
+                        <option value="" ></option>
+                    </select>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="specificAddress" class="form-label">Địa chỉ cụ thể (Số nhà riêng, thôn, xóm)</label
+      >
+      <input
+        id="specificAddress"
+        type="text"
+        formControlName="Address"
+        class="form-control" />
+    </div>
+  </div>
+
+  <div class="form-group">
+    <h2>Người bảo hộ</h2>
+
+    <label for="nameProSt" class="form-label">Họ và tên người bảo hộ 1</label>
+                    <input id="nameProSt" type="text" formControlName="NameSponsor1" class="form-control" />
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label for="phoneProSt" class="form-label">Số điện thoại người bảo hộ 1</label>
+                            <input id="phoneProSt" formControlName="PhoneNumberSponsor1" type="text" class="form-control" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="emailProSt" class="form-label">Email người bảo hộ 1</label>
+                            <input id="emailProSt" formControlName="EmailSponsor1" type="text" class="form-control">
+                        </div>
+                    </div>
+
+                    <label for="nameProNd" class="form-label">Họ và tên người bảo hộ 2</label>
+                    <input id="nameProNd" type="text" formControlName="NameSponsor2" class="form-control">
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label for="phoneProNd" class="form-label">Số điện thoại người bảo hộ 2</label>
+                            <input id="phoneProNd" formControlName="PhoneNumberSponsor2" type="text" class="form-control">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="emailProNd" class="form-label">Email người bảo hộ 2</label>
+                            <input id="emailProNd" formControlName="EmailSponsor2" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <h2>Hồ sơ</h2>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label for="file">Bằng tốt nghiệp THPT</label>
+                            <div>
+                                <img (click)="onClickImage(images.CertificateOfGraduation)" *ngIf="dataImage.CertificateOfGraduation != '' && dataImage.CertificateOfGraduation != null" style="margin-top: 15px; margin-bottom: 15px" [src]="images.CertificateOfGraduation" width="100px"
+                                    height="100px" alt="">
+                                <input id="file" type="file" class="form-control" formControlName="CertificateOfGraduation" (change)="onFileChange($event, 'CertificateOfGraduation')">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="file">Giấy chứng nhận tốt nghiệp THPT tạm thời(gốc)</label>
+                            <div>
+                                <img (click)="onClickImage(images.TemporaryCertificateOfGraduation)" *ngIf="dataImage.TemporaryCertificateOfGraduation != '' && dataImage.TemporaryCertificateOfGraduation != null" style="margin-top: 15px; margin-bottom: 15px" [src]="images.TemporaryCertificateOfGraduation"
+                                    width="100px" height="100px" alt="">
+                                <input id="file" type="file" class="form-control" formControlName="TemporaryCertificateOfGraduation" (change)="onFileChange($event, 'TemporaryCertificateOfGraduation')">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label for="file">Học bạ THPT</label>
+                            <div>
+                                <img (click)="onClickImage(images.StudyRecords)" *ngIf="dataImage.StudyRecords != '' && dataImage.StudyRecords != null" style="margin-top: 15px; margin-bottom: 15px" [src]="images.StudyRecords" width="100px" height="100px" alt="">
+                                <input id="file" type="file" class="form-control" formControlName="StudyRecords" (change)="onFileChange($event, 'StudyRecords')">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="file">Chứng chỉ Tiếng Anh</label>
+                            <div>
+                                <img (click)="onClickImage(images.EnglishCertificate)" *ngIf="dataImage.EnglishCertificate != '' && dataImage.EnglishCertificate != null" style="margin-top: 15px; margin-bottom: 15px" [src]="images.EnglishCertificate" width="100px" height="100px" alt="">
+                                <input id="file" type="file" class="form-control" formControlName="EnglishCertificate" (change)="onFileChange($event, 'EnglishCertificate')">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label for="file">Giấy khai sinh</label>
+                            <div>
+                                <img (click)="onClickImage(images.BirthCertificate)" *ngIf="dataImage.BirthCertificate != '' && dataImage.BirthCertificate != null" style="margin-top: 15px; margin-bottom: 15px" [src]="images.BirthCertificate" width="100px" height="100px" alt="">
+                                <input id="file" type="file" class="form-control" (change)="onFileChange($event, 'BirthCertificate')" formControlName="BirthCertificate">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="file">Ảnh chân dung</label>
+                            <div>
+                                <img (click)="onClickImage(images.PortraitImage)" *ngIf="dataImage.PortraitImage != '' && dataImage.PortraitImage != null" style="margin-top: 15px; margin-bottom: 15px" [src]="images.PortraitImage" width="100px" height="100px" alt="">
+                                <input id="file" type="file" class="form-control" (change)="onFileChange($event, 'PortraitImage')" formControlName="PortraitImage">
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label for="file">CMND/CCCD</label>
+                            <div>
+                                <img (click)="onClickImage(images.CitizenIdentification)" *ngIf="dataImage.CitizenIdentification != '' && dataImage.CitizenIdentification != null" style="margin-top: 15px; margin-bottom: 15px" [src]="images.CitizenIdentification" width="100px" height="100px"
+                                    alt="">
+                                <input id="file" type="file" class="form-control" (change)="onFileChange($event, 'CitizenIdentification')" formControlName="CitizenIdentification" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="file">Các chứng chỉ, giấy tờ khác(nếu có)</label>
+                            <div>
+                                <img (click)="onClickImage(images.OtherPapers)" *ngIf="dataImage.OtherPapers != '' && dataImage.OtherPapers != null" style="margin-top: 15px; margin-bottom: 15px" [src]="images.OtherPapers" width="100px" height="100px" alt="">
+                                <input id="file" type="file" class="form-control" (change)="onFileChange($event, 'OtherPapers')" formControlName="OtherPapers" />
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-6">
+        <div *ngIf="selectedPdf" style="display: flex;align-items: center;justify-content: start; margin: 12px 0;">
+          <iframe
+            [src]="sanitizer.bypassSecurityTrustResourceUrl(selectedPdf)"
+            width="200px"
+            height="200px"
+          ></iframe>
+        </div>
+        <button class = "btn btn-success" class="col-sm-12 stylings" (click)="file1.click()">
+          {{ captionPdf }}
+        </button>
+        <input
+          hidden
+          type="file"
+          accept="application/pdf"
+          #file1
+          onclick="this.value = null"
+          (change)="onSelectPdfFile($event)"
+        />
+      </div> -->
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <!--<button class="btn btn-success">Xuất file PDF</button>-->
+                    <button class="btn btn-primary ms-3" type="submit">Save</button>
+                </div>
+        </form>
+
+        </div>
+    </div>
+    <nz-modal [(nzVisible)]="verifyFee" nzTitle="Yêu cầu xác minh phí" (nzOnCancel)="handleCancelModalEdit()" (nzOnOk)="handleOkEditFee()">
+        <ng-container *nzModalContent>
+            <div class="item-modal my-2">
+                <label class="mb-1">Họ và tên:</label>
+                <input [disabled]="true" [value]="dataImage.FullName" type="text" class="form-control" placeholder="Họ và tên" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="item-modal my-2">
+                <label class="mb-1">Số điện thoại:</label>
+                <input [disabled]="true" [value]="dataImage.Phone" formC type="text" class="form-control" placeholder="Số điện thoại" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="item-modal my-2">
+                <label for="" class="mr-1">Chọn loại phí:</label>
+                <!--<button nz-button nz-dropdown [nzDropdownMenu]="menu4" class="btn btn-primary">
+        Chọn loại phí
+        <span nz-icon nzType="down"></span>
+      </button>-->
+                <div *ngFor="let opt of listFee" class=" col-8 align-content-center m-auto">
+                    <td class="pe-3">
+                        <input [value]="opt.Id" (change)="onChange($event)" [checked]="opt.select" formControlName="checkbox" type="checkbox"> {{opt.FeeType}} - {{opt.Fee}} VNĐ
+                        <br>
+                    </td>
+
+                </div>
+            </div>
+        </ng-container>
+    </nz-modal>
+    <nz-modal [(nzVisible)]="show" nzTitle="Xác nhận học bổng" (nzOnCancel)="handleCancelShow()" [nzOkDisabled]="true">
+        <ng-container *nzModalContent>
+            <form class="form-horizontal" [formGroup]="scholarshipForm" enctype="multipart/form-data" novalidate>
+
+
+                <h3 class="mb-1 text-center">Đề xuất học bổng</h3>
+                <br>
+                <div>
+                    <div class="row ">
+                        <div class="col-4">
+                            <h5>Họ Và Tên: </h5>
+                        </div>
+                        <div class="col-8">
+
+                            <h5 formControlName="FullName">{{ this.scholarshipForm.get('FullName')!.value }}</h5>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-4 text-left">
+                            <h5>Số điện thoại: </h5>
+                        </div>
+                        <div class="col-8">
+                            <h5 formControlName="Phone">{{this.scholarshipForm.get('Phone')!.value}}</h5>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-4  text-left">
+                            <h5>Email: </h5>
+                        </div>
+                        <div class="col-8">
+                            <h5 formControlName="Email">{{this.scholarshipForm.get('Email')!.value}}</h5>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-5  text-left">
+                            <h5>Chuyên ngành: </h5>
+                        </div>
+                        <div class="col-7">
+                            <h5 formControlName="Majors">{{this.scholarshipForm.get('Majors')!.value}}</h5>
+                        </div>
+                    </div>
+                    <!--<div class="row ">
+                        <div class="col-6  text-left">
+                            <h5>Chứng chỉ tiếng anh </h5>
+                        </div>
+                        <div class="col-6">
+                            <h2 formControlName="EnglishCertificate">{{this.scholarshipForm.get('EnglishCertificate')!.value}}</h2>
+                        </div>
+                    </div>-->
+                    <div class="row me-auto">
+                        <div class="col-4  text-left">
+                            <h5>Học bổng: </h5>
+                        </div>
+                        <div class="col-7">
+                            <select formControlName="TypeScholarship" class=" form-select-sm">
+                        <option *ngFor="let opt of ngScholarship" [value]="opt.value">{{opt.name}}</option>
+                    </select>
+                        </div>
+                    </div>
+                    <div class="row me-auto">
+                        <div class="col-6  text-left">
+                            <h5>Deadline học bổng: </h5>
+                        </div>
+                        <div class="col-6">
+                            <nz-date-picker [(ngModel)]="date" (ngModelChange)="onChange2($event)"></nz-date-picker>
+                        </div>
+                    </div>
+                    <div class="text-center mt-3">
+                        <button (click)="scholarshipSubmit()" class="btn bg-info btn-flat text-white">Đề xuất học bổng</button>
+                    </div>
+                </div>
+
+                <br>
+            </form>
+        </ng-container>
+    </nz-modal>
+
+    <nz-modal [(nzVisible)]="showEdit" nzTitle="Xác nhận học bổng" (nzOnCancel)="handleCancelShow()" (nzOnOk)="handleCancelShow()">
+        <ng-container *nzModalContent>
+            <div class="item-modal my-2">
+                <label class="mb-1">Họ và tên:</label>
+                <input type="text" class="form-control" placeholder="Họ và tên" value="Nguyễn Như Tộ" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="item-modal my-2">
+                <label class="mb-1">Số điện thoại:</label>
+                <input type="text" class="form-control" placeholder="Số điện thoại" value="09383832984" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="item-modal my-2">
+                <label for="" class="mb-1">Tên học bổng:</label>
+                <input type="text" class="form-control" placeholder="Tên học bổng" value="Học bổng toàn phần" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+            <div class="item-modal my-2">
+                <label for="" class="mb-1">Số tiền:</label>
+                <input type="text" class="form-control" placeholder="Số tiền" value="1000000" aria-label="Username" aria-describedby="basic-addon1">
+            </div>
+        </ng-container>
+    </nz-modal>

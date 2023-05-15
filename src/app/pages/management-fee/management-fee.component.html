@@ -1,0 +1,75 @@
+<div class="managementFee-page">
+    <h3>Quản lý phí</h3>
+    <div class="row">
+        <button class="btn btn-add-fee" (click)="showModal('')"><span>Tạo phí
+                mới</span></button>
+    </div>
+    <div class="row list-fee-wrap">
+        <div class="row list-fee__title">
+            <span>Danh sách các loại phí</span>
+        </div>
+        <div class="row list-fee">
+            <div class="col-12 col-sm-6 col-md-3 col-lg-2 list-fee__item" *ngFor="let item of listFee">
+                <nz-card [nzTitle]="item.FeeType" [nzExtra]="extraTemplate" class="card-fee">
+                    <div class="card-fee__img">
+                        <img src="https://primefaces.org/cdn/primeng/images/usercard.png">
+                    </div>
+                    <div class="card-fee__info">
+                        <div class="card-fee__info__amount">
+                            <span>Số tiền:</span> <span>{{item.Fee}} VNĐ</span>
+                        </div>
+                        <div class="card-fee__info__time">
+                            <span>Năm học:</span>
+                            <span>{{item.SchoolYear}}</span>
+                        </div>
+                    </div>
+                </nz-card>
+                <ng-template #extraTemplate>
+                    <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu">More</a>
+                </ng-template>
+                <nz-dropdown-menu #menu="nzDropdownMenu">
+                    <ul nz-menu>
+                        <li nz-menu-item (click)="showModal(item.Id)">Sửa</li>
+                        <li nz-menu-item (click)="deleteFee(item.Id)">Xóa</li>
+                    </ul>
+                </nz-dropdown-menu>
+            </div>
+        </div>
+    </div>
+    <nz-modal [nzFooter]="modalFooter" [(nzVisible)]="isVisible || editModal" [nzTitle]="editModal ? 'Sửa phí' : 'Tạo phí mới'" (nzOnCancel)="handleCancel()">
+        <form [formGroup]="feeForm" validate>
+            <ng-container *nzModalContent>
+
+                <div class="row form-create-fee">
+                    <div class="row">
+                        <div class="item-form-fee">
+                            <label for="">Loại phí:</label>
+                            <input formControlName="FeeType" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Nhập loại phí">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-6 item-form-fee">
+                            <label for="">Số tiền:</label>
+                            <input formControlName="Fee" type="text" class="form-control" aria-label="Default" aria-describedby="inputGroup-sizing-default" placeholder="Nhập số tiền">
+                        </div>
+                        <div class="col-sm-12 col-md-6 item-form-fee">
+                            <label for="">Năm học</label>
+                            <nz-date-picker formControlName="SchoolYear" nzMode="year" (ngModelChange)="onChange($event)"></nz-date-picker>
+                        </div>
+                    </div>
+                </div>
+
+            </ng-container>
+            <ng-template #modalFooter>
+
+                <button nz-button nzType="danger" (click)="handleCancel()">Cancel</button>
+                <button nz-button nzType="success" (click)="saveFee(feeForm.value.Id)">Save</button>
+            </ng-template>
+        </form>
+    </nz-modal>
+    <nz-modal [(nzVisible)]="deleteModal" nzTitle="Xác nhận xóa" (nzOnCancel)="handleCancelModalDelete()" (nzOnOk)="handleOkDeleteFee()">
+        <ng-container *nzModalContent>
+            <span>Hãy kiểm tra lại trước khi thực hiện, chắc chắc xóa Fee</span>
+        </ng-container>
+    </nz-modal>
+</div>

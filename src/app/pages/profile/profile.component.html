@@ -1,0 +1,321 @@
+<div class="row">
+    <div class="col-md-4 d-flex flex-column align-items-center">
+        <img src="https://st3.depositphotos.com/15648834/17930/v/600/depositphotos_179308454-stock-illustration-unknown-person-silhouette-glasses-profile.jpg" alt="avatar" width="250px" />
+        <h2><strong>Thông tin cá nhân</strong></h2>
+        <h3 class="text-center text-success" *ngIf="editStatus == 1">Thông tin đang được quyền Chỉnh Sửa</h3>
+        <h3 class="text-center text-warning" *ngIf="editStatus == 2">Đang chờ tuyển sinh cấp phép Chỉnh sửa...</h3>
+        <h3 class="text-center text-danger" *ngIf="editStatus == 0">Thông tin không cho phép Chỉnh sửa</h3>
+        <button (click)="editRequest()" [disabled]="editStatus == 1 || editStatus ==2" class="btn btn-primary">Yêu cầu chỉnh sửa</button>
+        <div class="status-box mt-4 d-flex flex-column align-items-center">
+            <h3 class="mb-3">Trạng thái</h3>
+            <p class="status-card status-invalid" *ngIf="profileStatus == 0"> Chưa đầy đủ hồ sơ </p>
+            <p class="status-card status-valid" *ngIf="profileStatus == 1"> Đầy đủ hồ sơ </p>
+            <div *ngFor="let payment of payments">
+                <p *ngIf="payment.Status == 0">Chưa đủ {{ payment.FeeType.FeeType }}</p>
+                <p *ngIf="payment.Status == 1">Đã đủ {{ payment.FeeType.FeeType }}</p>
+                <p *ngIf="payment.Status == 2">Đang chờ xét duyệt {{ payment.FeeType.FeeType }}</p>
+            </div>
+            <p class="bg-success text-white radius-15 p-1"> Học bổng: </p>
+            <!--<div class="status-card status-valid">Đầy đủ hồ sơ</div>
+            <div class="status-card status-invalid">Chưa đủ học phí</div>-->
+
+        </div>
+    </div>
+    <div class="col-md-8">
+        <form [formGroup]="uploadForm" enctype="multipart/form-data" (ngSubmit)="onSubmit()" novalidate>
+            <div class="form-froup">
+                <h2>Thông tin chung</h2>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <label for="full-name" class="form-label">Họ và tên </label>
+                        <input id="full-name" type="text" formControlName="FullName" class="form-control" [disabled]="disabledEdit">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="nationality" class="form-label">Quốc tịch </label>
+                        <input id="nationality" type="text" formControlName="Nationality" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <!-- <label for="sex" class="form-label">Giới tính </label>
+            <input id="sex" type="text" formControlName="sex" class="form-control" /> -->
+                        <label for="sex" class="form-label">Giới tính </label>
+                        <select formControlName="Gender" class="form-select">
+              <option *ngFor="let opt of ngOptionsGender" [ngValue]="opt">
+                {{opt}}
+              </option>
+            </select>
+                    </div>
+                    <div class="col-md-4">
+                        <label for="dateOfBirth" class="form-label">Ngày sinh</label>
+                        <input id="dateOfBirth" type="date" formControlName="Birthday" class="form-control">
+                    </div>
+                    <div class="col-md-4">
+                        <label for="placeOfBirth" class="form-label">Nơi sinh </label>
+                        <input id="placeOfBirth" type="text" formControlName="PlaceOfBirth" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <label for="id" class="form-label">Số CCCD</label>
+                        <input id="id" type="text" formControlName="CitizenIdentificationNum" class="form-control">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="licienseDate" class="form-label">Ngày cấp </label>
+                        <input id="licienseDate" type="date" formControlName="DateCitizen" class="form-control">
+                    </div>
+
+                    <div class="col-md-4">
+                        <label for="liciensePlace" class="form-label">Nơi cấp </label>
+                        <input id="liciensePlace" type="text" formControlName="PlaceCitizen" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <label for="phoneNumber" class="form-label">Số điện thoại</label>
+                        <input id="phoneNumber" type="text" formControlName="Phone" class="form-control">
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="email" class="form-label">Email </label>
+                        <input id="email" type="text" formControlName="Email" class="form-control">
+                    </div>
+                </div>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <!-- <label for="major" class="form-label">Chuyên ngành </label>
+            <input id="major" type="text" formControlName="major" class="form-control" /> -->
+                        <label for="major" class="form-label">Chuyên ngành </label>
+                        <select class="form-select" formControlName="Majors">
+                            <option *ngFor="let opt of ngOptionsMajors" [value]="opt">
+                                {{opt}}</option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="linkFb" class="form-label">Link facebook </label>
+                        <input id="linkFb" type="text" formControlName="LinkFacebook" class="form-control">
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h2>Trường THPT</h2>
+
+                <div class="row mb-4">
+                    <div class="col-md-6">
+                        <!-- <label for="city" class="form-label">Tỉnh/Thành phố </label>
+            <input id="city" type="text" formControlName="city" class="form-control" /> -->
+                        <label for="city" class="form-label">Tỉnh/Thành phố</label>
+                        <select formControlName="provinceTHPT" class="form-select">
+              <option *ngFor="let city of cityOptions" [value]="city">
+                {{city}}
+              </option>
+            </select>
+                        <!--<select formControlName="District" class="form-select" id="district">
+                <option value="" selected></option>
+            </select>-->
+                    </div>
+
+                    <div class="col-md-6">
+                        <label for="graduateYear" class="form-label">Năm tốt nghiệp </label>
+                        <nz-date-picker id="graduateYear" class="form-control" nzMode="year" formControlName="GraduationYear"></nz-date-picker>
+
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="nameSchool" class="form-label">Tên trường THPT </label>
+                    <input id="nameSchool" formControlName="HightSchool" type="text" class="form-control">
+                </div>
+            </div>
+
+            <div class="form-group">
+                <h2>Địa chỉ</h2>
+
+                <div class="row mb-4">
+                    <div class="col-md-4">
+                        <!-- <label for="city" class="form-label">Tỉnh/Thành phố</label>
+            <input id="city" type="text" formControlName="city" class="form-control" /> -->
+                        <!--<label for="city" class="form-label">Tỉnh/Thành phố</label>-->
+
+                        <select formControlName="Province" class="form-select" id="city">
+                <option value="" ></option>
+            </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <!--<label for="district" class="form-label">Quận/Huyện</label>-->
+                        <select formControlName="District" class="form-select" id="district">
+                            <option value="" ></option>
+                        </select>
+                    </div>
+
+                    <div class="col-md-4">
+                        <!--<label for="ward" class="form-label">Phường/Xã</label>-->
+                        <select formControlName="Commune" class="form-select" id="ward">
+                            <option value="" ></option>
+                        </select>
+                    </div>
+                </div>
+
+                <div class="mb-4">
+                    <label for="specificAddress" class="form-label">Địa chỉ cụ thể (Số nhà riêng, thôn, xóm)</label
+          >
+          <input
+            id="specificAddress"
+            type="text"
+            formControlName="Address"
+            class="form-control" />
+        </div>
+      </div>
+
+      <div class="form-group">
+        <h2>Người bảo hộ</h2>
+
+        <label for="nameProSt" class="form-label">Họ và tên người bảo hộ 1</label>
+                    <input id="nameProSt" type="text" formControlName="NameSponsor1" class="form-control" />
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label for="phoneProSt" class="form-label">Số điện thoại người bảo hộ 1</label>
+                            <input id="phoneProSt" formControlName="PhoneNumberSponsor1" type="text" class="form-control" />
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="emailProSt" class="form-label">Email người bảo hộ 1</label>
+                            <input id="emailProSt" formControlName="EmailSponsor1" type="text" class="form-control">
+                        </div>
+                    </div>
+
+                    <label for="nameProNd" class="form-label">Họ và tên người bảo hộ 2</label>
+                    <input id="nameProNd" type="text" formControlName="NameSponsor2" class="form-control">
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label for="phoneProNd" class="form-label">Số điện thoại người bảo hộ 2</label>
+                            <input id="phoneProNd" formControlName="PhoneNumberSponsor2" type="text" class="form-control">
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="emailProNd" class="form-label">Email người bảo hộ 2</label>
+                            <input id="emailProNd" formControlName="EmailSponsor2" type="text" class="form-control">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <h2>Hồ sơ</h2>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label for="file">Bằng tốt nghiệp THPT</label>
+                            <div>
+                                <img (click)="onClickImage(images.CertificateOfGraduation)" *ngIf="dataImage.CertificateOfGraduation != '' && dataImage.CertificateOfGraduation != null" style="margin-top: 15px; margin-bottom: 15px" [src]="images.CertificateOfGraduation" width="100px"
+                                    height="100px" alt="">
+                                <input id="file" type="file" class="form-control" formControlName="CertificateOfGraduation" (change)="onFileChange($event, 'CertificateOfGraduation')">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="file">Giấy chứng nhận tốt nghiệp THPT tạm thời(gốc)</label>
+                            <div>
+                                <img (click)="onClickImage(images.TemporaryCertificateOfGraduation)" *ngIf="dataImage.TemporaryCertificateOfGraduation != '' && dataImage.TemporaryCertificateOfGraduation != null" style="margin-top: 15px; margin-bottom: 15px" [src]="images.TemporaryCertificateOfGraduation"
+                                    width="100px" height="100px" alt="">
+                                <input id="file" type="file" class="form-control" formControlName="TemporaryCertificateOfGraduation" (change)="onFileChange($event, 'TemporaryCertificateOfGraduation')">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label for="file">Học bạ THPT</label>
+                            <div>
+                                <img (click)="onClickImage(images.StudyRecords)" *ngIf="dataImage.StudyRecords != '' && dataImage.StudyRecords != null" style="margin-top: 15px; margin-bottom: 15px" [src]="images.StudyRecords" width="100px" height="100px" alt="">
+                                <input id="file" type="file" class="form-control" formControlName="StudyRecords" (change)="onFileChange($event, 'StudyRecords')">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="file">Chứng chỉ Tiếng Anh</label>
+                            <div>
+                                <img (click)="onClickImage(images.EnglishCertificate)" *ngIf="dataImage.EnglishCertificate != '' && dataImage.EnglishCertificate != null" style="margin-top: 15px; margin-bottom: 15px" [src]="images.EnglishCertificate" width="100px" height="100px" alt="">
+                                <input id="file" type="file" class="form-control" formControlName="EnglishCertificate" (change)="onFileChange($event, 'EnglishCertificate')">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label for="file">Giấy khai sinh</label>
+                            <div>
+                                <img (click)="onClickImage(images.BirthCertificate)" *ngIf="dataImage.BirthCertificate != '' && dataImage.BirthCertificate != null" style="margin-top: 15px; margin-bottom: 15px" [src]="images.BirthCertificate" width="100px" height="100px" alt="">
+                                <input id="file" type="file" class="form-control" (change)="onFileChange($event, 'BirthCertificate')" formControlName="BirthCertificate">
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="file">Ảnh chân dung</label>
+                            <div>
+                                <img (click)="onClickImage(images.PortraitImage)" *ngIf="dataImage.PortraitImage != '' && dataImage.PortraitImage != null" style="margin-top: 15px; margin-bottom: 15px" [src]="images.PortraitImage" width="100px" height="100px" alt="">
+                                <input id="file" type="file" class="form-control" (change)="onFileChange($event, 'PortraitImage')" formControlName="PortraitImage">
+                            </div>
+
+
+                        </div>
+                    </div>
+
+                    <div class="row mb-4">
+                        <div class="col-md-6">
+                            <label for="file">CMND/CCCD</label>
+                            <div>
+                                <img (click)="onClickImage(images.CitizenIdentification)" *ngIf="dataImage.CitizenIdentification != '' && dataImage.CitizenIdentification != null" style="margin-top: 15px; margin-bottom: 15px" [src]="images.CitizenIdentification" width="100px" height="100px"
+                                    alt="">
+                                <input id="file" type="file" class="form-control" (change)="onFileChange($event, 'CitizenIdentification')" formControlName="CitizenIdentification" />
+                            </div>
+                        </div>
+
+                        <div class="col-md-6">
+                            <label for="file">Các chứng chỉ, giấy tờ khác(nếu có)</label>
+                            <div>
+                                <img (click)="onClickImage(images.OtherPapers)" *ngIf="dataImage.OtherPapers != '' && dataImage.OtherPapers != null" style="margin-top: 15px; margin-bottom: 15px" [src]="images.OtherPapers" width="100px" height="100px" alt="">
+                                <input id="file" type="file" class="form-control" (change)="onFileChange($event, 'OtherPapers')" formControlName="OtherPapers" />
+                            </div>
+                        </div>
+                        <!-- <div class="col-md-6">
+            <div *ngIf="selectedPdf" style="display: flex;align-items: center;justify-content: start; margin: 12px 0;">
+              <iframe
+                [src]="sanitizer.bypassSecurityTrustResourceUrl(selectedPdf)"
+                width="200px"
+                height="200px"
+              ></iframe>
+            </div>
+            <button class = "btn btn-success" class="col-sm-12 stylings" (click)="file1.click()">
+              {{ captionPdf }}
+            </button>
+            <input
+              hidden
+              type="file"
+              accept="application/pdf"
+              #file1
+              onclick="this.value = null"
+              (change)="onSelectPdfFile($event)"
+            />
+          </div> -->
+                    </div>
+                </div>
+                <div class="d-flex justify-content-end">
+                    <button type="button" class="btn btn-success" (click)="exportPdf()">Xuất file PDF</button>
+                    <button class="btn btn-primary ms-3" type="submit">Save</button>
+                </div>
+        </form>
+
+        </div>
+    </div>

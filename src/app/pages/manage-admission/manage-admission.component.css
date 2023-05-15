@@ -1,0 +1,139 @@
+.tbl-wrap{
+    border: 1px solid #3fb59e;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    padding: 12px;
+    border-radius: 8px;
+    overflow-y: auto;
+}
+.row{
+    padding: 0;
+    margin: 0;
+}
+::ng-deep .ant-table-thead > tr > th{
+    background: #5accd0;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+::ng-deep .ant-table-thead > tr > th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before{
+    background-color: #d7e7d8;
+}
+
+::ng-deep .ant-table-row{
+    color: #046e70;
+}
+
+.card-status{
+    padding: 4px 10px;
+    border-radius: 16px;
+    color: #ffffff;
+    width: fit-content;
+    font-size: 10px;
+    font-weight: 600;
+}
+
+.card-status--completeFee{
+    background: #ffc3a0;
+}
+
+.card-status--notFee{
+    background: #3fb59e;
+}
+
+.title-page{
+    font-size: 24px;
+    font-weight: 700;
+    margin-bottom: 24px;
+    color: #16363d;
+}
+.general-info{
+    gap: 24px;
+    justify-content: space-around;
+    max-width: 80%;
+}
+.card-info{
+    background-color: red;
+    width: auto;
+    padding: 8px;
+    border-radius: 8px;
+    color: #ffffff;
+}
+
+.title-card{
+    font-weight: 600;
+    font-size: 14px;
+    margin-bottom: 8px;
+    border-bottom: 1px solid #ffffff;
+}
+
+.card-content{
+    font-size: 24px;
+    font-weight: 700;
+}
+
+.general-info>:first-child{
+    background-color: #bab55e;
+}
+
+.general-info>:last-child{
+    background-color: #9c7c4f;
+}
+
+.general-info>:nth-child(2){
+    background-color: #046e70;
+}
+
+.general-info>:nth-child(3){
+    background-color: #b000b5;
+}
+
+.general-info{
+    margin-bottom: 24px;
+}
+
+.fillter-wrap{
+    margin-bottom: 12px;
+}
+
+.item-fillter{
+    position: relative;
+}
+
+.item-fillter>select{
+    border-radius: 12px;
+}
+.item-fillter>input{
+    padding-right: 13px;
+}
+.item-fillter>label{
+    position: absolute;
+    top: -15px;
+    left: 14px;
+    display: block;
+    padding: 1px;
+    background: #ffff;
+    font-weight: 500;
+}
+
+.search-input{
+    position: relative;
+}
+
+.search-input>button{
+    position: absolute;
+    top: 0;
+    right: 13px;
+}
+
+.btn-icon>a:first-child{
+    margin-right: 4px;
+}
+
+.btn-icon>a{
+    font-size: 1rem;
+}
+
+.edit-status{
+    display: flex;
+    justify-content: center;
+}

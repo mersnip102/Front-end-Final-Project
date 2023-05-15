@@ -1,0 +1,100 @@
+body {
+    background: rgb(99, 39, 120)
+}
+
+.form-control:focus {
+    box-shadow: none;
+    border-color: #BA68C8
+}
+
+.profile-button {
+    background: rgb(99, 39, 120);
+    box-shadow: none;
+    border: none
+}
+
+.profile-button:hover {
+    background: #682773
+}
+
+.profile-button:focus {
+    background: #682773;
+    box-shadow: none
+}
+
+.profile-button:active {
+    background: #682773;
+    box-shadow: none
+}
+
+.back:hover {
+    color: #682773;
+    cursor: pointer
+}
+
+.labels {
+    font-size: 11px
+}
+
+.add-experience:hover {
+    background: #BA68C8;
+    color: #fff;
+    cursor: pointer;
+    border: solid 1px #BA68C8
+}
+
+.child-mt-12>div{
+    margin-top: 12px;
+}
+
+.label-input{
+    font-size: 16px;
+    margin-bottom: 4px;
+    color: #682773;
+}
+
+.border-right{
+    border-right: 1px solid #ced4da;
+}
+
+.box-shadow{
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+}
+
+.profile-section{
+    margin-top: 20px;
+}
+.profile-section>h2{
+    font-weight: 600;
+    color: #682773;
+    font-size: 20px;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+}
+.profile-section>.row{
+    margin-top: 12px;
+}
+
+input{
+    font-size: 14px;
+    padding: 8px 12px;
+}
+
+.status-change>h3{
+   margin: 12px 0;
+}
+
+.btn-request-change, .btn-submit-form{
+    padding: 8px 16px;
+    border-radius: 8px;
+    background-color: #0d6efd;
+    color: #ffff;
+    font-size: 16px;
+}
+
+.title-page{
+    color: #603396;
+    font-size: 24px;
+    font-weight: 700;
+}

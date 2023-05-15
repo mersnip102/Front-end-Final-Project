@@ -1,0 +1,40 @@
+<div class="container_new_email">
+    <div class="header-new_email bg-dark text-white d-flex px-2
+    justify-content-between align-items-center">
+        <span>New Email</span>
+        <i class="bi bi-x-lg compose_mail_close" (click)="closeNewEmail()"></i>
+    </div>
+    <div class="form_new_email">
+        <form [formGroup]="emailForm">
+            <div class="new_email_to mt-2">
+                <span class="form-control">
+          <input type="text" class="form-control" formControlName="to"
+            placeholder="To" />
+          
+          <input type="file" (change)="onFileChange($event)" formControlName="emailFile" accept=".xls,.xlsx, .csv">
+        </span>
+            </div>
+            <div class="subject_new_email form-control mt-2">
+                <input type="text" class="form-control" formControlName="subject" placeholder="Subject" />
+            </div>
+            <div class="container_content mt-2">
+                <quill-editor class="style_quill" [styles]="styles" formControlName="text" placeholder="Enter text here...">
+                </quill-editor>
+            </div>
+
+            <div class="group_btn_bottom mt-2">
+                <div class="d-flex align-items-center">
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-primary" (click)="sendEmail()">Send</button>
+                    </div>
+                    <div class="ms-auto">
+                        <button type="button" class="btn border-0 btn-sm btn-white" (click)="deleteNewEmail()">
+              <img src="../../../assets/icons/icon-trash-alt-solid.svg"
+                alt="icon_trash" width="20px" height="20px">
+            </button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+</div>

@@ -1,0 +1,59 @@
+<div class="email-wrapper row">
+  <div class="email-sidebar col-3 col-md-2  my-2">
+    <div class="email-sidebar-header">
+      <a routerLink="new-email">
+        <img src="../../../assets/icons/icon-plus-solid.svg" alt="icon_plus" width="15px" height="15px">
+        Compose
+      </a>
+    </div>
+    <div class="email-sidebar-content">
+      <div class="email_navigation">
+        <div class="inbox">
+          <a class="list-group-item" [routerLink]="['box-email', 'inbox']" routerLinkActive="router-link-active">
+            <img src="../../../assets/icons/icon-inbox-solid.svg" alt="icon_inbox" width="15px" height="15px">
+            Hộp thư đến</a>
+        </div>
+        <div class="sent_email" routerLinkActive="router-link-active">
+          <a class="list-group-item" [routerLink]="['box-email', 'sent']">
+            <img src="../../../assets/icons/icon-send-paper-plane-regular.svg" alt="icon_send" width="15px"
+              height="15px">
+            Đã gửi</a>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="email-content col-9 col-md-10 my-2">
+    <div class="email-header-content d-flex align-items-center">
+      <div class="group_item_delete d-flex align-items-center">
+        <div class="checkbox_all">
+          <input type="checkbox">
+        </div>
+        <div class="btn_delete_email">
+          <button type="button" class="btn btn-white ms-2">
+            <img src="../../../assets/icons/icon-trash-alt-solid.svg" alt="icon_trash" width="15px" height="15px">
+          </button>
+        </div>
+      </div>
+      <div class="search flex-grow-1 mx-xl-2 my-2 my-xl-0">
+        <div class="input-group"> <span class="input-group-text bg-transparent">
+            <img src="../../../assets//icons/icon-search-solid.svg" alt="icon_search" width="15px" height="15px">
+          </span>
+          <input type="text" class="form-control" placeholder="Search mail">
+        </div>
+      </div>
+      <div class="group_pagination d-flex align-items-center">
+        <button class="number_of_mail btn btn-sm btn-light">1-10 of 98</button>
+
+        <button class="btn btn-white px-2 ms-2"><img src="../../../assets/icons/icon-chevron-left-solid.svg"
+            alt="icon_left" width="15px" height="15px">
+        </button>
+        <button class="btn btn-white px-2 ms-2"><img src="../../../assets/icons/icon-chevron-right-solid.svg"
+            alt="icon_right" width="15px" height="15px">
+        </button>
+      </div>
+    </div>
+    <div class="email-content-box my-2">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

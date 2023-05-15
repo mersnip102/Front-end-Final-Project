@@ -1,0 +1,67 @@
+#chat3 .form-control {
+    border-color: transparent;
+}
+
+#chat3 .form-control:focus {
+    border-color: transparent;
+    box-shadow: inset 0px 0px 0px 1px transparent;
+}
+
+.badge-dot {
+    border-radius: 50%;
+    height: 10px;
+    width: 10px;
+    margin-left: 2.9rem;
+    margin-top: -0.75rem;
+}
+
+
+/* .content_chat {
+  overflow-y: scroll;
+} */
+
+.search_user_chat {
+    cursor: pointer;
+}
+
+.search_user_chat:hover {
+    opacity: 0.7;
+}
+
+:host ::ng-deep .upload-list-inline .ant-upload-list-item {
+    float: left;
+    width: 200px;
+    margin-right: 8px;
+}
+
+:host ::ng-deep .upload-list-inline [class*='-upload-list-rtl'] .ant-upload-list-item {
+    float: right;
+}
+
+:host ::ng-deep .upload-list-inline .ant-upload-animate-enter {
+    animation-name: uploadAnimateInlineIn;
+}
+
+:host ::ng-deep .upload-list-inline .ant-upload-animate-leave {
+    animation-name: uploadAnimateInlineOut;
+}
+
+.custom-file-upload {
+    border: 1px solid #ccc;
+    display: inline-block;
+    padding: 6px 12px;
+    cursor: pointer;
+    color: #666;
+    border-radius: 4px;
+    font-size: 11px;
+    font-weight: bold;
+    background-color: #f2f2f2;
+}
+
+.custom-file-upload:hover {
+    background-color: #e2e2e2;
+}
+
+.custom-cursor {
+    cursor: pointer;
+}

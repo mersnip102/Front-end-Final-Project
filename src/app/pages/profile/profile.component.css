@@ -1,0 +1,23 @@
+.status-box {
+  background-color: rgb(247, 243, 239);
+  border: 2px solid rgb(247, 227, 197);
+  border-radius: 20px;
+  width: 250px;
+  padding: 20px;
+}
+
+.status-card {
+  width: 150px;
+  margin: 5px;
+  padding: 3px;
+  text-align: center;
+  border-radius: 10px;
+}
+
+.status-valid {
+  background-color: rgb(235, 211, 183);
+}
+
+.status-invalid {
+  background-color: rgb(202, 110, 110);
+}

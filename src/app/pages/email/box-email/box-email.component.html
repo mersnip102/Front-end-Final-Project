@@ -1,0 +1,40 @@
+<div class="container_box_email">
+  <div class="list_inbox_email" *ngIf="isInboxEmail">
+    <div class="email-list" *ngFor="let item of dataInbox">
+      <a [routerLink]="['/pages/email/read-email/', item.id]">
+        <div class="d-md-flex align-items-center email-message px-3 py-1">
+          <div class="d-flex align-items-center email-actions">
+            <input class="form-check-input" type="checkbox" value="" /> <i
+              class='bx bx-star font-20 mx-2 email-star'></i>
+          </div>
+          <div class="">
+            <p class="mb-0">{{item.content}}</p>
+          </div>
+          <div class="ms-auto">
+            <p class="mb-0 email-time">{{item.date}}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+
+
+  <div class="list_sent_email" *ngIf="!isInboxEmail">
+    <div class="email-list" *ngFor="let item of dataSent">
+      <a [routerLink]="['/pages/email/read-email/', item.id]">
+        <div class="d-md-flex align-items-center email-message px-3 py-1">
+          <div class="d-flex align-items-center email-actions">
+            <input class="form-check-input" type="checkbox" value="" /> <i
+              class='bx bx-star font-20 mx-2 email-star'></i>
+          </div>
+          <div class="">
+            <p class="mb-0">{{item.content}}</p>
+          </div>
+          <div class="ms-auto">
+            <p class="mb-0 email-time">{{item.date}}</p>
+          </div>
+        </div>
+      </a>
+    </div>
+  </div>
+</div>

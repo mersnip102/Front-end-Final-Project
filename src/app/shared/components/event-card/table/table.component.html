@@ -1,0 +1,41 @@
+<div class="tbl-wrap">
+    <nz-table #rowSelectionTable nzShowPagination nzShowSizeChanger [nzData]="listOfData" class="tbl">
+        <thead>
+            <tr>
+                <!-- <th [nzChecked]="checked" [nzIndeterminate]="indeterminate" (nzCheckedChange)="onAllChecked($event)"></th> -->
+                <th>STT</th>
+                <th>Mã học sinh</th>
+                <th>Tên sinh viên</th>
+                <th>Tên tư vấn</th>
+                <th>Số điện thoại</th>
+                <th>Email</th>
+                <th>Link hóa đơn</th>
+                <th class="text-center">Chuyên ngành</th>
+                <th>Trạng thái</th>
+                <th>Action</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let data of rowSelectionTable.data, let i = index">
+                <!-- <td [nzChecked]="setOfCheckedId.has(data.id)" [nzDisabled]="data.disabled"
+                    (nzCheckedChange)="onItemChecked(data.id, $event)"></td> -->
+                <td class="text-center">{{i + 1}}</td>
+                <td>123467</td>
+                <td>Nguyễn Văn Thăng</td>
+                <td>Phạm Thành Long</td>
+                <td>0987654321</td>
+                <td>ThangNguyen@gmail.com</td>
+                <td>Link hóa đơn</td>
+                <td class="text-center">CNTT</td>
+                <td>
+                    <div class = "card-status card-status--not"><span>Chưa nộp phí</span></div>
+                    <div class = "card-status card-status--not"><span>Đã nộp phí</span></div>
+                </td>
+                <td>
+                    <a href="">Xóa</a>
+                    <a href="">Sửa</a>
+                </td>
+            </tr>
+        </tbody>
+    </nz-table>
+</div>

@@ -1,0 +1,126 @@
+.managementFee-page> h3{
+    font-weight: 700;
+    margin-bottom: 24px;
+}
+.row{
+    padding: 0;
+    margin: 0;
+}
+.btn-add-fee{
+    color: #ffff;
+    background-color: #3B82F6;
+    padding: 8px 12px;
+    width: fit-content;
+    font-size: 16px;
+    font-weight: 700;
+    border-radius: 12px;
+    margin-bottom: 24px;
+}
+
+.btn-add-fee > img{
+    width: 18px;
+    margin-right: 4px;
+}
+
+.list-fee__title{
+    text-align: center;
+    font-size: 20px;
+    font-weight: 700;
+    margin-bottom: 24px;
+}
+img{
+    width: 100%;
+    height: auto;
+    box-sizing: border-box;
+}
+
+.card-fee{
+    max-width: 300px;
+    border-radius: 12px;
+    box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+    margin-bottom: 16px;
+}
+.card-fee__info__amount{
+    display: flex;
+    gap: 4px;
+    font-size: 16px;
+    color:  #495057;
+    margin-top: 12px;
+}
+
+.card-fee__info__amount>span:first-child, .card-fee__info__time>span:first-child{
+    font-weight: 700;
+}
+
+.card-fee__info__time{
+    margin-top: 12px;
+    color:  #495057;
+    font-size: 16px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+}
+.card-fee__info__time>img{
+    width: 18px;
+}
+
+.list-fee{
+    overflow-y: auto;
+    max-height: 100vh;
+}
+
+::ng-deep .ant-card-head-title{
+    font-size: 18px;
+    font-weight: 700;
+    color: #495057;
+}
+
+::ng-deep .nz-menu-item{
+    padding: 8px 12px;
+    font-size: 16px;
+    color: #495057;
+}
+
+.form-create-fee>.row{
+    padding: 0;
+    margin: 0;
+    margin-bottom: 16px;
+}
+
+.item-form-fee>label{
+    font-size: 16px;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #b000b5;
+}
+
+.item-form-fee>label::after{
+    content: '*';
+    margin-left: 4px;
+    color: red;
+}
+
+::ng-deep .ant-modal-title{
+    color: #6a329f;
+    font-weight: 700;
+    font-size: 18px;
+}
+
+::ng-deep .ant-picker{
+    width: 100%;
+    min-height: 38px;
+    border-radius: 6px;
+}
+
+::ng-deep .ant-modal-footer>button{
+    border-radius: 8px;
+    color: #ffffff;
+}
+
+::ng-deep .ant-modal-footer>button:first-child{
+    background-color: #046e70;
+}
+
+::ng-deep .ant-modal-footer>button:last-child{
+    background-color: #b000b5;
+}

@@ -1,0 +1,97 @@
+<!--breadcrumb-->
+<div class="page-breadcrumb d-none d-sm-flex align-items-center">
+    <!-- <div class="breadcrumb-title pe-3 text-white">Pages</div> -->
+    <div class="ps-3">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb mb-0 p-0">
+                <li class="breadcrumb-item"><a href="javascript:;"><i class="bx bx-home-alt"></i></a>
+                </li>
+
+            </ol>
+        </nav>
+    </div>
+
+</div>
+<!--end breadcrumb-->
+
+<div class="main">
+
+
+    <div class="card shadow-sm border-0 overflow-hidden">
+        <div class="container-fluid">
+            <form class="form-horizontal" [formGroup]="uploadForm" enctype="multipart/form-data" (ngSubmit)="onSubmit()" novalidate>
+                <br>
+
+                <h1 class="mb-1 text-center">Đề xuất học bổng</h1>
+                <br>
+                <div class="align-content-center col-4 m-auto">
+                    <div class="row ">
+                        <div class="col-4">
+                            <h3>Họ Và Tên: </h3>
+                        </div>
+                        <div class="col-8">
+
+                            <h2 formControlName="FullName">{{ this.uploadForm.get('FullName')!.value }}</h2>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-4 text-left">
+                            <h3>Số điện thoại: </h3>
+                        </div>
+                        <div class="col-8">
+                            <h2 formControlName="Phone">{{this.uploadForm.get('Phone')!.value}}</h2>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-4  text-left">
+                            <h3>Email: </h3>
+                        </div>
+                        <div class="col-8">
+                            <h2 formControlName="Email">{{this.uploadForm.get('Email')!.value}}</h2>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-5  text-left">
+                            <h3>Chuyên ngành: </h3>
+                        </div>
+                        <div class="col-7">
+                            <h2 formControlName="Majors">{{this.uploadForm.get('Majors')!.value}}</h2>
+                        </div>
+                    </div>
+                    <div class="row ">
+                        <div class="col-6  text-left">
+                            <h3>Chứng chỉ tiếng anh </h3>
+                        </div>
+                        <div class="col-6">
+                            <h2 formControlName="EnglishCertificate">{{this.uploadForm.get('EnglishCertificate')!.value}}</h2>
+                        </div>
+                    </div>
+                    <div class="row me-auto">
+                        <div class="col-4  text-left">
+                            <h3>Học bổng: </h3>
+                        </div>
+                        <div class="col-7">
+                            <select formControlName="TypeScholarship" class="mb-1 form-select-sm">
+                            <option *ngFor="let opt of ngScholarship" [value]="opt.value">{{opt.name}}</option>
+                        </select>
+                        </div>
+                    </div>
+                    <div class="row me-auto">
+                        <div class="col-6  text-left">
+                            <h3>Deadline học bổng: </h3>
+                        </div>
+                        <div class="col-6">
+                            <input formControlName="Deadline" type="date" class="form-control" />
+                        </div>
+                    </div>
+                    <div class="text-center mt-3">
+                        <button type="submit" class="btn bg-info btn-flat text-white">Đề xuất học bổng</button>
+                    </div>
+                </div>
+
+                <br>
+            </form>
+
+        </div>
+    </div>
+</div>

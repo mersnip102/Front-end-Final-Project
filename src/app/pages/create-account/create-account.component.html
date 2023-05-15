@@ -1,0 +1,49 @@
+<div class="row col-md-6 d-flex flex-column align-items-center create-acc">
+    <img src="../../../assets/icons/gwlogo.jpg" alt="logo" style="width: 200px" />
+    <h2 class="text-center"><strong>Tạo tài khoản tự động</strong></h2>
+    <form [formGroup]="accountForm" class="form-group">
+        <div class="mb-4">
+            <label for="phoneNumber">Số điện thoại</label>
+            <input type="tel" name="phoneNumber" id="phoneNumber" formControlName="Phone" class="form-control" />
+        </div>
+
+        <div class="mb-4">
+            <label for="name">Họ và tên</label>
+            <input type="tel" name="name" id="name" formControlName="FullName" class="form-control" />
+        </div>
+
+        <div class="mb-4">
+            <label for="sex" class="form-label">Nguồn hồ sơ </label>
+            <select formControlName="Sourceinfor" class="form-select">
+        <option *ngFor="let dataOrigin of dataOptions" [ngValue]="dataOrigin">
+          {{ dataOrigin }}
+        </option>
+      </select>
+        </div>
+
+        <div class="mb-4">
+            <label for="email">Email</label>
+            <input type="email" name="Email" id="email" formControlName="Email" class="form-control" />
+        </div>
+
+        <!--<div class="mb-4">
+      <label for="phoneNumber">Mật khẩu</label>
+      <input
+        type="password"
+        name="password"
+        id="password"
+        formControlName="password"
+        class="form-control" />
+    </div> -->
+        <div class="text-decoration-underline text-primary mb-4" role="button" (click)="isDisplayInfo = !isDisplayInfo">Thông tin tài khoản mới</div>
+        <ng-container *ngIf="isDisplayInfo">
+            <h4 class="text-uppercase">Tài khoản sinh tự động</h4>
+            <p>Số điện thoại: 0326194244</p>
+            <p>Mật khẩu: 12345678</p>
+            <p>Link đăng nhập: https://test.com</p>
+        </ng-container>
+        <div class="text-center">
+            <button (click)="CreateNewAccount(accountForm.value)" class="btn btn-primary">Tạo tài khoản tự động mới</button>
+        </div>
+    </form>
+</div>
