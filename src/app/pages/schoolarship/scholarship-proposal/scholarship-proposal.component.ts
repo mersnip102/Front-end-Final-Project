@@ -87,24 +87,7 @@ export class ScholarshipProposalComponent {
     ) {
 
 
-    this.uploadForm = this.formBuilder.group({
-
-      ScholarshipId: new FormControl(''),
-      FullName: new FormControl(''),
-     
-      Email: new FormControl(''),
-      Phone: new FormControl(''),
-      Majors: new FormControl(''),
-      EnglishCertificate: new FormControl(''),
-      TypeScholarship: new FormControl(''),
-      ValueScholarship: new FormControl(''),
-      DatePropose: new FormControl(''),
-      AdmissionId: new FormControl(''),
-      Deadline: new FormControl(''),
-    });
-
-    const currentYear = new Date().getFullYear() + 5;
-    this.years = Array.from({ length: 20 }, (_, i) => currentYear - i);
+   
   } //dependency injection
 
 
@@ -226,7 +209,7 @@ export class ScholarshipProposalComponent {
     this.formData.append('AdmissionId', this.uploadForm.get('AdmissionId')?.value);
 
     if( this.uploadForm.get('DatePropose')?.value) {
-      this.formData.append('DatePropose', this.uploadForm.get('DatePropose')?.value);
+      this.formData.append('DatePropose', new Date( this.uploadForm.get('DatePropose')?.value).toISOString().slice(0, 10));
 
     } else {
       this.formData.append('DatePropose', new Date().toISOString().slice(0, 10));
@@ -339,6 +322,25 @@ export class ScholarshipProposalComponent {
   // }
 
   ngOnInit() {
+
+    this.uploadForm = this.formBuilder.group({
+
+      ScholarshipId: new FormControl(''),
+      FullName: new FormControl(''),
+     
+      Email: new FormControl(''),
+      Phone: new FormControl(''),
+      Majors: new FormControl(''),
+      EnglishCertificate: new FormControl(''),
+      TypeScholarship: new FormControl(''),
+      ValueScholarship: new FormControl(''),
+      DatePropose: new FormControl(''),
+      AdmissionId: new FormControl(''),
+      Deadline: new FormControl(''),
+    });
+
+    const currentYear = new Date().getFullYear() + 5;
+    this.years = Array.from({ length: 20 }, (_, i) => currentYear - i);
 
 
     this.profile();

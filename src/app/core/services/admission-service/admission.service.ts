@@ -83,7 +83,7 @@ export class AdmissionService {
     });
     console.log(obj);
    
-    return this.http.put(this.api + `updateScholarship`, obj, {responseType: 'json'})//stringify de chuyen doi tu object sang json
+    return this.http.put(this.api + 'updateScholarship', obj, {responseType: 'json'})//stringify de chuyen doi tu object sang json
   }
 
   addScholarshipByStudent(formData: FormData): Observable<any> {

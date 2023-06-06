@@ -68,7 +68,7 @@ export class ProfileStudentComponent {
       name: 'Học bổng 20%',
       value: 80000000
     },
-    ]; 
+  ];
   dataProvince!: any;
   verifyFee = false;
   sexOptions = [{ name: 'Nam' }, { name: 'Nữ' }];
@@ -141,51 +141,51 @@ export class ProfileStudentComponent {
     'TP HCM',
   ];
 
-  profileForm = this.fb.group({
-    basicInfo: this.fb.group({
-      name: 'Nguyễn Xuân Quyền',
-      nationality: 'Việt Nam',
-      sex: this.sexOptions[0],
-      dateOfBirth: '02/12/1998',
-      placeOfBirth: 'abc',
-      id: '3423523',
-      licienseDate: '16/03/2023',
-      liciensePlace: 'Hà Nội',
-      phoneNumber: '0379172166',
-      email: 'mersnip102@gmail.com',
-      major: this.majorOptions[0],
-      linkFb: 'test.facebook.com',
-    }),
-    highSchoolInfo: this.fb.group({
-      city: this.cityOptions[0],
-      graduateYear: '2014',
-      nameSchool: 'THPT Nguyễn Trãi',
-    }),
-    address: this.fb.group({
-      city: this.cityOptions[0],
-      district: '',
-      ward: '',
-      specificAddress: '',
-    }),
-    protector: this.fb.group({
-      nameProSt: '',
-      phoneProSt: '',
-      emailProSt: '',
-      nameProNd: '',
-      phoneProNd: '',
-      emailProNd: '',
-    }),
-    brief: this.fb.group({
-      highSchoolDiploma: '',
-      highSchoolTranscript: '',
-      avatar: '',
-      birthCert: '',
-      graduationCert: '',
-      englishCert: '',
-      idCard: '',
-      otherDocuments: '',
-    }),
-  });
+  // profileForm = this.fb.group({
+  //   basicInfo: this.fb.group({
+  //     name: 'Nguyễn Xuân Quyền',
+  //     nationality: 'Việt Nam',
+  //     sex: this.sexOptions[0],
+  //     dateOfBirth: '02/12/1998',
+  //     placeOfBirth: 'abc',
+  //     id: '3423523',
+  //     licienseDate: '16/03/2023',
+  //     liciensePlace: 'Hà Nội',
+  //     phoneNumber: '0379172166',
+  //     email: 'mersnip102@gmail.com',
+  //     major: this.majorOptions[0],
+  //     linkFb: 'test.facebook.com',
+  //   }),
+  //   highSchoolInfo: this.fb.group({
+  //     city: this.cityOptions[0],
+  //     graduateYear: '2014',
+  //     nameSchool: 'THPT Nguyễn Trãi',
+  //   }),
+  //   address: this.fb.group({
+  //     city: this.cityOptions[0],
+  //     district: '',
+  //     ward: '',
+  //     specificAddress: '',
+  //   }),
+  //   protector: this.fb.group({
+  //     nameProSt: '',
+  //     phoneProSt: '',
+  //     emailProSt: '',
+  //     nameProNd: '',
+  //     phoneProNd: '',
+  //     emailProNd: '',
+  //   }),
+  //   brief: this.fb.group({
+  //     highSchoolDiploma: '',
+  //     highSchoolTranscript: '',
+  //     avatar: '',
+  //     birthCert: '',
+  //     graduationCert: '',
+  //     englishCert: '',
+  //     idCard: '',
+  //     otherDocuments: '',
+  //   }),
+  // });
   roleUserCurrent!: number;
   constructor(private fb: FormBuilder, private authService: AuthService,
     private localStorageSv: LocalStoreService,
@@ -202,78 +202,12 @@ export class ProfileStudentComponent {
       this.roleUserCurrent = res;
     });
 
-    this.uploadForm = this.formBuilder.group({
-      AccountId: new FormControl(null),
-      Address: new FormControl(null),
-      Admission: new FormControl(null),
-      AdmissionManager: new FormControl(null),
-      AllowEditing: new FormControl(null),
-      BirthCertificate: new FormControl(null),
-      Birthday: new FormControl(null),
-      CertificateOfGraduation: new FormControl(null),
-      CitizenIdentification: new FormControl(null),
-      CitizenIdentificationNum: new FormControl(null),
-      Commune: new FormControl(null),
-      CoverImage: new FormControl(null),
-      DateCitizen: new FormControl(null),
-      District: new FormControl(null),
-      Email: new FormControl(null),
-      EmailSponsor1: new FormControl(null),
-      EmailSponsor2: new FormControl(null),
-      EnglishCertificate: new FormControl(null),
-      EnglishLevel: new FormControl(null),
-      EnoughProfile: new FormControl(null),
-      FullName: new FormControl(null),
-      Gender: new FormControl(null),
-      GraduationYear: new FormControl(null),
-      HightSchool: new FormControl(null),
-      Id: new FormControl(null),
-      ImageFolder: new FormControl(null),
-      InnitiatedDate: new FormControl(null),
-      LeadSoure: new FormControl(null),
-      LinkFacebook: new FormControl(null),
-      Majors: new FormControl(null),
-      NameSponsor1: new FormControl(null),
-      NameSponsor2: new FormControl(null),
-      Nationality: new FormControl(null),
-      OtherPapers: new FormControl(null),
-      Phone: new FormControl(null),
-      PhoneNumberSponsor1: new FormControl(null),
-      PhoneNumberSponsor2: new FormControl(null),
-      PlaceCitizen: new FormControl(null),
-      PlaceOfBirth: new FormControl(null),
-      PortraitImage: new FormControl(null),
-      Province: new FormControl(null),
-      Scholarship: new FormControl(null),
-      SchoolId: new FormControl(null),
-      StudyRecords: new FormControl(null),
-      TemporaryCertificateOfGraduation: new FormControl(null),
-      provinceTHPT: new FormControl(null),
-    });
 
-    const currentYear = new Date().getFullYear() + 5;
-    this.years = Array.from({ length: 20 }, (_, i) => currentYear - i);
-
-    this.scholarshipForm = this.formBuilder.group({
-
-      ScholarshipId: new FormControl(''),
-      FullName: new FormControl(''),
-     
-      Email: new FormControl(''),
-      Phone: new FormControl(''),
-      Majors: new FormControl(''),
-      EnglishCertificate: new FormControl(''),
-      TypeScholarship: new FormControl(''),
-      ValueScholarship: new FormControl(''),
-      DatePropose: new FormControl(''),
-      AdmissionId: new FormControl(''),
-      Deadline: new FormControl(''),
-    });
   }
 
-  handleEdit() {
-    this.profileForm.enable();
-  }
+  // handleEdit() {
+  //   this.profileForm.enable();
+  // }
 
   onFileChange(event: any, fieldName: string) {
     let file: File = event.target.files[0];
@@ -302,38 +236,38 @@ export class ProfileStudentComponent {
     this.verifyFee = false;
   }
   handleOkEditFee() {
-   
-      //get list by select = true
-      const listFeeType = this.listFee.filter(x => x.select == true);
-  
-      const data = {
-        StudentId: this.route.snapshot.params['Id'],
-        RequestDate: moment().format('YYYY-MM-DD'),
-        PaymentValue: 20000000,
-        FeeType: listFeeType
-      }
-  
-      console.log(data);
-      
-      this.notifyService.confirmAdd('Bạn có chắc chắn muốn xác nhận xác minh phí cho học sinh này?').then((result) => {
-        if (result) {
-          this.api.addPaymentStudent(data).subscribe(response => {
-            this.notifyService.successMessage('Gửi xác minh phí thành công');
-           
+
+    //get list by select = true
+    const listFeeType = this.listFee.filter(x => x.select == true);
+
+    const data = {
+      StudentId: this.route.snapshot.params['Id'],
+      RequestDate: moment().format('YYYY-MM-DD'),
+      PaymentValue: 20000000,
+      FeeType: listFeeType
+    }
+
+    console.log(data);
+
+    this.notifyService.confirmAdd('Bạn có chắc chắn muốn xác nhận xác minh phí cho học sinh này?').then((result) => {
+      if (result) {
+        this.api.addPaymentStudent(data).subscribe(response => {
+          this.notifyService.successMessage('Gửi xác minh phí thành công');
+
+          this.profile()
+
+        },
+          error => {
+            console.log(error);
+            this.notifyService.errorMessage('Gửi xác minh phí thất bại');
             this.profile()
-            
-          },
-            error => {
-              console.log(error);
-              this.notifyService.errorMessage('Gửi xác minh phí thất bại');
-              this.profile()
-             
-  
-            }
-          );
-        }
-        
-      });   
+
+
+          }
+        );
+      }
+
+    });
     this.verifyFee = false;
   }
   show = false;
@@ -467,15 +401,15 @@ export class ProfileStudentComponent {
   scholarship() {
 
     const Id = this.route.snapshot.params['Id'];
-   
+
     this.api.getStudentById(Id
     ).subscribe(async res => {
 
-     
+
 
       var d = await JSON.parse(res);
-      
-   
+
+
       let data = await { ...d.student };
       console.log(data);
 
@@ -492,21 +426,21 @@ export class ProfileStudentComponent {
         this.scholarshipForm.get('TypeScholarship')?.setValue(res.scholarship[0].TypeScholarship);
         this.scholarshipForm.get('ValueScholarship')?.setValue(res.scholarship[0].ValueScholarship);
         this.scholarshipForm.get('DatePropose')?.setValue(res.scholarship[0].DatePropose);
-       
+
 
         let birthday = moment(new Date(res.scholarship[0].Deadline)).format('YYYY-MM-DD');
-        
-        
+
+
         this.scholarshipForm.get('Deadline')?.setValue(birthday);
 
 
 
-        
-       
+
+
         this.scholarshipForm.get('AdmissionId')?.setValue(res.scholarship[0].AdmissionId);
       });
 
-     
+
 
 
 
@@ -523,19 +457,19 @@ export class ProfileStudentComponent {
       // AdmissionId: new FormControl(''),
       // Deadline: new FormControl(''),
 
-      
+
 
       this.scholarshipForm.get('EnglishCertificate')?.setValue("Không có");
-      
+
       this.scholarshipForm.get('AdmissionId')?.setValue(data['Admission']);
 
-      
+
     },
 
       error => {
         console.log("Error", error);
         alert("Error");
-        
+
       }
 
     );
@@ -556,28 +490,28 @@ export class ProfileStudentComponent {
     //add form group value to form data ignore file
     formData.append('ScholarshipId', this.scholarshipForm.get('ScholarshipId')?.value);
     formData.append('FullName', this.scholarshipForm.get('FullName')?.value);
-    
+
     formData.append('Email', this.scholarshipForm.get('Email')?.value);
     formData.append('Majors', this.scholarshipForm.get('Majors')?.value);
-  
+
     formData.append('Phone', this.scholarshipForm.get('Phone')?.value);
-    
+
     formData.append('EnglishCertificate', this.scholarshipForm.get('EnglishCertificate')?.value);
 
-    
+
 
     const item: any = this.ngScholarship.filter(x => x.value == this.scholarshipForm.get('TypeScholarship')?.value)
     formData.append('TypeScholarship', item[0].name);
     formData.append('ValueScholarship', this.scholarshipForm.get('TypeScholarship')?.value);
 
-    formData.append('DatePropose',new Date((this.scholarshipForm.get('DatePropose')?.value)).toLocaleDateString());
+    formData.append('DatePropose', new Date((this.scholarshipForm.get('DatePropose')?.value)).toLocaleDateString());
 
 
     formData.append('AdmissionId', this.scholarshipForm.get('AdmissionId')?.value);
-    
+
     formData.append('Deadline', new Date('2023-08-10').toLocaleDateString());
 
-   
+
     formData.forEach((value, key) => {
       console.log(key + ' ' + value);
     });
@@ -589,7 +523,7 @@ export class ProfileStudentComponent {
       showDenyButton: true,
       confirmButtonColor: '#3085d6',
       cancelButtonColor: '#d33',
-      
+
       confirmButtonText: `Save`,
       denyButtonText: `Don't save`,
     }).then((result) => {
@@ -616,7 +550,7 @@ export class ProfileStudentComponent {
 
     this.show = false;
 
-   
+
   }
 
   updateProfileStatus(status: any) {
@@ -839,11 +773,11 @@ export class ProfileStudentComponent {
 
   listFee: any[] = []
 
-  onChange(event: any){
+  onChange(event: any) {
     const Id = event.target.value;
     const isChecked = event.target.checked;
-    
-   
+
+
     this.listFee = this.listFee.map((item) => {
       if (item.Id == Id) {
         item.select = isChecked;
@@ -853,8 +787,8 @@ export class ProfileStudentComponent {
     });
     console.log(this.listFee)
 
-    
-    
+
+
   }
 
   dataImage!: any;
@@ -1489,8 +1423,87 @@ export class ProfileStudentComponent {
 
 
   async ngOnInit() {
-    this.profileForm.disable();
-    this.scholarship() 
+    this.citis = document.getElementById("city") as HTMLSelectElement;
+    this.districts = document.getElementById("district") as HTMLSelectElement;
+    this.wards = document.getElementById("ward") as HTMLSelectElement;
+    // lay api ra
+    await axios.get("https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json")
+      .then(result => {
+        this.dataProvince = result.data;
+        this.renderCity(result.data);
+      });
+
+    this.uploadForm = this.formBuilder.group({
+      AccountId: new FormControl(null),
+      Address: new FormControl(null),
+      Admission: new FormControl(null),
+      AdmissionManager: new FormControl(null),
+      AllowEditing: new FormControl(null),
+      BirthCertificate: new FormControl(null),
+      Birthday: new FormControl(null),
+      CertificateOfGraduation: new FormControl(null),
+      CitizenIdentification: new FormControl(null),
+      CitizenIdentificationNum: new FormControl(null),
+      Commune: new FormControl(null),
+      CoverImage: new FormControl(null),
+      DateCitizen: new FormControl(null),
+      District: new FormControl(null),
+      Email: new FormControl(null),
+      EmailSponsor1: new FormControl(null),
+      EmailSponsor2: new FormControl(null),
+      EnglishCertificate: new FormControl(null),
+      EnglishLevel: new FormControl(null),
+      EnoughProfile: new FormControl(null),
+      FullName: new FormControl(null),
+      Gender: new FormControl(null),
+      GraduationYear: new FormControl(null),
+      HightSchool: new FormControl(null),
+      Id: new FormControl(null),
+      ImageFolder: new FormControl(null),
+      InnitiatedDate: new FormControl(null),
+      LeadSoure: new FormControl(null),
+      LinkFacebook: new FormControl(null),
+      Majors: new FormControl(null),
+      NameSponsor1: new FormControl(null),
+      NameSponsor2: new FormControl(null),
+      Nationality: new FormControl(null),
+      OtherPapers: new FormControl(null),
+      Phone: new FormControl(null),
+      PhoneNumberSponsor1: new FormControl(null),
+      PhoneNumberSponsor2: new FormControl(null),
+      PlaceCitizen: new FormControl(null),
+      PlaceOfBirth: new FormControl(null),
+      PortraitImage: new FormControl(null),
+      Province: new FormControl(null),
+      Scholarship: new FormControl(null),
+      SchoolId: new FormControl(null),
+      StudyRecords: new FormControl(null),
+      TemporaryCertificateOfGraduation: new FormControl(null),
+      provinceTHPT: new FormControl(null),
+    });
+
+    const currentYear = new Date().getFullYear() + 5;
+    this.years = Array.from({ length: 20 }, (_, i) => currentYear - i);
+
+    this.scholarshipForm = this.formBuilder.group({
+
+      ScholarshipId: new FormControl(''),
+      FullName: new FormControl(''),
+
+      Email: new FormControl(''),
+      Phone: new FormControl(''),
+      Majors: new FormControl(''),
+      EnglishCertificate: new FormControl(''),
+      TypeScholarship: new FormControl(''),
+      ValueScholarship: new FormControl(''),
+      DatePropose: new FormControl(''),
+      AdmissionId: new FormControl(''),
+      Deadline: new FormControl(''),
+    });
+
+    this.profile();
+    this.uploadForm
+    this.scholarship()
 
 
     // this.uploadForm = this.formBuilder.group({
@@ -1521,16 +1534,8 @@ export class ProfileStudentComponent {
 
 
 
-    this.citis = document.getElementById("city") as HTMLSelectElement;
-    this.districts = document.getElementById("district") as HTMLSelectElement;
-    this.wards = document.getElementById("ward") as HTMLSelectElement;
-    // lay api ra
-    await axios.get("https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json")
-      .then(result => {
-        this.dataProvince = result.data;
-        this.renderCity(result.data);
-      });
-    this.profile();
+
+
 
 
     // this.profileForm = this.formBuilder.group({
