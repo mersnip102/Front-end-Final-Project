@@ -8,7 +8,7 @@ import { JwtHelperService } from '@auth0/angular-jwt';
   providedIn: 'root',
 })
 export class AuthService {
-  private readonly apiUrl = 'https://greenwichaddmission.onrender.com/';
+  private readonly apiUrl = 'https://greenwichaddmission.onrender.com';
   private readonly accessTokenKey = 'accessToken'; 
   private readonly refreshTokenKey = 'refreshToken';
   roleUser: Observable<number>;
