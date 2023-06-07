@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class AdmissionService {
 
-  private api = 'http://localhost:3000/';
+  private api = 'https://greenwichaddmission.onrender.com/';
 
 
   getAllFees(): Observable<any> {
@@ -134,7 +134,7 @@ export class AdmissionService {
      
   //   });
     
-  //   return this.http.get('http://localhost:3000/my-pdf-file.pdf', {headers:headers, responseType: 'json'})//stringify de chuyen doi tu object sang json
+  //   return this.http.get('https://greenwichaddmission.onrender.com/my-pdf-file.pdf', {headers:headers, responseType: 'json'})//stringify de chuyen doi tu object sang json
    
   // }
 

@@ -8,7 +8,7 @@ import { Observable } from 'rxjs';
 })
 export class BaseService {
 
-  private api = 'http://localhost:3000/';
+  private api = 'https://greenwichaddmission.onrender.com/';
 
 
   sendFileChat(formData: FormData) {
@@ -118,7 +118,7 @@ export class BaseService {
      
   //   });
     
-  //   return this.http.get('http://localhost:3000/my-pdf-file.pdf', {headers:headers, responseType: 'json'})//stringify de chuyen doi tu object sang json
+  //   return this.http.get('https://greenwichaddmission.onrender.com/my-pdf-file.pdf', {headers:headers, responseType: 'json'})//stringify de chuyen doi tu object sang json
    
   // }
 

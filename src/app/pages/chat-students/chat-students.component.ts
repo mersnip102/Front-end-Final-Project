@@ -86,7 +86,7 @@ loadScript2(src: string): Promise<void> {
 public message$: BehaviorSubject<string> = new BehaviorSubject('');
  
 
-  // socket2 = io('http://localhost:3000');
+  // socket2 = io('https://greenwichaddmission.onrender.com');
 
   // public sendMessage2(message: any) {
   //   console.log('sendMessage: ', message)
@@ -215,7 +215,7 @@ file!: any
 constructor(
   private nzImageService: NzImageService,
   private http: HttpClient, private localStorageSv: LocalStoreService, private cdr: ChangeDetectorRef, private api: AdmissionService, private fb: FormBuilder) {
-  this.socket = io('http://localhost:3000');
+  this.socket = io('https://greenwichaddmission.onrender.com');
   this.sendMessageForm = this.fb.group({
     message: new FormControl('', Validators.required),
   })
@@ -316,7 +316,7 @@ SendMessage() {
 onClickImage(imageURL: any): void {
   const image = [
     {
-      src: 'http://localhost:3000/uploads/chat/' + imageURL,
+      src: 'https://greenwichaddmission.onrender.com/uploads/chat/' + imageURL,
       width: '300px',
       height: '350px',
       alt: 'ng-zorro'
@@ -565,7 +565,7 @@ sendFile() {
   );
 
 
-  // this.apo.post('http://localhost:3000/upload', formData).subscribe(
+  // this.apo.post('https://greenwichaddmission.onrender.com/upload', formData).subscribe(
   //   () => {
   //     console.log('File uploaded successfully');
   //   },

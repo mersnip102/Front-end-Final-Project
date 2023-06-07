@@ -116,7 +116,7 @@ export class ChatAdmissionsComponent implements AfterViewInit {
   constructor(
     private nzImageService: NzImageService,
     private http: HttpClient, private localStorageSv: LocalStoreService, private cdr: ChangeDetectorRef, private api: AdmissionService, private fb: FormBuilder) {
-    this.socket = io('http://localhost:3000');
+    this.socket = io('https://greenwichaddmission.onrender.com');
     this.sendMessageForm = this.fb.group({
       message: new FormControl('', Validators.required),
     })
@@ -213,7 +213,7 @@ export class ChatAdmissionsComponent implements AfterViewInit {
   onClickImage(imageURL: any): void {
     const image = [
       {
-        src: 'http://localhost:3000/uploads/chat/' + imageURL,
+        src: 'https://greenwichaddmission.onrender.com/uploads/chat/' + imageURL,
         width: '300px',
         height: '350px',
         alt: 'ng-zorro'
@@ -463,7 +463,7 @@ export class ChatAdmissionsComponent implements AfterViewInit {
     );
 
 
-    // this.apo.post('http://localhost:3000/upload', formData).subscribe(
+    // this.apo.post('https://greenwichaddmission.onrender.com/upload', formData).subscribe(
     //   () => {
     //     console.log('File uploaded successfully');
     //   },
