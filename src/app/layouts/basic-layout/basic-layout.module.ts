@@ -9,6 +9,7 @@ import * as AllIcons from '@ant-design/icons-angular/icons';
 import { NzMenuModule } from 'ng-zorro-antd/menu';
 import { NzDropDownModule } from 'ng-zorro-antd/dropdown';
 import { RouterModule } from '@angular/router';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 const antDesignIcons = AllIcons as {
   [key: string]: IconDefinition;
 };
@@ -23,6 +24,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map(key => antDesign
     NzIconModule.forChild(icons),
     NzDropDownModule,
     RouterModule,
+
+    NzSpinModule
   ],
   exports: [BasicLayoutComponent],
 })

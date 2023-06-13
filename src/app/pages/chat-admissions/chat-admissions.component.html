@@ -78,8 +78,8 @@
                                         <div>
                                             <p *ngIf="msg.content !== ''" class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;">{{msg.content}}</p>
                                             <div *ngIf="msg.file !== '' && msg.file !== null &&  msg.file !== undefined">
-                                                <img *ngIf="isImage(msg.file)" (click)="onClickImage(msg.file)" class="chat-left-msg custom-cursor" width="70px" height="70px" [src]="'https://greenwichaddmission.onrender.com/uploads/chat/' + msg.file" alt="">
-                                                <a class="chat-left-msg" *ngIf="!isImage(msg.file)" [href]="'https://greenwichaddmission.onrender.com/download/' + msg.file">{{msg.file}}</a>
+                                                <img *ngIf="isImage(msg.file)" (click)="onClickImage(msg.file)" class="chat-left-msg custom-cursor" width="70px" height="70px" [src]="'http://localhost:3000/uploads/chat/' + msg.file" alt="">
+                                                <a class="chat-left-msg" *ngIf="!isImage(msg.file)" [href]="'http://localhost:3000/download/' + msg.file">{{msg.file}}</a>
                                             </div>
 
                                             <p class="small ms-3 mb-3 rounded-3 text-muted float-end">{{msg.timestamp}}</p>
@@ -90,8 +90,8 @@
                                         <div>
                                             <p *ngIf="msg.content !== ''" class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary">{{msg.content}}</p>
                                             <div *ngIf="msg.file !== '' && msg.file !== null &&  msg.file !== undefined">
-                                                <img *ngIf="isImage(msg.file)" (click)="onClickImage(msg.file)" class="chat-left-msg custom-cursor" width="70px" height="70px" [src]="'https://greenwichaddmission.onrender.com/uploads/chat/' + msg.file" alt="">
-                                                <a class="chat-left-msg" *ngIf="!isImage(msg.file)" [href]="'https://greenwichaddmission.onrender.com/download/' + msg.file">{{msg.file}}</a>
+                                                <img *ngIf="isImage(msg.file)" (click)="onClickImage(msg.file)" class="chat-left-msg custom-cursor" width="70px" height="70px" [src]="'http://localhost:3000/uploads/chat/' + msg.file" alt="">
+                                                <a class="chat-left-msg" *ngIf="!isImage(msg.file)" [href]="'http://localhost:3000/download/' + msg.file">{{msg.file}}</a>
                                             </div>
 
                                             <p class="small me-3 mb-3 rounded-3 text-muted">{{msg.timestamp}}</p>

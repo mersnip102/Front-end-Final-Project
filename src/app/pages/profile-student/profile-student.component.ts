@@ -878,14 +878,14 @@ export class ProfileStudentComponent {
 
 
       this.images = {
-        CertificateOfGraduation: 'https://greenwichaddmission.onrender.com/' + array.slice(7, array.length).join('/') + '/' + data.CertificateOfGraduation,
-        TemporaryCertificateOfGraduation: 'https://greenwichaddmission.onrender.com/' + array.slice(7, array.length).join('/') + '/' + data.TemporaryCertificateOfGraduation,
-        StudyRecords: 'https://greenwichaddmission.onrender.com/' + array.slice(7, array.length).join('/') + '/' + data.StudyRecords,
-        EnglishCertificate: 'https://greenwichaddmission.onrender.com/' + array.slice(7, array.length).join('/') + '/' + data.EnglishCertificate,
-        BirthCertificate: 'https://greenwichaddmission.onrender.com/' + array.slice(7, array.length).join('/') + '/' + data.BirthCertificate,
-        PortraitImage: 'https://greenwichaddmission.onrender.com/' + array.slice(7, array.length).join('/') + '/' + data.PortraitImage,
-        CitizenIdentification: 'https://greenwichaddmission.onrender.com/' + array.slice(7, array.length).join('/') + '/' + data.CitizenIdentification,
-        OtherPapers: 'https://greenwichaddmission.onrender.com/' + array.slice(7, array.length).join('/') + '/' + data.OtherPapers,
+        CertificateOfGraduation: 'http://localhost:3000/' + array.slice(7, array.length).join('/') + '/' + data.CertificateOfGraduation,
+        TemporaryCertificateOfGraduation: 'http://localhost:3000/' + array.slice(7, array.length).join('/') + '/' + data.TemporaryCertificateOfGraduation,
+        StudyRecords: 'http://localhost:3000/' + array.slice(7, array.length).join('/') + '/' + data.StudyRecords,
+        EnglishCertificate: 'http://localhost:3000/' + array.slice(7, array.length).join('/') + '/' + data.EnglishCertificate,
+        BirthCertificate: 'http://localhost:3000/' + array.slice(7, array.length).join('/') + '/' + data.BirthCertificate,
+        PortraitImage: 'http://localhost:3000/' + array.slice(7, array.length).join('/') + '/' + data.PortraitImage,
+        CitizenIdentification: 'http://localhost:3000/' + array.slice(7, array.length).join('/') + '/' + data.CitizenIdentification,
+        OtherPapers: 'http://localhost:3000/' + array.slice(7, array.length).join('/') + '/' + data.OtherPapers,
 
       }
 
@@ -997,7 +997,7 @@ export class ProfileStudentComponent {
     // headers.append('Content-Type', 'multipart/form-data');
     // headers.append('Accept', 'application/json');
 
-    // this.http.post('https://greenwichaddmission.onrender.com/handleUpload', formData, {headers: headers}).subscribe(
+    // this.http.post('http://localhost:3000/handleUpload', formData, {headers: headers}).subscribe(
     //   (response) => console.log(response),
     //   (error) => console.log(error)
     // );
@@ -1125,7 +1125,7 @@ export class ProfileStudentComponent {
     // doc.save('new-pdf-file.pdf');
 
     // Load the existing PDF file
-    const existingPdfBytes = await fetch('https://greenwichaddmission.onrender.com/my-pdf-file.pdf').then(res => res.arrayBuffer());
+    const existingPdfBytes = await fetch('http://localhost:3000/my-pdf-file.pdf').then(res => res.arrayBuffer());
 
     const pdfDoc = await PDFDocument.load(existingPdfBytes);
 
@@ -1454,7 +1454,7 @@ export class ProfileStudentComponent {
       EnglishCertificate: new FormControl(null),
       EnglishLevel: new FormControl(null),
       EnoughProfile: new FormControl(null),
-      FullName: new FormControl(null),
+      FullName: new FormControl(''),
       Gender: new FormControl(null),
       GraduationYear: new FormControl(null),
       HightSchool: new FormControl(null),
