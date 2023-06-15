@@ -80,19 +80,19 @@
 }
 
 .general-info>:first-child {
-    background-color: #bab55e;
+    background-color: #26be59;
 }
 
 .general-info>:last-child {
-    background-color: #9c7c4f;
+    background-color: #dc5151;
 }
 
 .general-info>:nth-child(2) {
-    background-color: #046e70;
+    background-color: #c9be2e;
 }
 
 .general-info>:nth-child(3) {
-    background-color: #b000b5;
+    background-color: #c9be2e;
 }
 
 .general-info {
