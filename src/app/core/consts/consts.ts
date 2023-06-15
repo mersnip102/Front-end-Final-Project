@@ -18,5 +18,6 @@ export enum RoleNumber {
   student,
   accountant,
   admissions,
-  admissionsManager
+  admissionsManager,
+  headOfAdmissions
 }

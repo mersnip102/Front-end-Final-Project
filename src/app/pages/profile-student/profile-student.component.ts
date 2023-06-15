@@ -864,6 +864,7 @@ export class ProfileStudentComponent {
       .then(result => {
         this.dataProvince = result.data;
         this.renderCity(result.data);
+        this.renderCity2(this.dataProvince, this.uploadForm.get('Province')?.value, this.uploadForm.get('District')?.value, this.uploadForm.get('Commune')?.value);
       });
 
       }, error => {
@@ -935,7 +936,7 @@ export class ProfileStudentComponent {
         this.uploadForm.get('GraduationYear')?.setValue(null);
       }
 
-      this.renderCity2(this.dataProvince, this.uploadForm.get('Province')?.value, this.uploadForm.get('District')?.value, this.uploadForm.get('Commune')?.value);
+      
 
       // let birthday = moment.utc(data.Birthday).local().toDate(); // Chuyển đổi chuỗi ngày tháng sang đối tượng Date
       // await this.uploadForm.get('Birthday')?.setValue(moment(birthday).format('YYYY-MM-DD')); // Định dạng lại đối tượng Date và gán giá trị cho trường input

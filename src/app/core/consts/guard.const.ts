@@ -149,4 +149,55 @@ export const listMenu = [
     ],
     defaultScreen: '/pages/dashboard',
   },
+  {
+    roleNumber: RoleNumber.headOfAdmissions,
+    permission: [
+      {
+        screenName: 'Dashboard',
+        routerLink: 'dashboard',
+        icon: 'dashboard',
+      },
+      {
+        screenName: 'Danh sách sinh viên',
+        routerLink: 'listStudent',
+        icon: 'unordered-list',
+      },
+      {
+        screenName: 'Danh sách admission',
+        routerLink: 'manage-admission',
+        icon: 'unordered-list',
+      },
+      {
+        screenName: 'Tạo Sự kiện',
+        routerLink: 'create-event',
+        icon: 'appstore',
+      },
+      {
+        screenName: 'Sự kiện',
+        routerLink: 'manage-event-list',
+        icon: 'schedule',
+      },
+      {
+        screenName: 'Hồ sơ',
+        routerLink: 'profile-account',
+        icon: 'profile',
+      },
+      {
+        screenName: 'Email',
+        routerLink: 'email/box-email/inbox',
+        icon: 'mail',
+      },
+      // {
+      //   screenName: 'Tin nhắn',
+      //   routerLink: 'chat-admissions',
+      //   icon: 'wechat',
+      // },
+      // {
+      //   screenName: 'Tạo tài khoản',
+      //   routerLink: 'createAccount',
+      //   icon: 'user-add',
+      // },
+    ],
+    defaultScreen: '/pages/dashboard',
+  },
 ];
