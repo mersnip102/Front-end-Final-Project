@@ -904,7 +904,7 @@ export class ProfileStudentComponent {
       // this.districts!.selectedIndex = this.uploadForm.get('District')?.value -1;
       // this.wards!.selectedIndex = this.uploadForm.get('Commune')?.value - 1;
 
-      this.uploadForm.get('Phone')?.disable();
+      // this.uploadForm.get('Phone')?.disable();
       if (this.uploadForm.get('Birthday')?.value != null) {
         let birthday = new Date(data.Birthday);
 
@@ -1454,7 +1454,7 @@ export class ProfileStudentComponent {
       EnglishCertificate: new FormControl(null),
       EnglishLevel: new FormControl(null),
       EnoughProfile: new FormControl(null),
-      FullName: new FormControl(''),
+      FullName: new FormControl(null),
       Gender: new FormControl(null),
       GraduationYear: new FormControl(null),
       HightSchool: new FormControl(null),
@@ -1501,9 +1501,9 @@ export class ProfileStudentComponent {
       Deadline: new FormControl(''),
     });
 
-    this.profile();
-    this.uploadForm
-    this.scholarship()
+    await this.profile();
+    // this.uploadForm
+    await this.scholarship()
 
 
     // this.uploadForm = this.formBuilder.group({
