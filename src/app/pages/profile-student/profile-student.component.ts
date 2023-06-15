@@ -852,9 +852,19 @@ export class ProfileStudentComponent {
 
       this.payments = d.payments
 
-      this.api.getScholarshipByStudent(d.student.Id).subscribe(res => {
+      this.api.getScholarshipByStudent(d.student.Id).subscribe(async res => {
         this.scholarshipStudent = res.scholarship[0];
         console.log(this.scholarshipStudent);
+
+        this.citis = document.getElementById("city") as HTMLSelectElement;
+    this.districts = document.getElementById("district") as HTMLSelectElement;
+    this.wards = document.getElementById("ward") as HTMLSelectElement;
+    // lay api ra
+    await axios.get("https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json")
+      .then(result => {
+        this.dataProvince = result.data;
+        this.renderCity(result.data);
+      });
 
       }, error => {
         console.log(error);
@@ -1423,15 +1433,7 @@ export class ProfileStudentComponent {
 
 
   async ngOnInit() {
-    this.citis = document.getElementById("city") as HTMLSelectElement;
-    this.districts = document.getElementById("district") as HTMLSelectElement;
-    this.wards = document.getElementById("ward") as HTMLSelectElement;
-    // lay api ra
-    await axios.get("https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json")
-      .then(result => {
-        this.dataProvince = result.data;
-        this.renderCity(result.data);
-      });
+    
 
     this.uploadForm = this.formBuilder.group({
       AccountId: new FormControl(null),
