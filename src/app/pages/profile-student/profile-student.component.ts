@@ -852,9 +852,19 @@ export class ProfileStudentComponent {
 
       this.payments = d.payments
 
-      this.api.getScholarshipByStudent(d.student.Id).subscribe(res => {
+      this.api.getScholarshipByStudent(d.student.Id).subscribe(async res => {
         this.scholarshipStudent = res.scholarship[0];
         console.log(this.scholarshipStudent);
+
+        this.citis = document.getElementById("city") as HTMLSelectElement;
+    this.districts = document.getElementById("district") as HTMLSelectElement;
+    this.wards = document.getElementById("ward") as HTMLSelectElement;
+    // lay api ra
+    await axios.get("https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json")
+      .then(result => {
+        this.dataProvince = result.data;
+        this.renderCity(result.data);
+      });
 
       }, error => {
         console.log(error);
@@ -904,7 +914,7 @@ export class ProfileStudentComponent {
       // this.districts!.selectedIndex = this.uploadForm.get('District')?.value -1;
       // this.wards!.selectedIndex = this.uploadForm.get('Commune')?.value - 1;
 
-      this.uploadForm.get('Phone')?.disable();
+      // this.uploadForm.get('Phone')?.disable();
       if (this.uploadForm.get('Birthday')?.value != null) {
         let birthday = new Date(data.Birthday);
 
@@ -1423,15 +1433,7 @@ export class ProfileStudentComponent {
 
 
   async ngOnInit() {
-    this.citis = document.getElementById("city") as HTMLSelectElement;
-    this.districts = document.getElementById("district") as HTMLSelectElement;
-    this.wards = document.getElementById("ward") as HTMLSelectElement;
-    // lay api ra
-    await axios.get("https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json")
-      .then(result => {
-        this.dataProvince = result.data;
-        this.renderCity(result.data);
-      });
+    
 
     this.uploadForm = this.formBuilder.group({
       AccountId: new FormControl(null),
@@ -1454,7 +1456,7 @@ export class ProfileStudentComponent {
       EnglishCertificate: new FormControl(null),
       EnglishLevel: new FormControl(null),
       EnoughProfile: new FormControl(null),
-      FullName: new FormControl(''),
+      FullName: new FormControl(null),
       Gender: new FormControl(null),
       GraduationYear: new FormControl(null),
       HightSchool: new FormControl(null),
@@ -1501,9 +1503,9 @@ export class ProfileStudentComponent {
       Deadline: new FormControl(''),
     });
 
-    this.profile();
-    this.uploadForm
-    this.scholarship()
+    await this.profile();
+    // this.uploadForm
+    await this.scholarship()
 
 
     // this.uploadForm = this.formBuilder.group({
