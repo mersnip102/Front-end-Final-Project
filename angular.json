@@ -16,9 +16,14 @@
             "outputPath": "dist/student-management",
             "index": "src/index.html",
             "main": "src/main.ts",
-            "polyfills": ["zone.js"],
+            "polyfills": [
+              "zone.js"
+            ],
             "tsConfig": "tsconfig.app.json",
-            "allowedCommonJsDependencies": ["sweetalert2", "quill"],
+            "allowedCommonJsDependencies": [
+              "sweetalert2",
+              "quill"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets",
@@ -31,12 +36,24 @@
             "styles": [
               "src/theme.less",
               "node_modules/bootstrap/dist/css/bootstrap.min.css",
-             "node_modules/bootstrap-icons/font/bootstrap-icons.css",
-              "src/styles.css"
+              "node_modules/bootstrap-icons/font/bootstrap-icons.css",
+              "src/styles.css",
+              "src/assets/assets/css/bootstrap.min.css",
+              "src/assets/assets/css/icons.min.css",
+              "src/assets/assets/css/app.min.css"
             ],
             "scripts": [
               "node_modules/jquery/dist/jquery.min.js",
-              "node_modules/bootstrap/dist/js/bootstrap.min.js"
+              "node_modules/bootstrap/dist/js/bootstrap.min.js",
+              "src/assets/assets/libs/jquery/jquery.min.js",
+              "src/assets/assets/libs/bootstrap/js/bootstrap.bundle.min.js",
+              "src/assets/assets/libs/metismenu/metisMenu.min.js",
+              "src/assets/assets/libs/simplebar/simplebar.min.js",
+              "src/assets/assets/libs/node-waves/waves.min.js",
+              "src/assets/assets/libs/morris.js/morris.min.js",
+              "src/assets/assets/libs/raphael/raphael.min.js",
+              "src/assets/assets/js/pages/dashboard.init.js",
+              "src/assets/assets/js/app.js"
             ]
           },
           "configurations": {
@@ -87,17 +104,28 @@
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
-            "polyfills": ["zone.js", "zone.js/testing"],
+            "polyfills": [
+              "zone.js",
+              "zone.js/testing"
+            ],
             "tsConfig": "tsconfig.spec.json",
-            "assets": ["src/favicon.ico", "src/assets"],
-            "styles": ["src/styles.css"],
+            "assets": [
+              "src/favicon.ico",
+              "src/assets"
+            ],
+            "styles": [
+              "src/styles.css"
+            ],
             "scripts": []
           }
         },
         "lint": {
           "builder": "@angular-eslint/builder:lint",
           "options": {
-            "lintFilePatterns": ["src/**/*.ts", "src/**/*.html"]
+            "lintFilePatterns": [
+              "src/**/*.ts",
+              "src/**/*.html"
+            ]
           }
         }
       }
