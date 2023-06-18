@@ -81,7 +81,7 @@ export const listMenu = [
       },
       {
         screenName: 'Email',
-        routerLink: 'email/box-email/inbox',
+        routerLink: 'email',
         icon: 'mail',
       },
       {
@@ -133,7 +133,7 @@ export const listMenu = [
       },
       {
         screenName: 'Email',
-        routerLink: 'email/box-email/inbox',
+        routerLink: 'email',
         icon: 'mail',
       },
       // {
@@ -184,7 +184,8 @@ export const listMenu = [
       },
       {
         screenName: 'Email',
-        routerLink: 'email/box-email/inbox',
+        // routerLink: 'email/box-email/inbox',
+        routerLink: 'email',
         icon: 'mail',
       },
       // {

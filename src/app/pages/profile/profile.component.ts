@@ -468,7 +468,7 @@ export class ProfileComponent implements OnInit {
     ).subscribe(async res => {
 
       let d: any = res
-
+      console.log(d);
 
 
 
@@ -480,6 +480,17 @@ export class ProfileComponent implements OnInit {
 
       this.editStatus = d.student.AllowEditing
 
+       // lay api ra
+    this.citis = document.getElementById("city") as HTMLSelectElement;
+    this.districts = document.getElementById("district") as HTMLSelectElement;
+    this.wards = document.getElementById("ward") as HTMLSelectElement;
+    // lay api ra
+    await axios.get("https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json")
+      .then(result => {
+        this.dataProvince = result.data;
+        this.renderCity(result.data);
+      });
+
       if (this.editStatus == 0 || this.editStatus == 2) {
         this.uploadForm.disable();
       }
@@ -489,7 +500,7 @@ export class ProfileComponent implements OnInit {
 
       let data = await { ...d.student };
       this.dataImage = data
-      console.log(data);
+      
 
       let array = await data.ImageFolder.split('\\')
 
@@ -523,13 +534,13 @@ export class ProfileComponent implements OnInit {
       // this.districts!.selectedIndex = this.uploadForm.get('District')?.value -1;
       // this.wards!.selectedIndex = this.uploadForm.get('Commune')?.value - 1;
 
-      this.uploadForm.get('Phone')?.disable();
+      // this.uploadForm.get('Phone')?.disable();
       if (this.uploadForm.get('Birthday')?.value != null) {
         let birthday = new Date(data.Birthday);
 
         let converDate1 = moment(birthday).format('YYYY-MM-DD');
         this.uploadForm.get('Birthday')?.setValue(converDate1);
-        console.log(this.uploadForm.get('Birthday')?.value);
+        
 
       }
       if (this.uploadForm.get('DateCitizen')?.value != null) {
@@ -895,7 +906,7 @@ export class ProfileComponent implements OnInit {
           this.editStatus = d.student.AllowEditing
 
           if (this.editStatus == 0 || this.editStatus == 2) {
-            this.notifyService.warningMessage("Bạn đang không có quyền chỉnh sửa thông tin này");
+            this.notifyService.warningMessage("Bạn đang không có quyền chỉnh sửa thông tin");
             // this.toastService.warning({duration: 3000, summary: 'You are not authorized to edit this profile.'});
             return;
           } else {
@@ -962,18 +973,18 @@ export class ProfileComponent implements OnInit {
 
             const Id = decodedToken.Infor.Id;
 
-            console.log(this.formData.get('Birthday'));
+            
 
 
             this.api.handleUpload(Id, this.formData).subscribe(response => {
               // Swal.fire('Saved!', '', 'success')
 
 
-             
+             this.profile();
 
               this.notifyService.successMessage("Chỉnh sửa thông tin thành công").then(() => {
-                this.profile();
-                this.formData = new FormData();
+                // this.profile();
+                // this.formData = new FormData();
               });
               // this.toastService.success({ detail: "Success", summary: "Edit Success", duration: 3000 });
 
@@ -1242,16 +1253,7 @@ export class ProfileComponent implements OnInit {
 
 
 
-    // lay api ra
-    this.citis = document.getElementById("city") as HTMLSelectElement;
-    this.districts = document.getElementById("district") as HTMLSelectElement;
-    this.wards = document.getElementById("ward") as HTMLSelectElement;
-    // lay api ra
-    await axios.get("https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json")
-      .then(result => {
-        this.dataProvince = result.data;
-        this.renderCity(result.data);
-      });
+   
     this.profile();
 
 
@@ -1328,7 +1330,7 @@ export class ProfileComponent implements OnInit {
   }
 
   private renderCity2(data: any, city: any, district: any, ward: any) {
-    console.log(data);
+    
     for (const x of data) {
       this.citis!.options[this.citis!.options.length] = new Option(x.Name, x.Id);
     }
@@ -1341,7 +1343,7 @@ export class ProfileComponent implements OnInit {
     if (this.citis!.value !== "") {
       const result = data.filter((n: any) => n.Id === this.citis!.value);
 
-      console.log(this.citis!.selectedIndex);
+      
       for (const k of result[0].Districts) {
         this.districts!.options[this.districts!.options.length] = new Option(k.Name, k.Id);
       }

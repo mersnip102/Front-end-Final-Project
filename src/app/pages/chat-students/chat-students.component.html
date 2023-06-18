@@ -10,15 +10,22 @@
                     <!--<button type="button" class="btn btn-primary btn-sm" data-mdb-ripple-color="dark">
             Leave the room</button>-->
                 </div>
-                <div class="card-body" data-mdb-perfect-scrollbar="true" style="position: relative; height: 400px; overflow: auto;">
+                <div class="card-body" data-mdb-perfect-scrollbar="true"
+                    style="position: relative; height: 400px; overflow: auto;">
                     <div *ngFor="let msg of messages">
                         <div class="d-flex flex-row justify-content-start" *ngIf="!checkUser(msg.username)">
-                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava4-bg.webp" alt="avatar 1" style="width: 45px; height: 100%;">
+                            <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava4-bg.webp"
+                                alt="avatar 1" style="width: 45px; height: 100%;">
                             <div>
-                                <p *ngIf="msg.content !== ''" class="small p-2 ms-3 mb-1 rounded-3" style="background-color: #f5f6f7;">{{msg.content}}</p>
-                                <div *ngIf="msg.file !== '' && msg.file !== null &&  msg.file !== undefined">
-                                    <img *ngIf="isImage(msg.file)" (click)="onClickImage(msg.file)" class="chat-left-msg custom-cursor" width="70px" height="70px" [src]="'http://localhost:3000/uploads/chat/' + msg.file" alt="">
-                                    <a class="chat-left-msg" *ngIf="!isImage(msg.file)" [href]="'http://localhost:3000/download/' + msg.file">{{msg.file}}</a>
+                                <p *ngIf="msg.content !== ''" class="small p-2 ms-3 mb-1 rounded-3 bg-success"
+                                    style="background-color: #f5f6f7;">{{msg.content}}</p>
+                                <div *ngIf="msg.file !== '' && msg.file !== null &&  msg.file !== undefined"
+                                    class="small p-2 ms-3 mb-1 rounded-3">
+                                    <img *ngIf="isImage(msg.file)" (click)="onClickImage(msg.file)"
+                                        class="chat-left-msg custom-cursor" width="70px" height="70px"
+                                        [src]="'http://localhost:3000/uploads/chat/' + msg.file" alt="">
+                                    <a class="chat-left-msg" *ngIf="!isImage(msg.file)"
+                                        [href]="'http://localhost:3000/download/' + msg.file">{{msg.file}}</a>
                                 </div>
                                 <p class="small ms-3 mb-3 rounded-3 text-muted">{{msg.timestamp}}</p>
                             </div>
@@ -30,35 +37,45 @@
 
                         <div class="d-flex flex-row justify-content-end mb-4 pt-1" *ngIf="checkUser(msg.username)">
                             <div>
-                                <p *ngIf="msg.content !== ''" class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary">{{msg.content}}</p>
-                                <div *ngIf="msg.file !== '' && msg.file !== null &&  msg.file !== undefined">
-                                    <img *ngIf="isImage(msg.file)" (click)="onClickImage(msg.file)" class="chat-left-msg custom-cursor" width="70px" height="70px" [src]="'http://localhost:3000/uploads/chat/' + msg.file" alt="">
-                                    <a class="chat-left-msg" *ngIf="!isImage(msg.file)" [href]="'http://localhost:3000/download/' + msg.file">{{msg.file}}</a>
+                                <p *ngIf="msg.content !== ''"
+                                    class="small p-2 me-3 mb-1 text-white rounded-3 bg-primary">{{msg.content}}</p>
+                                <div *ngIf="msg.file !== '' && msg.file !== null &&  msg.file !== undefined"
+                                    class="small p-2 me-3 mb-1 text-white rounded-3">
+                                    <img *ngIf="isImage(msg.file)" (click)="onClickImage(msg.file)"
+                                        class="chat-left-msg custom-cursor" width="70px" height="70px"
+                                        [src]="'http://localhost:3000/uploads/chat/' + msg.file" alt="">
+                                    <a class="chat-left-msg" *ngIf="!isImage(msg.file)"
+                                        [href]="'http://localhost:3000/download/' + msg.file">{{msg.file}}</a>
                                 </div>
-                                <p class="small me-3 mb-3 rounded-3 text-muted d-flex justify-content-end">{{msg.timestamp}}</p>
+                                <p class="small me-3 mb-3 rounded-3 text-muted d-flex justify-content-end">
+                                    {{msg.timestamp}}</p>
                             </div>
-                            <img src="../../../assets/icons/user-circle-solid.svg" alt="avatar 1" style="width: 45px; height: 100%;">
+                            <img src="../../../assets/icons/user-circle-solid.svg" alt="avatar 1"
+                                style="width: 45px; height: 100%;">
                         </div>
 
 
                     </div>
 
                 </div>
-                <div *ngIf="room !== ''" class="border-top text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2">
+                <div *ngIf="room !== ''"
+                    class="border-top text-muted d-flex justify-content-start align-items-center pe-3 pt-3 mt-2">
                     <!-- <img src="../../../assets/icons/user-circle-solid.svg" alt="avatar 3"
     style="width: 40px; height: 100%;"> -->
-                    <input (keydown.enter)="sendMessage()" [(ngModel)]="message" name="message" type="text" class="form-control form-control-lg" id="exampleFormControlInput2" placeholder="Type message">
+                    <input (keydown.enter)="sendMessage()" [(ngModel)]="message" name="message" type="text"
+                        class="form-control form-control-lg" id="exampleFormControlInput2" placeholder="Type message">
 
-                    <div class="clearfix">
-                        <nz-upload (nzChange)="handleChange($event)" [(ngModel)]="file" nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76" nzListType="picture" [(nzFileList)]="fileList" [nzLimit]=1 [nzMultiple]="false">
-                            <button nz-button class="btn btn-primary">
-                          <label class="custom-file-upload" nz-icon nzType="upload"><i class="bi bi-upload"></i></label>
-                          
-                        </button>
-                        </nz-upload>
-                    </div>
+                    <button class="btn btn-success waves-light"><nz-upload (nzChange)="handleChange($event)"
+                            [(ngModel)]="file" nzAction="https://www.mocky.io/v2/5cc8019d300000980a055e76"
+                            nzListType="picture" [(nzFileList)]="fileList" [nzLimit]=1 [nzMultiple]="false">
 
-                    <a class="ms-4" (click)="sendMessage()"><i class="bi bi-send-fill"></i></a>
+                            <i nz-icon nzType="upload" type="button" class="bi bi-upload"></i>
+
+
+                        </nz-upload></button>
+                    <button (click)="sendMessage()" class="btn btn-primary waves-light ms-2">
+                        <i class="fab fa-telegram-plane"></i>
+                    </button>
                 </div>
             </div>
 

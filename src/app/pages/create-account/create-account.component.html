@@ -35,13 +35,14 @@
         formControlName="password"
         class="form-control" />
     </div> -->
-        <div class="text-decoration-underline text-primary mb-4" role="button" (click)="isDisplayInfo = !isDisplayInfo">Thông tin tài khoản mới</div>
+    
+        <!-- <div class="text-decoration-underline text-primary mb-4" role="button" (click)="isDisplayInfo = !isDisplayInfo">Thông tin tài khoản mới</div>
         <ng-container *ngIf="isDisplayInfo">
             <h4 class="text-uppercase">Tài khoản sinh tự động</h4>
             <p>Số điện thoại: 0326194244</p>
             <p>Mật khẩu: 12345678</p>
             <p>Link đăng nhập: https://test.com</p>
-        </ng-container>
+        </ng-container> -->
         <div class="text-center">
             <button (click)="CreateNewAccount(accountForm.value)" class="btn btn-primary">Tạo tài khoản tự động mới</button>
         </div>

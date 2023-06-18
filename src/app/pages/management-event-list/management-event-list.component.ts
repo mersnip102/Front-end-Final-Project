@@ -5,6 +5,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { JwtHelperService } from '@auth0/angular-jwt';
 import { CalendarOptions, EventClickArg } from '@fullcalendar/core';
 import dayGridPlugin from '@fullcalendar/daygrid';
+import { map, pipe } from 'rxjs';
 import { AdmissionService } from 'src/app/core/services/admission-service/admission.service';
 import { LocalStoreService } from 'src/app/core/services/local-store.service';
 import { NotifyService } from 'src/app/core/services/utils/notify.service';
@@ -98,16 +99,56 @@ export class ManagementEventListComponent {
     console.log('Event clicked:', arg.event.id);
     // this.router.navigate(['/admissions/addstudentevent', arg.event.id]);
    this.detailAnEvent(arg.event.id);
-
-
       
   }
 
   getAllEvent(): any {
-    this.api.getAllevents().subscribe((data: any) => {
-      this.events = [];
+    // this.api.getAllevents().subscribe((data: any) => {
+    //   this.events = [];
     
-      for (let i = 0; i < data.events.length; i++) {
+    //   for (let i = 0; i < data.events.length; i++) {
+    //   //   let startDateString = data.events[i].StartDate;
+    //   // let startDate = new Date(startDateString);
+    //   // // Chuyển đổi sang múi giờ GMT+7
+    //   // startDate.setHours(startDate.getHours() + 7);
+
+    //   // let endDateString = data.events[i].EndDate;
+    //   // let endDate = new Date(endDateString);
+    //   // // Chuyển đổi sang múi giờ GMT+7
+    //   // endDate.setHours(startDate.getHours() + 7);
+
+     
+
+     
+    //     this.events.push({
+    //       id: data.events[i].Id,
+    //       title: data.events[i].Name,
+    //       start: data.events[i].StartDate,
+    //       end: data.events[i].EndDate,
+    //       Tickets: data.events[i].Tickets,
+    //       Expense: data.events[i].Expense,
+    //       Description: data.events[i].Description,
+    //       editable: true,
+    //     });
+    //   }
+    //   console.log(this.events);
+
+    //   this.calendarOptions.events = this.events;
+    // }, (error: any) => {
+    //   console.log(error);
+    // });
+    this.api.getAllevents()
+    .pipe(map((products: any) => {
+      return products.events.map((product: any) => ({
+        ...product,
+        backgroundColor: '#' + Math.floor(Math.random() * 16777215).toString(16)
+      }));
+    }))
+    .subscribe((data: any) => {
+      this.events = [];
+      console.log(data);
+    
+      for (let i = 0; i < data.length; i++) {
       //   let startDateString = data.events[i].StartDate;
       // let startDate = new Date(startDateString);
       // // Chuyển đổi sang múi giờ GMT+7
@@ -122,13 +163,14 @@ export class ManagementEventListComponent {
 
      
         this.events.push({
-          id: data.events[i].Id,
-          title: data.events[i].Name,
-          start: data.events[i].StartDate,
-          end: data.events[i].EndDate,
-          Tickets: data.events[i].Tickets,
-          Expense: data.events[i].Expense,
-          Description: data.events[i].Description,
+          id: data[i].Id,
+          title: data[i].Name,
+          start: data[i].StartDate,
+          end: data[i].EndDate,
+          Tickets: data[i].Tickets,
+          Expense: data[i].Expense,
+          Description: data[i].Description,
+          backgroundColor: data[i].backgroundColor,
           editable: true,
         });
       }

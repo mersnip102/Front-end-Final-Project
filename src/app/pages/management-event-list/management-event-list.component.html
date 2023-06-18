@@ -35,41 +35,42 @@
         </div>
         <div class="col-12 col-sm-12 col-md-6 col-lg-4">
             <div class="list-event">
-                <div class="item-event" *ngFor="let item of events; let i = index">
-                    <div class="col-6 advance-wrap text-end">
-                        <!--<button *ngIf="Role == 3" class="btn btn-primary" nz-button nzType="primary" nz-popover nzPopoverTitle="Title" [(nzPopoverVisible)]="visible" (nzPopoverVisibleChange)="change($event)" nzPopoverTrigger="click" [nzPopoverContent]="contentTemplate">
-              <i class="bi bi-three-dots-vertical"></i>
-            </button>-->
-                        <nz-radio-group>
-                            <label *ngIf="Role == 3" (click)="pressDel(item.id)" nz-radio-button nzValue="large"><i class="bi bi-trash3">Xóa</i></label>
-                            <label (click)="detailAnEvent(item.id)" nz-radio-button nzValue="default"><i class="bi bi-eye">Xem</i></label>
+                <div class="item-event card" *ngFor="let item of events; let i = index">
+                    <div class="card-body">
+                        <h4 class="card-title">Name: {{item.title}}</h4>
+                        <p class="card-title-desc"><i class="bi bi-person-fill"></i> Tickets: {{item.Tickets}}</p>
+                        <p class="card-title-desc"><i class="bi bi-stopwatch"></i> Time: {{item.start | date:"dd/MM/yyyy hh:mm"}} - {{item.end | date:"dd/MM/yyyy
+                            hh:mm"}}</p>
+                        <p class="card-title-desc"><i class="bi bi-currency-dollar"></i> Expense: {{item.Expense}}</p>
+                        <p class="card-title-desc"><i class="bi bi-card-text"></i> Description: {{item.Description}}</p>
+                        
+                        <div class="row">
+                            <div class="col-12">
 
-                        </nz-radio-group>
-                    </div>
-                    <div class="row item-event__header">
-                        <div class="col-12 item-title">
-                            <span>Name: {{item.title}}</span>
-                        </div>
-                    </div>
-                    <div class="row item-content">
-                        <div class="col-12 amount-attend">
-                            <i class="bi bi-person-fill"></i>
-                            <span>Tickets: {{item.Tickets}}</span>
-                        </div>
-                        <div class="col-12">
-                            <i class="bi bi-stopwatch"></i>
-                            <span>Time: {{item.start | date:"dd/MM/yyyy hh:mm"}} - {{item.end | date:"dd/MM/yyyy hh:mm"}}</span>
-                        </div>
-                        <div class="col-12">
-                            <i class="bi bi-currency-dollar"></i>
-                            <span>Expense: {{item.Expense}}</span>
-                        </div>
-                    </div>
-                    <div class="row item-des">
+                                <div class="button-items">
+                                    <button (click)="pressDel(item.id)" *ngIf="Role == 3"
+                                        class="btn btn-outline-success waves-effect waves-light"><i
+                                            class="far fa-trash-alt"> Xóa</i></button>
+                                    <button (click)="detailAnEvent(item.id)"
+                                        class="btn btn-outline-success waves-effect waves-light"><i class="far fa-eye">
+                                            Xem</i></button>
 
-                        <span>Description: {{item.Description}}</span>
+
+                                </div>
+
+                            </div>
+                        </div>
+
+                        
+
+
+
+
+
+
                     </div>
                 </div>
+                
             </div>
         </div>
     </div>
@@ -81,13 +82,15 @@
     </div>
 </ng-template>
 
-<nz-modal [(nzVisible)]="deleteModal" nzTitle="Xác nhận xóa" (nzOnCancel)="handleCancelModalDelete()" (nzOnOk)="handleOkDeleteFee()">
+<nz-modal [(nzVisible)]="deleteModal" nzTitle="Xác nhận xóa" (nzOnCancel)="handleCancelModalDelete()"
+    (nzOnOk)="handleOkDeleteFee()">
     <ng-container *nzModalContent>
         <span>Bạn có chắc chán muốn xóa sự kiện này khỏi danh sách?</span>
     </ng-container>
 </nz-modal>
 
-<nz-modal class="modal-detail" [(nzVisible)]="detailEvent" nzTitle="Chi tiết sự kiện" (nzOnOk)="handleOkViewDetail()">
+<nz-modal class="modal-detail" [(nzVisible)]="detailEvent" nzTitle="Chi tiết sự kiện" (nzOnOk)="handleOkViewDetail()"
+    (nzOnCancel)="handleCancelVeiwDetail()">
     <!--(nzOnCancel)="handleCancelVeiwDetail()"-->
     <ng-container *nzModalContent>
         <div class="detail-event">
@@ -97,7 +100,8 @@
                 </div>
                 <div class="event-card-info">
                     <div class="item">
-                        <span>Time: {{event.StartDate | date:"dd/MM/yyyy hh:mm"}} - {{event.EndDate | date:"dd/MM/yyyy hh:mm"}}</span>
+                        <span>Time: {{event.StartDate | date:"dd/MM/yyyy hh:mm"}} - {{event.EndDate | date:"dd/MM/yyyy
+                            hh:mm"}}</span>
                     </div>
                     <div class="item">
                         <span>Expense: {{event.Expense}}</span>
@@ -146,7 +150,8 @@
                     <nz-table #rowSelectionTable nzShowPagination [nzData]="listStudent" class="tbl">
                         <thead>
                             <tr>
-                                <th class="text-center"><input [(ngModel)]="parentSelector" (change)="onChange($event)" [value]="-1" class="form-check-input" type="checkbox" /></th>
+                                <th class="text-center"><input [(ngModel)]="parentSelector" (change)="onChange($event)"
+                                        [value]="-1" class="form-check-input" type="checkbox" /></th>
                                 <th>No.</th>
                                 <th>Họ tên</th>
                                 <th class="text-center">Chuyên ngành</th>
@@ -157,7 +162,8 @@
                         </thead>
                         <tbody>
                             <tr *ngFor="let student of rowSelectionTable.data; let i = index">
-                                <td class="text-center"><input [value]="student.Id" (change)="onChange($event)" [checked]="student.select" class="form-check-input" type="checkbox" /></td>
+                                <td class="text-center"><input [value]="student.Id" (change)="onChange($event)"
+                                        [checked]="student.select" class="form-check-input" type="checkbox" /></td>
                                 <td>{{i+1}}</td>
                                 <td>{{student.FullName}}</td>
                                 <td class="text-center">{{student.Major}}</td>
@@ -171,8 +177,8 @@
             </div>
             <div class="row text-center btn-add">
                 <button (click)="addStudentsToEvent(event.Id)" class="btn btn-primary w-fit">
-          <i class="bi bi-plus-circle"></i>Thêm sinh viên vào sự kiện
-        </button>
+                    <i class="bi bi-plus-circle"></i>Thêm sinh viên vào sự kiện
+                </button>
             </div>
             <div class="attend-student-table mt-3">
                 <div class="row text-center mb-3">
@@ -206,6 +212,7 @@
                 <div class="tbl-wrap">
                     <nz-table #rowSelectionTable2 nzShowPagination [nzData]="listStudentEvent" class="tbl">
                         <thead>
+                            
                             <tr>
                                 <th>ID</th>
                                 <th>Họ tên</th>
@@ -218,18 +225,18 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr *ngFor="let data of rowSelectionTable2.data; let i = index">
-                                <td>123467</td>
-                                <td>Nguyễn Văn Thăng</td>
-                                <td class="text-center">CNTT</td>
-                                <td>Phạm Thành Long</td>
-                                <td>0987654321</td>
-                                <td>ThangNguyen@gmail.com</td>
+                            <tr *ngFor="let student of rowSelectionTable2.data; let i = index">
+                                <td>{{i+1}}</td>
+                                <td>{{student.FullName}}</td>
+                                <td class="text-center">{{student.Major}}</td>
+                                <td>{{student.Admission}}</td>
+                                <td>{{student.Phone}}</td>
+                                <td>{{student.Email}}</td>
                                 <td class="text-center">Trạng thái</td>
                                 <td class="text-center">
                                     <button (click)="deleteStudentModal = true" class="btn btn-icon">
-                    <i class="bi bi-trash3"></i>
-                  </button>
+                                        <i class="bi bi-trash3"></i>
+                                    </button>
                                 </td>
                             </tr>
                         </tbody>
@@ -240,7 +247,8 @@
     </ng-container>
 </nz-modal>
 
-<nz-modal [(nzVisible)]="deleteStudentModal" nzTitle="Xác nhận xóa" (nzOnCancel)="handleCancelStudentDelete()" (nzOnOk)="handleOkStudentModal()">
+<nz-modal [(nzVisible)]="deleteStudentModal" nzTitle="Xác nhận xóa" (nzOnCancel)="handleCancelStudentDelete()"
+    (nzOnOk)="handleOkStudentModal()">
     <ng-container *nzModalContent>
         <span>Bạn có chắc chán muốn xóa sự kiện này khỏi danh sách?</span>
     </ng-container>
