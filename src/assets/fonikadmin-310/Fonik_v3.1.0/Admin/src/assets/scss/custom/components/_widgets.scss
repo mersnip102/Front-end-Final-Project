@@ -1,0 +1,88 @@
+// 
+// Widgets.scss
+// 
+
+.mini-stats-wid{
+    .mini-stat-icon{
+        overflow: hidden;
+        position: relative;
+        &:before, &:after{
+            content: "";
+            position: absolute;
+            width: 8px;
+            height: 54px;
+            background-color: rgba($white,.1);
+            left: 16px;
+            transform: rotate(32deg);
+            top: -5px;
+            transition: all 0.4s;
+        }
+
+        &::after{
+            left: -12px;
+            width: 12px;
+            transition: all 0.2s;
+        }
+    }
+
+    &:hover{
+        .mini-stat-icon{
+            &::after{
+                left: 60px;
+            }
+        }
+    }
+}
+
+
+
+/* Activity */
+.activity-feed {
+  padding: 15px 15px 0 15px;
+  list-style: none;
+
+  .feed-item {
+    position: relative;
+    padding-bottom: 20px;
+    padding-left: 30px;
+    border-left: 2px solid $gray-200;
+
+    &:last-child {
+      border-color: transparent;
+    }
+
+    &::after {
+      content: "";
+      display: block;
+      position: absolute;
+      top: 0;
+      left: -6px;
+      width: 10px;
+      height: 10px;
+      border-radius: 6px;
+      background: $card-bg;
+      border: 1px solid var(--#{$prefix}primary);
+    }
+
+    .date {
+      display: block;
+      position: relative;
+      top: -5px;
+      color: $gray-500;
+      text-transform: uppercase;
+      font-size: 13px;
+    }
+    .activity-text {
+      position: relative;
+      top: -3px;
+    }
+  }
+}
+
+
+
+
+
+
+  
+  

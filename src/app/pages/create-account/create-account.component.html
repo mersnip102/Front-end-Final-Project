@@ -43,8 +43,11 @@
             <p>Mật khẩu: 12345678</p>
             <p>Link đăng nhập: https://test.com</p>
         </ng-container> -->
-        <div class="text-center">
-            <button (click)="CreateNewAccount(accountForm.value)" class="btn btn-primary">Tạo tài khoản tự động mới</button>
+        
+        <div class="float-end">
+            <button type="button"
+                                        class="btn btn-outline-success waves-effect waves-light"><i class="fas fa-file-excel"></i></button>
+            <button (click)="CreateNewAccount(accountForm.value)" class="btn btn-primary ms-2">Tạo tài khoản tự động mới</button>
         </div>
     </form>
 </div>

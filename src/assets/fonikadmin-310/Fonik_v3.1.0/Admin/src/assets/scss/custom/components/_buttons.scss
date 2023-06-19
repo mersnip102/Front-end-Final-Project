@@ -1,0 +1,79 @@
+// 
+// _buttons.scss
+// 
+
+button,a {
+  outline: none !important;
+}
+
+
+// Rounded Buttons
+.btn-rounded {
+  border-radius: 30px;
+}
+
+.btn-dark{
+  color: $gray-200 !important;
+}
+
+// Button with icon label
+
+.btn-icon{
+  position: relative;
+
+  .btn-icon-label{
+    margin: -.55rem .9rem -.55rem -.9rem;
+    padding: .6rem .9rem;
+  }
+
+  &::before{
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    bottom: 0px;
+    width: 38%;
+    background-color: rgba($white, 0.15);
+    clip-path: polygon(0% 0%, 75% 0%, 100% 50%, 75% 100%, 0% 100%);
+    transition: all 0.4s;
+  }
+  &:hover{
+    &::before{
+      width: 100%;
+      clip-path: polygon(0% 0%, 100% 0%, 100% 50%, 100% 100%, 0% 100%);
+    }
+  }
+}
+
+.btn-primary {
+  background-color: var(--#{$prefix}primary) !important;
+  border-color: var(--#{$prefix}primary) !important;
+  &:hover,
+  &:focus,
+  &:active,
+  &.disabled,
+  &:disabled {
+      background-color: var(--#{$prefix}primary);
+      border-color: var(--#{$prefix}primary);
+      &:focus {
+          box-shadow: 0 0 0 $btn-focus-width rgba(var(--bs-primary-rgb), 0.5);
+      }
+  }
+}
+
+.btn-outline-primary {
+  color: var(--#{$prefix}primary);
+  border-color: var(--#{$prefix}primary);
+  &:hover,
+  &:focus,
+  &:active,
+  &.disabled,
+  &:disabled {
+      background-color: var(--#{$prefix}primary);
+      border-color: var(--#{$prefix}primary);
+      color: $white;
+      &:focus {
+          box-shadow: 0 0 0 $btn-focus-width rgba(var(--bs-primary-rgb), 0.5);
+      }
+  }
+}

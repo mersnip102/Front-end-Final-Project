@@ -365,13 +365,14 @@ export class ManagementEventListComponent {
     console.log(data)
     
     this.api.getStudentEvent(data).subscribe(response => {
+      console.log(response);
       this.listStudentEvent = [];
       response.students.forEach((element: any) => {
         element.select = false;
         this.listStudentEvent.push(element);
       });
 
-      console.log(this.listStudentEvent);
+      
   
         // this.router.navigateByUrl('/admissions', { skipLocationChange: true }).then(() => {
         //   this.router.navigate(['/admissions/email/newemail']).then(() => {
@@ -382,7 +383,7 @@ export class ManagementEventListComponent {
   
         //   })
      
-      console.log(response);
+      
       // this.emailForm.reset();
       // this.attachments = [];
 
@@ -443,6 +444,7 @@ export class ManagementEventListComponent {
     
     
     this.api.getStudentsToEvent(data).subscribe(response => {
+      
       console.log(response);
       this.listStudent = [];
       response.students.forEach((element: any) => {

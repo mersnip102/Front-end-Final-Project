@@ -1,0 +1,81 @@
+//
+// c3.scss
+//
+
+
+.c3-tooltip {
+    box-shadow: $box-shadow-lg;
+    opacity: 1;
+    background-color: var(--#{$prefix}card-bg) !important;
+    td {
+        border-left: none;
+        font-family: $font-family-secondary;
+        background-color: var(--#{$prefix}card-bg);
+        >span {
+            background: $dark;
+        }
+    }
+    tr {
+        border: none !important;
+    }    
+    th {
+        background-color: var(--#{$prefix}light);
+        color: $gray-600;
+    }
+}
+
+.c3-chart-arcs-title {
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.c3 {
+    text {
+        font-family: $font-family-base;
+        fill: $gray-500;
+    }
+    line, path{
+        stroke: $gray-400;
+    }
+}
+.c3-legend-item {
+    font-family: $font-family-secondary;
+    font-size: 14px;
+}
+.c3-chart-arc.c3-target g path {
+    stroke: $white;
+}
+
+.c3-chart-bars{
+    
+        .c3-shapes-Mobile, .c3-shapes-iMacs{
+            path{
+                fill: var(--#{$prefix}primary) !important;
+            }
+        }
+       
+        .c3-shapes-Macbooks{
+            path{
+                fill: var(--#{$prefix}success) !important;
+            }
+        }
+}
+
+.c3-chart-arcs{
+    .c3-shapes-Smart-Phones{
+        path{
+            fill: var(--#{$prefix}primary) !important;
+        }
+    }
+}
+
+.c3-legend-item-Mobile, .c3-legend-item-iMacs, .c3-legend-item-Smart-Phones{
+    line{
+        stroke: var(--#{$prefix}primary) !important;
+    }
+}
+.c3-legend-item-Macbooks{
+    line{
+        stroke: var(--#{$prefix}success) !important;
+    }
+}

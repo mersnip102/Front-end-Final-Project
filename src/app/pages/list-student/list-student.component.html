@@ -49,7 +49,7 @@
                     </div>
                     <div class="col-12 col-sm-3 col-md-2">
                         <div class="item-fillter mutilFilter">
-                            <button class="btn btn-primary" nz-button nz-popover nzPopoverTitle="Filter" [nzPopoverContent]="contentTemplate" nzPopoverPlacement="bottom" nzPopoverTrigger="click"><i
+                            <button class="btn btn-success" nz-button nz-popover nzPopoverTitle="Filter" [nzPopoverContent]="contentTemplate" nzPopoverPlacement="bottom" nzPopoverTrigger="click"><i
                                     class="bi bi-funnel"></i>Filter</button>
                             <ng-template #contentTemplate>
                                 <div>
@@ -96,7 +96,7 @@
                                         </div>
                                     </div>
                                     <div class="footer-modal text-end mt-2">
-                                        <button (click)="filterAll()" class="btn btn-primary btn-apply"><i class="bi bi-check2-circle"></i></button>
+                                        <button (click)="filterAll()" class="btn btn-primary btn-apply"><i class="far fa-check-circle"></i></button>
                                     </div>
                                 </div>
                             </ng-template>
@@ -135,24 +135,44 @@
 
                                 <td class="text-center">{{data.Majors}}</td>
                                 <td class="text-center">
-                                    <div class="card-status " [ngClass]="{'card-status--notFee': data.StatusFee === 1, 'card-status--completeFee': data.StatusFee === 0}">
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div *ngIf="data.StatusFee === 1" class="badge badge-soft-success">Đã nộp đủ phí</div>
+                                            <div *ngIf="data.StatusFee === 0" class="badge badge-soft-danger">Chưa nộp đủ phí</div>
+                                        </div>
+                                    </div>
+                                   
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div *ngIf="data.EnoughProfile === 1" class="badge badge-soft-success">Hồ sơ đủ</div>
+                                            <div *ngIf="data.EnoughProfile === 0" class="badge badge-soft-danger">Hồ sơ thiếu</div>
+                                        </div>
+                                    </div> 
+                                    <!-- <div class="card-status " [ngClass]="{'card-status--notFee': data.StatusFee === 1, 'card-status--completeFee': data.StatusFee === 0}">
                                         <span *ngIf="data.StatusFee === 1">Đã nộp đủ phí</span>
                                         <span *ngIf="data.StatusFee === 0">Chưa nộp đủ phí</span>
 
 
 
-                                    </div>
-                                    <div class="card-status " [ngClass]="{'card-status--notFee': data.EnoughProfile === 1, 'card-status--completeFee': data.EnoughProfile === 0}">
+                                    </div> -->
+                                   
+                                    <!-- <div class="card-status " [ngClass]="{'card-status--notFee': data.EnoughProfile === 1, 'card-status--completeFee': data.EnoughProfile === 0}">
                                         <span *ngIf="data.EnoughProfile === 1">Hồ sơ đủ</span>
                                         <span *ngIf="data.EnoughProfile === 0">Hồ sơ thiếu</span>
+                                    
 
-
-                                    </div>
-                                    <div class="card-status " [ngClass]="{'card-status--notFee': data.EnoughProfile === 2}">
+                                    </div> -->
+                                    <div class="row">
+                                        <div class="col-lg-12">
+                                            <div *ngIf="data.EnoughProfile === 2" class="badge badge-soft-success">Hồ được xác nhận</div>
+                                        </div>
+                                    </div> 
+                                    
+                                    <!-- <div class="card-status " [ngClass]="{'card-status--notFee': data.EnoughProfile === 2}">
 
                                         <span *ngIf="data.EnoughProfile === 2">Hồ được xác nhận</span>
 
-                                    </div>
+                                    </div> -->
                                 </td>
                                 <!--<td class="text-center">
                                     <div class="btn-icon">
@@ -210,7 +230,7 @@
                     </div>
                     <div class="col-12 col-sm-3 col-md-2">
                         <div class="item-fillter mutilFilter">
-                            <button class="btn btn-primary" nz-button nz-popover nzPopoverTitle="Filter" [nzPopoverContent]="contentTemplate" nzPopoverPlacement="bottom" nzPopoverTrigger="click"><i
+                            <button class="btn btn-success" nz-button nz-popover nzPopoverTitle="Filter" [nzPopoverContent]="contentTemplate" nzPopoverPlacement="bottom" nzPopoverTrigger="click"><i
                                     class="bi bi-funnel"></i>Filter</button>
                             <ng-template #contentTemplate>
                                 <div>
@@ -342,7 +362,7 @@
                     </div>
                     <div class="col-12 col-sm-3 col-md-2">
                         <div class="item-fillter mutilFilter">
-                            <button class="btn btn-primary" nz-button nz-popover nzPopoverTitle="Filter" [nzPopoverContent]="contentTemplate" nzPopoverPlacement="bottom" nzPopoverTrigger="click"><i
+                            <button class="btn btn-success" nz-button nz-popover nzPopoverTitle="Filter" [nzPopoverContent]="contentTemplate" nzPopoverPlacement="bottom" nzPopoverTrigger="click"><i
                                     class="bi bi-funnel"></i>Filter</button>
                             <ng-template #contentTemplate>
                                 <div>

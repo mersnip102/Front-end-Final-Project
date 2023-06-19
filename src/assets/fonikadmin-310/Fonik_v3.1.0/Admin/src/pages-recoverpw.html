@@ -1,0 +1,81 @@
+@@include("partials/main.html")
+
+<head>
+    @@include("partials/title-meta.html", {"title": "Recover Password"})
+
+    @@include("partials/head-css.html")
+
+</head>
+
+<body class="account-bg">
+
+    <!-- Loader -->
+    <div id="preloader">
+        <div id="status">
+            <div class="spinner"></div>
+        </div>
+    </div>
+
+    <div class="account-pages my-5 pt-5">
+        <div class="container">
+            <div class="row justify-content-center">
+                <div class="col-md-8 col-lg-6 col-xl-5">
+                    <div class="card">
+                        <div class="card-body">
+                            <div class="text-center mt-4">
+                                <div class="mb-3">
+                                    <a href="index.html" class="auth-logo">
+                                        <img src="assets/images/logo-dark.png" height="30" class="logo-dark mx-auto"
+                                            alt="">
+                                        <img src="assets/images/logo-light.png" height="30" class="logo-light mx-auto"
+                                            alt="">
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="p-3">
+                                <h4 class="font-size-18 text-muted mt-2 text-center mb-4">Reset Password</h4>
+                                <div class="alert alert-info" role="alert">
+                                    Enter your Email and instructions will be sent to you!
+                                </div>
+
+                                <form class="form-horizontal" action="index.html">
+
+                                    <div class="mb-3">
+                                        <label for="useremail">Email</label>
+                                        <input type="email" class="form-control" id="useremail"
+                                            placeholder="Enter email">
+                                    </div>
+
+                                    <div class="mb-3 row mt-4">
+                                        <div class="col-12 text-end">
+                                            <button class="btn btn-primary w-md waves-effect waves-light"
+                                                type="submit">Register</button>
+                                        </div>
+                                    </div>
+                                </form>
+
+                            </div>
+
+                        </div>
+                    </div>
+                    <div class="mt-5 text-center">
+                        <p>Remember It ? <a href="pages-login.html" class="fw-bold text-primary"> Sign In Here </a> </p>
+                        <p>©
+                            <script>document.write(new Date().getFullYear())</script> Fonik. Crafted with <i
+                                class="mdi mdi-heart text-danger"></i> by Themesbrand
+                        </p>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    @@include("partials/vendor-scripts.html")
+
+    <script src="assets/js/app.js"></script>
+
+</body>
+
+</html>

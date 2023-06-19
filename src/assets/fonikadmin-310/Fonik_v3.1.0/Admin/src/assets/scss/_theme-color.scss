@@ -1,0 +1,70 @@
+:root {
+    --#{$prefix}sidebar-dark-gradient: radial-gradient(at 50% -20%, #1967a9,#0a1832) fixed;
+    --#{$prefix}sidebar-dark-bg: radial-gradient(at 50% -20%, #1967a9, #0a1832) fixed;  
+    --#{$prefix}dash-gradient: radial-gradient(at 50% -20%, #1967a9, #0a1832) fixed;
+    --#{$prefix}bg-topbar-color: radial-gradient(at 50% -20%, #1967a9, #0a1832) fixed;
+}
+
+// Teal
+[data-theme-mode="teal"]{
+    --#{$prefix}sidebar-dark-gradient: radial-gradient(at 50% -20%, #004a43,#0a1832) fixed;
+    --#{$prefix}sidebar-dark-bg: radial-gradient(at 50% -20%, #004a43, #0a1832) fixed;  
+    --#{$prefix}dash-gradient: radial-gradient(at 50% -20%, #004a43, #0a1832) fixed;
+    --#{$prefix}bg-topbar-color: radial-gradient(at 50% -20%, #004a43, #0a1832) fixed;
+
+    --bs-primary: #009688!important;
+    --bs-primary-rgb: 0, 150, 136!important;
+    
+}
+//Purple
+[data-theme-mode="purple"]{
+    --#{$prefix}sidebar-dark-gradient: radial-gradient(at 50% -20%, #452f69,#0a1832) fixed;
+    --#{$prefix}sidebar-dark-bg: radial-gradient(at 50% -20%, #452f69, #0a1832) fixed;  
+    --#{$prefix}dash-gradient: radial-gradient(at 50% -20%, #452f69, #0a1832) fixed;
+    --#{$prefix}bg-topbar-color: radial-gradient(at 50% -20%, #452f69, #0a1832) fixed;
+
+    --bs-primary: #67479e !important;
+    --bs-primary-rgb: 103, 71, 158!important;
+}
+
+//Orange
+[data-theme-mode="orange"]{
+    --#{$prefix}sidebar-dark-gradient: radial-gradient(at 50% -20%, #d98100,#0a1832) fixed;
+    --#{$prefix}sidebar-dark-bg: radial-gradient(at 50% -20%, #d98100, #0a1832) fixed;  
+    --#{$prefix}dash-gradient: radial-gradient(at 50% -20%, #d98100, #0a1832) fixed;
+    --#{$prefix}bg-topbar-color: radial-gradient(at 50% -20%, #d98100, #0a1832) fixed;
+
+    --bs-primary: #ffa726 !important;
+    --bs-primary-rgb: 255, 167, 38!important;
+}
+
+// Red
+[data-theme-mode="red"] {
+
+    --#{$prefix}sidebar-dark-gradient: radial-gradient(at 50% -20%, #eb1429,#0a1832) fixed;
+    --#{$prefix}sidebar-dark-bg: radial-gradient(at 50% -20%, #eb1429, #0a1832) fixed;  
+    --#{$prefix}dash-gradient: radial-gradient(at 50% -20%, #eb1429, #0a1832) fixed;
+    --#{$prefix}bg-topbar-color: radial-gradient(at 50% -20%, #eb1429, #0a1832) fixed;
+
+
+    --bs-primary: #f15a69!important;
+    --bs-primary-rgb: 241, 90, 105 !important;
+    
+    --bs-danger: #2f8ee0 !important;
+    --bs-danger-rgb: 47, 142, 224 !important;
+
+}
+
+// Green
+[data-theme-mode="green"] {
+    --#{$prefix}sidebar-dark-gradient: radial-gradient(at 50% -20%, #3cb75b,#0a1832) fixed;
+    --#{$prefix}sidebar-dark-bg: radial-gradient(at 50% -20%, #3cb75b, #0a1832) fixed;  
+    --#{$prefix}dash-gradient: radial-gradient(at 50% -20%, #3cb75b, #0a1832) fixed;
+    --#{$prefix}bg-topbar-color: radial-gradient(at 50% -20%, #3cb75b, #0a1832) fixed;
+    
+    --bs-primary: #6fd088 !important;
+    --bs-primary-rgb: 111, 208, 136 !important;
+
+    --bs-success:  #2f8ee0 !important;
+    --bs-success-rgb:  47, 142, 224 !important;
+}

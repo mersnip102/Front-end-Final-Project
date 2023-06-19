@@ -1,0 +1,40 @@
+
+//
+// Color-picker
+//
+
+.sp-container{
+  background-color: $dropdown-bg;
+  button{
+    padding: .25rem .5rem;
+      font-size: .71094rem;
+      border-radius: .2rem;
+      font-weight: 400;
+      color: $dark;
+  
+      &.sp-palette-toggle{
+        background-color: $light;
+      }
+      
+      &.sp-choose{
+        background-color: $success;
+      }
+  }
+}
+
+.sp-palette-container{
+  border-color: $border-color;
+}
+
+.sp-input{
+  background-color: $input-bg;
+  border-color: $input-border-color !important;
+  color: $input-color;
+  &:focus{
+    outline: none;
+  }
+}
+
+[dir=rtl] .sp-original-input-container, .sp-container {
+  direction: rtl;
+}

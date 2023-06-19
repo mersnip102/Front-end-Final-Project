@@ -56,6 +56,7 @@ import { ProfileStudentComponent } from './profile-student/profile-student.compo
 import { ClipboardModule } from 'ngx-clipboard';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { ScholarshipProposalComponent } from './schoolarship/scholarship-proposal/scholarship-proposal.component';
+import { HighchartsChartModule } from 'highcharts-angular';
 
 
 const antDesignIcons = AllIcons as {
@@ -118,6 +119,7 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
     FullCalendarModule,
     NzUploadModule,
     NzImageModule,
+    HighchartsChartModule,
     QuillModule.forRoot(),
   ],
   providers: [ { provide: NZ_I18N, useValue: en_US }, { provide: NZ_ICONS, useValue: icons } ]
