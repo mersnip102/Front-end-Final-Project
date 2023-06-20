@@ -242,6 +242,7 @@ export class ManagementEventListComponent {
   
  
   addStudentsToEvent(id: any){
+    if(this.listStudent.length != 0 && this.listStudent.filter((item) => item.select == true).length != 0){
     this.notifyService.confirmAdd('Bạn có chắc chắn muốn thêm sinh viên vào sự kiện này?').then((result) => {
       if(result) {
       
@@ -249,6 +250,8 @@ export class ManagementEventListComponent {
      
       this.api.addStudentsToEvent(id, listAdd).subscribe((res: any) => {
         this.detailAnEvent(id);
+        
+        this.parentSelector = false;
         
         
        
@@ -261,27 +264,61 @@ export class ManagementEventListComponent {
     
     
     )
+  }
 }
 
-  deleteStudentToEvent(id: string){
-    if(confirm('Are you sure to delete this student from this event?')){
-      const idEvent = this.route.snapshot.paramMap.get('id') as string;
-      const student = this.listStudentEvent.filter((item) => item.Id == id);
+  deleteStudentToEvent(dataStudentEvent: any){
+    this.notifyService.confirmDelete().then((result) => {
+      if(result) {
+      
+     // const idEvent = this.route.snapshot.paramMap.get('id') as string;
+      // const student = this.listStudentEvent.filter((item) => item.Id == id);
+      // console.log(student)
+      const idEvent = dataStudentEvent.EventID;
+      const student = this.listStudentEvent.filter((item) => item.Id == dataStudentEvent.Id);
       console.log(student)
       this.api.deleteStudentsToEvent(idEvent, student).subscribe((res: any) => {
-        
-        this.router.navigateByUrl('/admissions', { skipLocationChange: true }).then(() => {
-          this.router.navigate([`/admissions/addstudentevent/${this.route.snapshot.params['id']}`]).then(() => {
+        this.detailAnEvent(idEvent)
+        // this.router.navigateByUrl('/admissions', { skipLocationChange: true }).then(() => {
+        //   this.router.navigate([`/admissions/addstudentevent/${this.route.snapshot.params['id']}`]).then(() => {
             
           
-          });
-          })
+        //   });
+        //   })
+        
         
        
       }, (err) => {
+        this.notifyService.errorMessage('Delete student to event failed');
        
       })
     }
+    }
+    
+    
+    )
+    
+    // if(confirm('Are you sure to delete this student from this event?')){
+    //   // const idEvent = this.route.snapshot.paramMap.get('id') as string;
+    //   // const student = this.listStudentEvent.filter((item) => item.Id == id);
+    //   // console.log(student)
+    //   const idEvent = dataStudentEvent.EventID;
+    //   const student = this.listStudentEvent.filter((item) => item.Id == dataStudentEvent.Id);
+    //   console.log(student)
+    //   this.api.deleteStudentsToEvent(idEvent, student).subscribe((res: any) => {
+        
+    //     // this.router.navigateByUrl('/admissions', { skipLocationChange: true }).then(() => {
+    //     //   this.router.navigate([`/admissions/addstudentevent/${this.route.snapshot.params['id']}`]).then(() => {
+            
+          
+    //     //   });
+    //     //   })
+        
+       
+    //   }, (err) => {
+       
+    //   })
+    // }
 
   }
 
@@ -477,5 +514,52 @@ export class ManagementEventListComponent {
       //   })
     });
   }
+
+  selectedValue: any = null;
+
+  // log(event: any) {
+  //   console.log(event);
+  // }
+
+  semester: any = null
+
+  checkOptionsListStudentOne = [
+    { label: 'Chưa đủ hồ sơ', value: 0 },
+    { label: 'Đã đủ hồ sơ', value: 1 },
+    { label: 'Quản lý đã xác nhận', value: 2 },
+    { label: 'Hồ sơ quá hạn', value: 4 }
+  ];
+
+  checkOptionsListStudentTwo = [
+    { label: 'Đã nộp đủ phí', value: 0 },
+    { label: 'Chưa nộp đủ phí', value: 1 },
+
+  ];
+
+
+  checkOptionsListStudentThree = [
+    { label: 'Online', value: "Online" },
+    { label: 'Direct', value: "Direct" },
+    { label: 'Database', value: "Database" },
+    { label: 'Referral', value: "Referral" },
+    { label: 'Internals', value: "Internals" },
+    { label: 'Online Mass', value: "Online Mass" },
+    { label: 'Other', value: "Other" },
+
+  ];
+  year: any = null;
+  log(value: object[]): void {
+    console.log(value);
+    console.log(this.semester);
+    console.log(this.year);
+  }
+
+  form!: FormGroup;
+  formData: FormData = new FormData();
+
+  showProfile(Id: any) {
+    this.router.navigate([`/pages/profileStudent/${Id}`]);
+  }
+
 
 }
