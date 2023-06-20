@@ -155,6 +155,11 @@ export class ScholarshipProposalComponent {
       this.uploadForm.get('EnglishCertificate')?.setValue("Không có");
       
       this.uploadForm.get('AdmissionId')?.setValue(data['Admission']);
+      this.uploadForm.disabled;
+      this.uploadForm.disable();
+
+      this.uploadForm.get('TypeScholarship')?.enable();
+      this.uploadForm.get('Deadline')?.enable();
 
       
     },
@@ -246,7 +251,7 @@ export class ScholarshipProposalComponent {
             // Swal.fire('Saved!', '', 'success')
             this.router.navigateByUrl('/pages', { skipLocationChange: true }).then(() => {
               this.router.navigate([`/pages/profileStudent/${this.route.snapshot.params['Id']}`]).then(() => {
-                this.notifyService.successMessage("Thêm đổi học bổng thành công")
+                this.notifyService.successMessage("Thay đổi học bổng thành công")
               });
             })
           },
@@ -254,7 +259,7 @@ export class ScholarshipProposalComponent {
               this.router.navigateByUrl('/pages', { skipLocationChange: true }).then(() => {
                 this.router.navigate([`/pages/profileStudent/${this.route.snapshot.params['Id']}`]).then(() => {
                   console.log(error);
-                  this.notifyService.errorMessage("Thêm đổi học bổng thất bại")
+                  this.notifyService.errorMessage("Thay đổi học bổng thất bại")
                 });
               })
             }
@@ -309,6 +314,14 @@ export class ScholarshipProposalComponent {
    
   }
 
+  backProfile() {
+    this.router.navigateByUrl('/pages', { skipLocationChange: true }).then(() => {
+      this.router.navigate([`/pages/profileStudent/${this.route.snapshot.params['Id']}`]).then(() => {
+        // this.notifyService.successMessage("Thay đổi học bổng thành công")
+      });
+    })
+  }
+
 
   private citis?: HTMLSelectElement;
   private districts?: HTMLSelectElement;
@@ -344,6 +357,7 @@ export class ScholarshipProposalComponent {
 
 
     this.profile();
+
   
   }
 

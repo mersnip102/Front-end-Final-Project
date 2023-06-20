@@ -17,9 +17,10 @@
 <div class="main">
 
 
-    <div class="card shadow-sm border-0 overflow-hidden">
+    <!-- <div class="card shadow-sm border-0 overflow-hidden">
         <div class="container-fluid">
-            <form class="form-horizontal" [formGroup]="uploadForm" enctype="multipart/form-data" (ngSubmit)="onSubmit()" novalidate>
+            <form class="form-horizontal" [formGroup]="uploadForm" enctype="multipart/form-data" (ngSubmit)="onSubmit()"
+                novalidate>
                 <br>
 
                 <h1 class="mb-1 text-center">Đề xuất học bổng</h1>
@@ -63,7 +64,8 @@
                             <h3>Chứng chỉ tiếng anh </h3>
                         </div>
                         <div class="col-6">
-                            <h2 formControlName="EnglishCertificate">{{this.uploadForm.get('EnglishCertificate')!.value}}</h2>
+                            <h2 formControlName="EnglishCertificate">
+                                {{this.uploadForm.get('EnglishCertificate')!.value}}</h2>
                         </div>
                     </div>
                     <div class="row me-auto">
@@ -72,8 +74,8 @@
                         </div>
                         <div class="col-7">
                             <select formControlName="TypeScholarship" class="mb-1 form-select-sm">
-                            <option *ngFor="let opt of ngScholarship" [value]="opt.value">{{opt.name}}</option>
-                        </select>
+                                <option *ngFor="let opt of ngScholarship" [value]="opt.value">{{opt.name}}</option>
+                            </select>
                         </div>
                     </div>
                     <div class="row me-auto">
@@ -93,5 +95,106 @@
             </form>
 
         </div>
-    </div>
+    </div> -->
+
+    
+        <div class="container-fluid">
+
+            <div class="row">
+
+
+                <div class="col-lg-10">
+                    <div class="card">
+                        <div class="card-body">
+
+                            <h6 class="card-title">Đề xuất học bổng</h6>
+                            <!-- <p class="card-title-desc">Parsley is a javascript form validation library. It helps
+                                you provide your users with feedback on their form submission before sending it
+                                to your server.</p> -->
+
+                            <form [formGroup]="uploadForm" enctype="multipart/form-data" (ngSubmit)="onSubmit()"
+                                novalidate class="custom-validation">
+
+                                <div class="mb-3 position-relative">
+                                    <label class="form-label">Họ Và Tên: </label>
+                                    <div>
+                                        <input formControlName="FullName" type="text" class="form-control" required />
+                                    </div>
+                                </div>
+                                <div class="mb-3 position-relative">
+                                    <label class="form-label">Số điện thoại</label>
+                                    <div>
+                                        <input formControlName="Phone" type="phone" class="form-control" required />
+                                    </div>
+                                </div>
+                                <div class="mb-3 position-relative">
+                                    <label class="form-label">Email</label>
+                                    <div>
+                                        <input type="email" formControlName="Email" class="form-control" required />
+                                    </div>
+                                </div>
+                                <div class="mb-3 position-relative">
+                                    <label class="form-label">Chuyên ngành</label>
+                                    <div>
+                                        <input formControlName="Majors" type="text" class="form-control" required />
+                                    </div>
+                                </div>
+                                <div class="mb-3 position-relative">
+                                    <label class="form-label">Trình độ Tiếng Anh</label>
+                                    <div>
+                                        <input type="text" class="form-control" formControlName="EnglishCertificate"
+                                            required />
+                                    </div>
+                                </div>
+                                <div class="mb-3 position-relative">
+                                    <label class="form-label">Học bổng</label>
+
+                                    <div>
+                                        <select formControlName="TypeScholarship" class="form-select">
+                                            <option *ngFor="let opt of ngScholarship" [value]="opt.value">{{opt.name}}
+                                            </option>
+    
+                                        </select>
+                                    </div>
+
+                                    
+
+
+                                    <!-- <div>
+                                        <input class="form-control" type="text range" min="6" max="100"
+                                            placeholder="Number between 6 - 100" required />
+                                    </div> -->
+                                </div>
+                                <div class="mb-3 position-relative">
+                                    <label class="form-label">Hạn học bổng</label>
+                                    <div>
+                                        <input formControlName="Deadline" type="date" class="form-control" required/>
+                                       
+                                    </div>
+                                    
+                                </div>
+
+                                <div class="mb-0">
+                                    <div>
+                                        <button type="submit" class="btn btn-primary waves-effect waves-light">
+                                            Lưu
+                                        </button>
+                                        <button (click)="backProfile()" type="reset" class="btn btn-secondary waves-effect ms-1">
+                                            Quay lại
+                                        </button>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </div>
+                    </div>
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+
+        </div>
+        <!-- container-fluid -->
+    
+
 </div>
