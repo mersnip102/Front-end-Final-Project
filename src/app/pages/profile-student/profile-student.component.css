@@ -13,7 +13,8 @@
     padding: 3px;
     /* text-align: center; */
     border-radius: 10px;
-    background-color: rgb(202, 110, 110);
+    background-color: rgb(233, 71, 50);
+    
 }
 
 .status-valid {
@@ -22,7 +23,7 @@
     padding: 3px;
     /* text-align: center; */
     border-radius: 10px;
-    background-color: rgb(235, 211, 183);
+    background-color: rgb(49, 173, 70);
 }
 
 ::ng-deep.ant-modal {
