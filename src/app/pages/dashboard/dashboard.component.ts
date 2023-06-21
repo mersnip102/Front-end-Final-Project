@@ -1,6 +1,15 @@
+import { DatePipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, Renderer2 } from '@angular/core';
+import { FormBuilder } from '@angular/forms';
+import { DomSanitizer } from '@angular/platform-browser';
+import { ActivatedRoute, Router } from '@angular/router';
+import { JwtHelperService } from '@auth0/angular-jwt';
 import * as Highcharts from 'highcharts';
+import * as moment from 'moment';
+import { AdmissionService } from 'src/app/core/services/admission-service/admission.service';
+import { LocalStoreService } from 'src/app/core/services/local-store.service';
+import { NotifyService } from 'src/app/core/services/utils/notify.service';
 
 @Component({
   selector: 'app-dashboard',
@@ -8,7 +17,17 @@ import * as Highcharts from 'highcharts';
   styleUrls: ['./dashboard.component.css']
 })
 export class DashboardComponent {
-  constructor(private http: HttpClient) { }
+  constructor(private localStorageSv: LocalStoreService,
+    private fb: FormBuilder, private renderer2: Renderer2,
+    private sanitizer: DomSanitizer,
+    // private scriptLoader: MessagesService,
+    private http: HttpClient,
+    private router: Router,
+    private route: ActivatedRoute,
+    private formBuilder: FormBuilder,
+    private api: AdmissionService,
+    private notifyService: NotifyService) { }
+
   latitude!: any;
   longitude!: any;
  
@@ -28,7 +47,35 @@ export class DashboardComponent {
 
       
   }
+
+  date = null;
+
+  onChange(result: Date[]): void {
+    if(result.length != 0) { 
+      const start: Date = new Date(result[0])
+    
+    
+    const formattedStartDate = moment(start).format('YYYY-MM-DD');
+
+    const end: Date = new Date(result[0])
+    
+    const formattedEndDate = moment(end).format('YYYY-MM-DD');
+    this.getDashboardData()
+
+    } else {
+      this.date = null;
+    }
+    
+   
+  }
+
+  getDashboardData(): any {
+    const helper = new JwtHelperService();
+    const decodedToken = helper.decodeToken(this.localStorageSv.getLocalStorageItemAsJSON("accessToken"));
+    console.log(decodedToken);
+  }
   ngOnInit(): void {
+    this.getDashboardData();
    
   
     // Highcharts.chart('container', {
@@ -50,9 +97,9 @@ export class DashboardComponent {
     // });
   }
   data2: any = [
-    {name: 'Trương Thu Thủy', y: 10},
-    {name: 'Nguyễn Thị Yến Nhi', y: 5},
-    {name: 'Nguyễn Xuân Quyến', y: 3},
+    {name: 'Trương Thu Thủy', y: 28},
+    {name: 'Nguyễn Thị Yến Nhi', y: 42},
+    {name: 'Nguyễn Xuân Quyến', y: 20},
   ];
   chartOptions2: any = {
     chart: {
@@ -81,18 +128,19 @@ export class DashboardComponent {
   };
 
   data3: any = [
-    {x: Date.UTC(2022, 0, 1), y: 10},
-    {x: Date.UTC(2022, 1, 1), y: 5},
-    {x: Date.UTC(2022, 2, 1), y: 3},
-    {x: Date.UTC(2022, 3, 1), y: 8},
-    {x: Date.UTC(2022, 4, 1), y: 12},
-    {x: Date.UTC(2022, 5, 1), y: 15},
-    {x: Date.UTC(2022, 6, 1), y: 20},
-    {x: Date.UTC(2022, 7, 1), y: 25},
-    {x: Date.UTC(2022, 8, 1), y: 18},
-    {x: Date.UTC(2022, 9, 1), y: 22},
-    {x: Date.UTC(2022, 10, 1), y: 17},
-    {x: Date.UTC(2022, 11, 1), y: 14}
+   
+    {x: Date.UTC(2022, 7, 1), y: 10},
+    {x: Date.UTC(2022, 8, 1), y: 15},
+    {x: Date.UTC(2022, 9, 1), y: 30},
+    {x: Date.UTC(2022, 10, 1), y: 5},
+    {x: Date.UTC(2022, 11, 1), y: 7},
+    {x: Date.UTC(2023, 0, 1), y: 4},
+    {x: Date.UTC(2023, 1, 1), y: 7},
+    {x: Date.UTC(2023, 2, 1), y: 10},
+    {x: Date.UTC(2023, 3, 1), y: 8},
+    {x: Date.UTC(2023, 4, 1), y: 12},
+    {x: Date.UTC(2023, 5, 1), y: 15},
+    {x: Date.UTC(2023, 6, 1), y: 10},
   ];
   chartOptions3: any = {
     chart: {

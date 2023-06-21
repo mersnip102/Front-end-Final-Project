@@ -4,36 +4,38 @@
     </div>
     <div class="row justify-content-center">
         <div class="row general-info">
-            <div class="col-md-3 col-sm-3 col-12 card-info text-center">
-                <div class="title-card">
-                    <span>Sinh viên đã nộp đủ phí</span>
-                </div>
-                <div class="card-content">
-                    <span>3</span>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-3 col-12 card-info text-center">
+            
+            <!-- <div class="col-md-3 col-sm-3 col-12 card-info text-center">
                 <div class="title-card">
                     <span>Sinh viên thiếu phí giữ chỗ</span>
                 </div>
                 <div class="card-content">
                     <span>2</span>
                 </div>
-            </div>
-            <div class="col-md-3 col-sm-3 col-12 card-info text-center">
-                <div class="title-card">
-                    <span>Sinh viên thiếu phí xét tuyển</span>
-                </div>
-                <div class="card-content">
-                    <span>2</span>
-                </div>
-            </div>
-            <div class="col-md-3 col-sm-3 col-12 card-info text-center">
+            </div> -->
+           
+            <div class="col-md-3 col-sm-3 col-12 card-info text-center" style="background-color: red;">
                 <div class="title-card">
                     <span>Sinh viên chưa nộp phí</span>
                 </div>
                 <div class="card-content">
-                    <span>4</span>
+                    <span>{{missingPayment}}</span>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-12 card-info text-center">
+                <div class="title-card">
+                    <span>Đang chờ xử lý</span>
+                </div>
+                <div class="card-content">
+                    <span>{{pendingPayment}}</span>
+                </div>
+            </div>
+            <div class="col-md-3 col-sm-3 col-12 card-info text-center" style="background-color: green;"> 
+                <div class="title-card">
+                    <span>Sinh viên đã nộp đủ phí</span>
+                </div>
+                <div class="card-content">
+                    <span>{{fullPayment}}</span>
                 </div>
             </div>
         </div>
@@ -111,16 +113,17 @@
                             <span>{{ i % 2 == 0 ? 'Chưa nộp phí' : 'Đã nộp phí' }}</span>
                         </div>
                     </td> -->
-                    <td>
+                    <td class="text-center">
                         <span *ngIf="data.Status == 0 || data.Status == null">Chưa nộp phí</span>
                         <span *ngIf="data.Status == 1 || data.Status == null">Đã nộp phí</span>
                         <span *ngIf="data.Status == 2 || data.Status == null">Chờ xác nhận nộp phí</span>
                     </td>
                     <td class="text-center">
-                        <div class="btn-icon">
+                        <!-- <div class="btn-icon"> -->
+                            
                             <a (click)="deletePayment(data.Id)"><i class="bi bi-trash3"></i></a>
                             <a (click)="editPayment(data.Id)"><i class="bi bi-pencil-square"></i></a>
-                        </div>
+                        <!-- </div> -->
                     </td>
                 </tr>
             </tbody>

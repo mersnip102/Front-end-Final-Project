@@ -8,6 +8,7 @@ import axios from 'axios';
 import * as moment from 'moment';
 import { NzImageService } from 'ng-zorro-antd/image';
 import { PDFDocument, StandardFonts, rgb } from 'pdf-lib';
+import { AdmissionService } from 'src/app/core/services/admission-service/admission.service';
 import { LocalStoreService } from 'src/app/core/services/local-store.service';
 import { StudentService } from 'src/app/core/services/student-service/student.service';
 import { NotifyService } from 'src/app/core/services/utils/notify.service';
@@ -344,6 +345,7 @@ export class ProfileComponent implements OnInit {
     private route: ActivatedRoute,
     private formBuilder: FormBuilder,
     private api: StudentService,
+    private api2: AdmissionService,
     private notifyService: NotifyService) {
 
 
@@ -430,7 +432,17 @@ export class ProfileComponent implements OnInit {
 
 
   dataImage!: any
+  listFee: any[] = []
   async profile() {
+
+    // this.api2.getAllFees().subscribe(res => {
+    //   console.log(res);
+    //   this.listFee = res.fee;
+
+    // }, error => {
+    //   console.log(error);
+
+    // });
 
 
     //get password from localstorage
@@ -468,7 +480,7 @@ export class ProfileComponent implements OnInit {
     ).subscribe(async res => {
 
       let d: any = res
-      console.log(d);
+     
 
 
 
@@ -477,19 +489,10 @@ export class ProfileComponent implements OnInit {
 
 
       this.payments = d.payments
+      console.log(this.payments);
 
       this.editStatus = d.student.AllowEditing
-
-       // lay api ra
-    this.citis = document.getElementById("city") as HTMLSelectElement;
-    this.districts = document.getElementById("district") as HTMLSelectElement;
-    this.wards = document.getElementById("ward") as HTMLSelectElement;
-    // lay api ra
-    await axios.get("https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json")
-      .then(result => {
-        this.dataProvince = result.data;
-        this.renderCity(result.data);
-      });
+   
 
       if (this.editStatus == 0 || this.editStatus == 2) {
         this.uploadForm.disable();
@@ -524,12 +527,135 @@ export class ProfileComponent implements OnInit {
 
 
 
-      for (let key in data) {
-        if (data.hasOwnProperty(key)) {
-          this.uploadForm.get(key)?.setValue(data[key]);
-        }
+      // for (let key in data) {
+      //   if (data.hasOwnProperty(key)) {
+      //     this.uploadForm.get(key)?.setValue(data[key]);
+      //   }
 
-      }
+      // }
+      // AccountId: new FormControl(''),
+      // Address: new FormControl(''),
+      // Admission: new FormControl(''),
+      // AdmissionManager: new FormControl(''),
+      // AllowEditing: new FormControl(''),
+      // BirthCertificate: new FormControl(''),
+      // Birthday: new FormControl(''),
+      // CertificateOfGraduation: new FormControl(''),
+      // CitizenIdentification: new FormControl(''),
+      // CitizenIdentificationNum: new FormControl(''),
+      // Commune: new FormControl(''),
+      // CoverImage: new FormControl(''),
+      // DateCitizen: new FormControl(''),
+      // District: new FormControl(''),
+      // Email: new FormControl(''),
+      // EmailSponsor1: new FormControl(''),
+      // EmailSponsor2: new FormControl(''),
+      // EnglishCertificate: new FormControl(''),
+      // EnglishLevel: new FormControl(''),
+      // EnoughProfile: new FormControl(''),
+      // FullName: new FormControl(''),
+      // Gender: new FormControl(''),
+      // GraduationYear: new FormControl(''),
+      // HightSchool: new FormControl(''),
+      // Id: new FormControl(''),
+      // ImageFolder: new FormControl(''),
+      // InnitiatedDate: new FormControl(''),
+      // LeadSoure: new FormControl(''),
+      // LinkFacebook: new FormControl(''),
+      // Majors: new FormControl(''),
+      // NameSponsor1: new FormControl(''),
+      // NameSponsor2: new FormControl(''),
+      // Nationality: new FormControl(''),
+      // OtherPapers: new FormControl(''),
+      // Phone: new FormControl(''),
+      // PhoneNumberSponsor1: new FormControl(''),
+      // PhoneNumberSponsor2: new FormControl(''),
+      // PlaceCitizen: new FormControl(''),
+      // PlaceOfBirth: new FormControl(''),
+      // PortraitImage: new FormControl(''),
+      // Province: new FormControl(''),
+      // Scholarship: new FormControl(''),
+      // SchoolId: new FormControl(''),
+      // StudyRecords: new FormControl(''),
+      // TemporaryCertificateOfGraduation: new FormControl(''),
+      // provinceTHPT: new FormControl(''),
+     
+
+      this.uploadForm.get('AccountId')?.setValue(data.AccountId);
+      this.uploadForm.get('Address')?.setValue(data.Address);
+      this.uploadForm.get('Admission')?.setValue(data.Admission);
+      this.uploadForm.get('AdmissionManager')?.setValue(data.AdmissionManager);
+      this.uploadForm.get('AllowEditing')?.setValue(data.AllowEditing);
+      this.uploadForm.get('BirthCertificate')?.setValue(data.BirthCertificate);
+      this.uploadForm.get('Birthday')?.setValue(data.Birthday);
+      this.uploadForm.get('CertificateOfGraduation')?.setValue(data.CertificateOfGraduation);
+      this.uploadForm.get('CitizenIdentification')?.setValue(data.CitizenIdentification);
+      this.uploadForm.get('CitizenIdentificationNum')?.setValue(data.CitizenIdentificationNum);
+      this.uploadForm.get('Commune')?.setValue(data.Commune);
+      this.uploadForm.get('CoverImage')?.setValue(data.CoverImage);
+      this.uploadForm.get('DateCitizen')?.setValue(data.DateCitizen);
+      this.uploadForm.get('District')?.setValue(data.District);
+      this.uploadForm.get('Email')?.setValue(data.Email);
+      this.uploadForm.get('EmailSponsor1')?.setValue(data.EmailSponsor1);
+      this.uploadForm.get('EmailSponsor2')?.setValue(data.EmailSponsor2);
+      this.uploadForm.get('EnglishCertificate')?.setValue(data.EnglishCertificate);
+      this.uploadForm.get('EnglishLevel')?.setValue(data.EnglishLevel);
+      this.uploadForm.get('EnoughProfile')?.setValue(data.EnoughProfile);
+      this.uploadForm.get('FullName')?.setValue(data.FullName);
+      this.uploadForm.get('Gender')?.setValue(data.Gender);
+      this.uploadForm.get('GraduationYear')?.setValue(data.GraduationYear);
+      this.uploadForm.get('HightSchool')?.setValue(data.HightSchool);
+      this.uploadForm.get('Id')?.setValue(data.Id);
+      this.uploadForm.get('ImageFolder')?.setValue(data.ImageFolder);
+      this.uploadForm.get('InnitiatedDate')?.setValue(data.InnitiatedDate);
+      this.uploadForm.get('LeadSoure')?.setValue(data.LeadSoure);
+      this.uploadForm.get('LinkFacebook')?.setValue(data.LinkFacebook);
+      this.uploadForm.get('Majors')?.setValue(data.Majors);
+      this.uploadForm.get('NameSponsor1')?.setValue(data.NameSponsor1);
+      this.uploadForm.get('NameSponsor2')?.setValue(data.NameSponsor2);
+      this.uploadForm.get('Nationality')?.setValue(data.Nationality);
+      this.uploadForm.get('OtherPapers')?.setValue(data.OtherPapers);
+      this.uploadForm.get('Phone')?.setValue(data.Phone);
+      this.uploadForm.get('PhoneNumberSponsor1')?.setValue(data.PhoneNumberSponsor1);
+      this.uploadForm.get('PhoneNumberSponsor2')?.setValue(data.PhoneNumberSponsor2);
+      this.uploadForm.get('PlaceCitizen')?.setValue(data.PlaceCitizen);
+      this.uploadForm.get('PlaceOfBirth')?.setValue(data.PlaceOfBirth);
+      this.uploadForm.get('PortraitImage')?.setValue(data.PortraitImage);
+      this.uploadForm.get('Province')?.setValue(data.Province);
+      this.uploadForm.get('Scholarship')?.setValue(data.Scholarship);
+      this.uploadForm.get('SchoolId')?.setValue(data.SchoolId);
+      this.uploadForm.get('StudyRecords')?.setValue(data.StudyRecords);
+      // this.uploadForm.get('TemporaryCertificateOfGraduation')?.setValue(data.TemporaryCertificateOfGraduation);
+      this.uploadForm.get('provinceTHPT')?.setValue(data.provinceTHPT);
+     
+
+
+      // this.uploadForm.setValue({
+      //   AccountId: data.AccountId,
+      //   Address: data.Address,
+      //   Admission: data.Admission,
+      //   AdmissionManager: data.AdmissionManager,
+      //   AllowEditing: data.AllowEditing,
+      //   BirthCertificate: data.BirthCertificate,
+      //   Birthday: data.Birthday,
+      //   CertificateOfGraduation: data.CertificateOfGraduation,
+      //   CitizenIdentification: data.CitizenIdentification,
+      //   CitizenIdentificationNum: data.CitizenIdentificationNum,
+        
+      // })
+      this.citis = document.getElementById("city") as HTMLSelectElement;
+      this.districts = document.getElementById("district") as HTMLSelectElement;
+      this.wards = document.getElementById("ward") as HTMLSelectElement;
+      // lay api ra
+      await axios.get("https://raw.githubusercontent.com/kenzouno1/DiaGioiHanhChinhVN/master/data.json")
+        .then(result => {
+          this.dataProvince = result.data;
+          this.renderCity(result.data);
+          
+        });
+
+        this.renderCity2(this.dataProvince, this.uploadForm.get('Province')?.value, this.uploadForm.get('District')?.value, this.uploadForm.get('Commune')?.value);
+      
       // this.citis!.selectedIndex = this.uploadForm.get('Province')?.value - 1;
       // this.districts!.selectedIndex = this.uploadForm.get('District')?.value -1;
       // this.wards!.selectedIndex = this.uploadForm.get('Commune')?.value - 1;
@@ -555,7 +681,11 @@ export class ProfileComponent implements OnInit {
         this.uploadForm.get('GraduationYear')?.setValue(null);
       }
 
-      this.renderCity2(this.dataProvince, this.uploadForm.get('Province')?.value, this.uploadForm.get('District')?.value, this.uploadForm.get('Commune')?.value);
+      if (this.editStatus == 0 || this.editStatus == 2) {
+        this.uploadForm.disable();
+      }
+
+      
 
 
 
@@ -913,7 +1043,7 @@ export class ProfileComponent implements OnInit {
 
             //add form group value to form data ignore file
             this.formData.append('FullName', this.uploadForm.get('FullName')?.value);
-            this.formData.append('Gender', this.uploadForm.get('Gender')?.value);
+            // this.formData.append('Gender', this.uploadForm.get('Gender')?.value);
             if (this.uploadForm.get('Birthday')?.value != null) {
 
               this.formData.append('Birthday', this.uploadForm.get('Birthday')?.value);
@@ -1250,12 +1380,11 @@ export class ProfileComponent implements OnInit {
     const currentYear = new Date().getFullYear() + 5;
     this.years = Array.from({ length: 20 }, (_, i) => currentYear - i);
 
-
-
-
    
-    this.profile();
 
+    await this.profile();
+    // this.uploadForm
+   
 
 
 

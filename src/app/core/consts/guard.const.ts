@@ -32,7 +32,7 @@ export const listMenu = [
     roleNumber: RoleNumber.accountant,
     permission: [
       {
-        screenName: 'Xác minh phí',
+        screenName: 'Yêu cầu xác minh phí',
         routerLink: 'feeVerification',
         icon: 'dollar-circle',
       },
@@ -41,11 +41,11 @@ export const listMenu = [
         routerLink: 'managementFee',
         icon: 'file-text',
       },
-      {
-        screenName: 'Yêu cầu xác minh phí',
-        routerLink: 'requestFeeVerify',
-        icon: 'check-circle',
-      },
+      // {
+      //   screenName: 'Yêu cầu xác minh phí',
+      //   routerLink: 'requestFeeVerify',
+      //   icon: 'check-circle',
+      // },
       {
         //aplication
         screenName: 'Hồ sơ',

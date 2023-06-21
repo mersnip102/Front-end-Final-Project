@@ -91,8 +91,8 @@ export class ListStudentComponent implements OnInit {
   ];
 
   checkOptionsListStudentTwo = [
-    { label: 'Đã nộp đủ phí', value: 0 },
-    { label: 'Chưa nộp đủ phí', value: 1 },
+    { label: 'Đã nộp đủ phí', value: 1 },
+    { label: 'Chưa nộp đủ phí', value: 0 },
 
   ];
 

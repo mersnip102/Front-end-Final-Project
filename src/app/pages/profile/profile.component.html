@@ -10,12 +10,12 @@
             <h3 class="mb-3">Trạng thái</h3>
             <p class="status-card status-invalid" *ngIf="profileStatus == 0"> Chưa đầy đủ hồ sơ </p>
             <p class="status-card status-valid" *ngIf="profileStatus == 1"> Đầy đủ hồ sơ </p>
-            <div *ngFor="let payment of payments">
+            <!-- <div *ngFor="let payment of payments">
                 <p *ngIf="payment.Status == 0">Chưa đủ {{ payment.FeeType.FeeType }}</p>
                 <p *ngIf="payment.Status == 1">Đã đủ {{ payment.FeeType.FeeType }}</p>
                 <p *ngIf="payment.Status == 2">Đang chờ xét duyệt {{ payment.FeeType.FeeType }}</p>
-            </div>
-            <p class="bg-success text-white radius-15 p-1"> Học bổng: </p>
+            </div> -->
+            <!-- <p class="bg-success text-white radius-15 p-1"> Học bổng: </p> -->
             <!--<div class="status-card status-valid">Đầy đủ hồ sơ</div>
             <div class="status-card status-invalid">Chưa đủ học phí</div>-->
 

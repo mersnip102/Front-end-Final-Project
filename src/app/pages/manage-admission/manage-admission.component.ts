@@ -13,7 +13,7 @@ export class ManageAdmissionComponent {
   addModal = false;
   radioValue = 1;
   ngOnInit(): void {
-    this.listOfData = new Array(35).fill(0).map((_, index) => (index));
+    this.listOfData = new Array(2).fill(0).map((_, index) => (index));
     console.log(this.listOfData);
   }
 

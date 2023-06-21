@@ -905,12 +905,61 @@ export class ProfileStudentComponent {
 
 
 
-      for (let key in data) {
-        if (data.hasOwnProperty(key)) {
-          this.uploadForm.get(key)?.setValue(data[key]);
-        }
+      // for (let key in data) {
+      //   if (data.hasOwnProperty(key)) {
+      //     this.uploadForm.get(key)?.setValue(data[key]);
+      //   }
 
-      }
+      // }
+
+      this.uploadForm.get('AccountId')?.setValue(data.AccountId);
+      this.uploadForm.get('Address')?.setValue(data.Address);
+      this.uploadForm.get('Admission')?.setValue(data.Admission);
+      this.uploadForm.get('AdmissionManager')?.setValue(data.AdmissionManager);
+      this.uploadForm.get('AllowEditing')?.setValue(data.AllowEditing);
+      this.uploadForm.get('BirthCertificate')?.setValue(data.BirthCertificate);
+      this.uploadForm.get('Birthday')?.setValue(data.Birthday);
+      this.uploadForm.get('CertificateOfGraduation')?.setValue(data.CertificateOfGraduation);
+      this.uploadForm.get('CitizenIdentification')?.setValue(data.CitizenIdentification);
+      this.uploadForm.get('CitizenIdentificationNum')?.setValue(data.CitizenIdentificationNum);
+      this.uploadForm.get('Commune')?.setValue(data.Commune);
+      this.uploadForm.get('CoverImage')?.setValue(data.CoverImage);
+      this.uploadForm.get('DateCitizen')?.setValue(data.DateCitizen);
+      this.uploadForm.get('District')?.setValue(data.District);
+      this.uploadForm.get('Email')?.setValue(data.Email);
+      this.uploadForm.get('EmailSponsor1')?.setValue(data.EmailSponsor1);
+      this.uploadForm.get('EmailSponsor2')?.setValue(data.EmailSponsor2);
+      this.uploadForm.get('EnglishCertificate')?.setValue(data.EnglishCertificate);
+      this.uploadForm.get('EnglishLevel')?.setValue(data.EnglishLevel);
+      this.uploadForm.get('EnoughProfile')?.setValue(data.EnoughProfile);
+      this.uploadForm.get('FullName')?.setValue(data.FullName);
+      this.uploadForm.get('Gender')?.setValue(data.Gender);
+      this.uploadForm.get('GraduationYear')?.setValue(data.GraduationYear);
+      this.uploadForm.get('HightSchool')?.setValue(data.HightSchool);
+      this.uploadForm.get('Id')?.setValue(data.Id);
+      this.uploadForm.get('ImageFolder')?.setValue(data.ImageFolder);
+      this.uploadForm.get('InnitiatedDate')?.setValue(data.InnitiatedDate);
+      this.uploadForm.get('LeadSoure')?.setValue(data.LeadSoure);
+      this.uploadForm.get('LinkFacebook')?.setValue(data.LinkFacebook);
+      this.uploadForm.get('Majors')?.setValue(data.Majors);
+      this.uploadForm.get('NameSponsor1')?.setValue(data.NameSponsor1);
+      this.uploadForm.get('NameSponsor2')?.setValue(data.NameSponsor2);
+      this.uploadForm.get('Nationality')?.setValue(data.Nationality);
+      this.uploadForm.get('OtherPapers')?.setValue(data.OtherPapers);
+      this.uploadForm.get('Phone')?.setValue(data.Phone);
+      this.uploadForm.get('PhoneNumberSponsor1')?.setValue(data.PhoneNumberSponsor1);
+      this.uploadForm.get('PhoneNumberSponsor2')?.setValue(data.PhoneNumberSponsor2);
+      this.uploadForm.get('PlaceCitizen')?.setValue(data.PlaceCitizen);
+      this.uploadForm.get('PlaceOfBirth')?.setValue(data.PlaceOfBirth);
+      this.uploadForm.get('PortraitImage')?.setValue(data.PortraitImage);
+      this.uploadForm.get('Province')?.setValue(data.Province);
+      this.uploadForm.get('Scholarship')?.setValue(data.Scholarship);
+      this.uploadForm.get('SchoolId')?.setValue(data.SchoolId);
+      this.uploadForm.get('StudyRecords')?.setValue(data.StudyRecords);
+      // this.uploadForm.get('TemporaryCertificateOfGraduation')?.setValue(data.TemporaryCertificateOfGraduation);
+      this.uploadForm.get('provinceTHPT')?.setValue(data.provinceTHPT);
+
+      
       // this.citis!.selectedIndex = this.uploadForm.get('Province')?.value - 1;
       // this.districts!.selectedIndex = this.uploadForm.get('District')?.value -1;
       // this.wards!.selectedIndex = this.uploadForm.get('Commune')?.value - 1;

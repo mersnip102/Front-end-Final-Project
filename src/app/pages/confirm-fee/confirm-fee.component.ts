@@ -75,7 +75,7 @@ export class ConfirmFeeComponent {
 
 
   deletePayment(id: string): void {
-   
+   console.log(id);
     this.notifyService.confirmDelete().then((result) => {
       if (result) {
 
@@ -96,9 +96,28 @@ export class ConfirmFeeComponent {
   }
 
   listPayment: any
+  pendingPayment = 0
+  fullPayment = 0 
+  missingPayment=  0
   getAllPayment() {
     this.api.getAllPayment().subscribe((data: any) => {
       this.listPayment = data.payment;
+      this.pendingPayment = 0
+      this.fullPayment = 0
+      this.missingPayment = 0
+      this.listPayment.forEach((element: any) => {
+        if(element.Status == 0) {
+          this.missingPayment += 1;
+        }
+        if(element.Status == 1) {
+          this.fullPayment += 1;
+        }
+        if(element.Status == 2) {
+          this.pendingPayment += 1;
+        }
+      });
+
+
       console.log(data);
     }, error => {
       this.notifyService.errorMessage(error.error.message);
@@ -107,6 +126,7 @@ export class ConfirmFeeComponent {
   }
   idSelected!: any;
   editPayment(Id: string) {
+    console.log(Id);
     this.editModal = true
     this.idSelected = Id;
    
