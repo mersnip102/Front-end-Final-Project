@@ -175,7 +175,8 @@
                     </div>
                     <div class="col-md-4">
                         <label for="dateOfBirth" class="form-label">Ngày sinh</label>
-                        <nz-date-picker [nzFormat]="dateFormat" formControlName="Birthday" class="form-control"></nz-date-picker>
+                        <nz-date-picker [nzFormat]="dateFormat" formControlName="Birthday"
+                            class="form-control"></nz-date-picker>
                         <!-- <input id="dateOfBirth" type="date" formControlName="Birthday" class="form-control"> -->
                     </div>
                     <div class="col-md-4">
@@ -192,7 +193,10 @@
 
                     <div class="col-md-4">
                         <label for="licienseDate" class="form-label">Ngày cấp </label>
-                        <input id="licienseDate" type="date" formControlName="DateCitizen" class="form-control">
+                        <!-- <input id="licienseDate" type="date" formControlName="DateCitizen" class="form-control"> -->
+                        
+                        <nz-date-picker [nzFormat]="dateFormat" id="licienseDate" type="date" class="form-control" 
+                            formControlName="DateCitizen"></nz-date-picker>
                     </div>
 
                     <div class="col-md-4">
@@ -253,6 +257,8 @@
                         <label for="graduateYear" class="form-label">Năm tốt nghiệp </label>
                         <nz-date-picker id="graduateYear" class="form-control" nzMode="year"
                             formControlName="GraduationYear"></nz-date-picker>
+                        <!-- <nz-date-picker nzMode="year" [(ngModel)]="date"
+                            (ngModelChange)="onChange($event)"></nz-date-picker> -->
 
                     </div>
                 </div>
