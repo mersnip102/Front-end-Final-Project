@@ -28,8 +28,10 @@ export class AuthService {
 
 
   login(phone: string, password: string): Observable<any> {
+    console.log("oke")
     return this.http.post(`${this.apiUrl}/login`, { phone, password }).pipe(
       tap((tokens: any) => {
+        console.log(tokens)
         
         this.localStoreService.setLocalStorageItem(this.accessTokenKey, tokens.accessToken);
         this.localStoreService.setLocalStorageItem(this.refreshTokenKey, tokens.refreshToken);

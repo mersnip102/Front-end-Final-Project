@@ -6,6 +6,9 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 import { AdmissionService } from 'src/app/core/services/admission-service/admission.service';
 import { LocalStoreService } from 'src/app/core/services/local-store.service';
 import { NotifyService } from 'src/app/core/services/utils/notify.service';
+import { NzMessageService } from 'ng-zorro-antd/message';
+import { NzUploadChangeParam, NzUploadFile } from 'ng-zorro-antd/upload';
+
 interface Account {
 
   FullName: string | null,
@@ -54,13 +57,45 @@ export class CreateAccountComponent implements OnInit {
   //   email: '',
   //   password: ''
   // })
+  fileList: NzUploadFile[] = []
   
+  handleChange(info: NzUploadChangeParam): void {
+    if (info.file.status !== 'uploading') {
+      console.log(info.file, info.fileList);
+    }
+    if (info.file.status === 'done') {
+      this.msg.success(`${info.file.name} file uploaded successfully`);
+      console.log(info.file, info.fileList);
+    } else if (info.file.status === 'error') {
+      this.msg.error(`${info.file.name} file upload failed.`);
+    }
+
+    let fileList = [...info.fileList];
+
+    // 1. Limit the number of uploaded files
+    // Only to show two recent uploaded files, and old ones will be replaced by the new
+    fileList = fileList.slice(-1);
+
+    // 2. Read from response and show file link
+    fileList = fileList.map(file => {
+      if (file.response) {
+        // Component will show file.url as link
+        file.url = file.response.url;
+      }
+      return file;
+    });
+
+    this.fileList = fileList;
+    
+  }
 
 
   ngOptionsSourceinfor = ["Online", "Direct", "Database", "Referral", "Internals", "Online Mass", "Cộng Hưởng", "Khác"];
   ngDropdownSourceinfo = "Online";
   public aElement?: boolean = true;
-  constructor(private http: HttpClient,
+  constructor(
+    private msg: NzMessageService,
+    private http: HttpClient,
     private fb: FormBuilder,
     private api: AdmissionService,
     private router: Router,
@@ -76,6 +111,12 @@ export class CreateAccountComponent implements OnInit {
 
     //   this.activateDiv(this.router.url);
     // });
+  }
+
+  selectedFile: any
+
+  onFileSelected(event: any) {
+    this.selectedFile = event.target.files[0];
   }
 
   onclick() {
@@ -130,8 +171,12 @@ export class CreateAccountComponent implements OnInit {
       //   return false;
       // }
       // else {
+
+      const formData = new FormData();
+      console.log(this.fileList[0].originFileObj!)
+      formData.append('file', this.fileList[0].originFileObj!);
       
-      this.api.createNewAccount(this.account
+      this.api.createNewAccount(formData
       ).subscribe((res: any) => {
         
         // var d = JSON.parse(res); //doi tu json sang object

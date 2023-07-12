@@ -19,6 +19,7 @@ import { TableComponent } from './shared/components/event-card/table/table.compo
 import { NzTableModule } from 'ng-zorro-antd/table';
 import { NzUploadModule } from 'ng-zorro-antd/upload';
 import vi from '@angular/common/locales/vi';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 // import * as AllIcons from '@ant-design/icons-angular/icons';
 
@@ -38,6 +39,7 @@ registerLocaleData(en);
       useClass: AuthInterceptor,
       multi: true,
     },
+    NzMessageService
   ],
   bootstrap: [AppComponent],
 })

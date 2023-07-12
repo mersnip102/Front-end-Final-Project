@@ -80,6 +80,8 @@ export class LoginComponent implements OnInit {
     phone?: any;
     password?: any;
     login() {
+      console.log( this.phone,
+        this.password)
         
         this.authService.login(
             this.phone,
@@ -119,7 +121,7 @@ export class LoginComponent implements OnInit {
             // this.toastService.error({detail:"Login failed", duration: 3000})
             // const currentUrl = this.router.url;
             // this.router.navigate([currentUrl]);
-            this.notifyService.errorMessage(error.error.message);
+            this.notifyService.errorMessage(error);
             console.log(error);
         }
         

@@ -57,6 +57,7 @@ import { ClipboardModule } from 'ngx-clipboard';
 import { FullCalendarModule } from '@fullcalendar/angular';
 import { ScholarshipProposalComponent } from './schoolarship/scholarship-proposal/scholarship-proposal.component';
 import { HighchartsChartModule } from 'highcharts-angular';
+import { NzMessageService } from 'ng-zorro-antd/message';
 
 
 const antDesignIcons = AllIcons as {
@@ -122,6 +123,6 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
     HighchartsChartModule,
     QuillModule.forRoot(),
   ],
-  providers: [ { provide: NZ_I18N, useValue: en_US }, { provide: NZ_ICONS, useValue: icons } ]
+  providers: [ { provide: NZ_I18N, useValue: en_US }, { provide: NZ_ICONS, useValue: icons }, NzMessageService ]
 })
 export class PagesModule {}

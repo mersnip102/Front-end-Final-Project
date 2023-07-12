@@ -342,10 +342,10 @@ export class AdmissionService {
     // return this.http.request(req);
   }
 
-  createNewAccount(account: Object){    
+  createNewAccount(account: any){    
     const userInfo = {account: account}
     // const headers = new HttpHeaders().set('Content-Type', 'application/json') ;
-    return this.http.post(this.api + 'createNewStudent', userInfo, { responseType: 'json'})//stringify de chuyen doi tu object sang json
+    return this.http.post(this.api + 'createNewStudent', account, { responseType: 'json'})//stringify de chuyen doi tu object sang json
   }
 
 
