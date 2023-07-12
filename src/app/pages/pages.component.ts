@@ -15,7 +15,7 @@ export class PagesComponent {
   constructor(private router: Router, private authService: AuthService) {
     this.authService.roleUser.subscribe(res => {
       console.log(res);
-      if(res == 4) {
+      if(res == -1) {
         
         this.router.navigateByUrl("/auth/login");
       } else {

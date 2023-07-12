@@ -13,7 +13,7 @@ export class AuthService {
   private readonly refreshTokenKey = 'refreshToken';
   roleUser: Observable<number>;
   //role-number
-  roleUserSubject: BehaviorSubject<number> = new BehaviorSubject<number>(4);
+  roleUserSubject: BehaviorSubject<number> = new BehaviorSubject<number>(-1);
   // roleUserSubject!: BehaviorSubject<number>
 
   constructor( private router: Router, private http: HttpClient, private route: ActivatedRoute, private localStoreService: LocalStoreService) {

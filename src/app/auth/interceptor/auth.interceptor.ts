@@ -26,54 +26,54 @@ export class AuthInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<unknown>, next: HttpHandler): Observable<HttpEvent<unknown>> {
     let result = next.handle(request);
-    const token = this.localStorageSv.getLocalStorageItemAsJSON("accessToken");
+    // const token = this.localStorageSv.getLocalStorageItemAsJSON("accessToken");
 
-    if (token && token !== '') {
-      const headers = request.headers.append('Authorization', `Bearer ${token}`);
-      const req: HttpRequest<any> = request.clone({ headers });
-      result = next.handle(req).pipe(
-        tap(
-          (event: HttpEvent<any>) => {
-            return event;
-          },
-          (err: HttpErrorResponse) => {
-            if (err.error.status === 403) {
-              // localStorage.removeItem(TOKEN);
-              localStorage.removeItem("accessToken");
-              localStorage.removeItem("refreshToken");
-              this.authService.refreshToken().subscribe(
-                (res) => {
-                  // localStorage.setItem(TOKEN, res.accessToken);
+    // if (token && token !== '') {
+    //   const headers = request.headers.append('Authorization', `Bearer ${token}`);
+    //   const req: HttpRequest<any> = request.clone({ headers });
+    //   result = next.handle(req).pipe(
+    //     tap(
+    //       (event: HttpEvent<any>) => {
+    //         return event;
+    //       },
+    //       (err: HttpErrorResponse) => {
+    //         if (err.error.status === 403) {
+    //           // localStorage.removeItem(TOKEN);
+    //           localStorage.removeItem("accessToken");
+    //           localStorage.removeItem("refreshToken");
+    //           this.authService.refreshToken().subscribe(
+    //             (res) => {
+    //               // localStorage.setItem(TOKEN, res.accessToken);
 
-                  this.localStorageSv.setLocalStorageItem("accessToken", res.accessToken);
-                  this.localStorageSv.setLocalStorageItem("refreshToken", res.refreshToken);
-                  const headers = request.headers.append('Authorization', `Bearer ${this.localStorageSv.getLocalStorageItemAsJSON("accessToken")}`);
-                  const req: HttpRequest<any> = request.clone({ headers });
-                  result = next.handle(req);
-                },
-                (err) => {
-                  // localStorage.removeItem(TOKEN);
-                  localStorage.removeItem("accessToken");
-                  localStorage.removeItem("refreshToken");
-                  this.router.navigate(['/auth/login']);
-                  // this.notifyService.notify('error', 'Phiên đăng nhập hết hạn, vui lòng đăng nhập lại');
-                }
-              );
-            } else if (err.error.status === 401) {
-              // localStorage.removeItem(TOKEN);
-              localStorage.removeItem("accessToken");
-              localStorage.removeItem("refreshToken");
-              this.router.navigate(['/auth/login']);
-              // this.notifyService.notify('error', 'Phiên đăng nhập hết hạn, vui lòng đăng nhập lại');
+    //               this.localStorageSv.setLocalStorageItem("accessToken", res.accessToken);
+    //               this.localStorageSv.setLocalStorageItem("refreshToken", res.refreshToken);
+    //               const headers = request.headers.append('Authorization', `Bearer ${this.localStorageSv.getLocalStorageItemAsJSON("accessToken")}`);
+    //               const req: HttpRequest<any> = request.clone({ headers });
+    //               result = next.handle(req);
+    //             },
+    //             (err) => {
+    //               // localStorage.removeItem(TOKEN);
+    //               localStorage.removeItem("accessToken");
+    //               localStorage.removeItem("refreshToken");
+    //               this.router.navigate(['/auth/login']);
+    //               // this.notifyService.notify('error', 'Phiên đăng nhập hết hạn, vui lòng đăng nhập lại');
+    //             }
+    //           );
+    //         } else if (err.error.status === 401) {
+    //           // localStorage.removeItem(TOKEN);
+    //           localStorage.removeItem("accessToken");
+    //           localStorage.removeItem("refreshToken");
+    //           this.router.navigate(['/auth/login']);
+    //           // this.notifyService.notify('error', 'Phiên đăng nhập hết hạn, vui lòng đăng nhập lại');
 
-              // localStorage.removeItem('currentUser');
-            } else if (err.error.status === 500) {
-              //implement notify
-            }
-          }
-        )
-      );
-    }
+    //           // localStorage.removeItem('currentUser');
+    //         } else if (err.error.status === 500) {
+    //           //implement notify
+    //         }
+    //       }
+    //     )
+    //   );
+    // }
     return result;
   }
 }
