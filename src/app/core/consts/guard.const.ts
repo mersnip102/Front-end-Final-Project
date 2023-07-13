@@ -206,4 +206,38 @@ export const listMenu = [
     ],
     defaultScreen: '/pages/dashboard',
   },
+  {
+    roleNumber: RoleNumber.admin,
+    permission: [
+      {
+        screenName: 'Dashboard',
+        routerLink: 'dashboard',
+        icon: 'dashboard',
+      },
+      {
+        screenName: 'Danh sách sinh viên',
+        routerLink: 'listStudent',
+        icon: 'unordered-list',
+      },
+      {
+        screenName: 'Danh sách admission',
+        routerLink: 'manage-admission',
+        icon: 'unordered-list',
+      },
+      {
+        screenName: 'Hồ sơ',
+        routerLink: 'profile-account',
+        icon: 'profile',
+      },
+      {
+        screenName: 'Email',
+        // routerLink: 'email/box-email/inbox',
+        routerLink: 'email',
+        icon: 'mail',
+      },
+     
+    
+    ],
+    defaultScreen: '/pages/dashboard',
+  },
 ];

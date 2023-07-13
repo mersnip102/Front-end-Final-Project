@@ -19,5 +19,6 @@ export enum RoleNumber {
   accountant,
   admissions,
   admissionsManager,
-  headOfAdmissions
+  headOfAdmissions,
+  admin
 }
