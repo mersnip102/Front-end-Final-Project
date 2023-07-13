@@ -188,6 +188,11 @@ export const listMenu = [
         routerLink: 'email',
         icon: 'mail',
       },
+      {
+        screenName: 'Quản lý học bổng',
+        routerLink: 'management-scholarship',
+        icon:'mail',
+      }
       // {
       //   screenName: 'Tin nhắn',
       //   routerLink: 'chat-admissions',

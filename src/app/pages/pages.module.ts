@@ -58,6 +58,7 @@ import { FullCalendarModule } from '@fullcalendar/angular';
 import { ScholarshipProposalComponent } from './schoolarship/scholarship-proposal/scholarship-proposal.component';
 import { HighchartsChartModule } from 'highcharts-angular';
 import { NzMessageService } from 'ng-zorro-antd/message';
+import { ManagementScholarshipComponent } from './management-scholarship/management-scholarship.component';
 
 
 const antDesignIcons = AllIcons as {
@@ -89,7 +90,8 @@ const icons: IconDefinition[] = Object.keys(antDesignIcons).map((key: any) => an
     ManageAdmissionComponent,
     ProfileStudentComponent,
     EllipsisPipe,
-    ScholarshipProposalComponent
+    ScholarshipProposalComponent,
+    ManagementScholarshipComponent
   ],
   imports: [
     [ClipboardModule],
