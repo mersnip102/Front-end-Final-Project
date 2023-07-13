@@ -1,0 +1,204 @@
+<div class="managementScholarship-page">
+  <div class="verifyScholarship-table">
+    <div class="row title-page text-center">
+        <span>Học bổng thay đổi cần duyệt</span>
+    </div>
+    <div class="row justify-content-center">
+        <div class="row general-info">
+          <div class="col-md-3 col-sm-3 col-12 card-info text-center">
+            <div class="title-card">
+                <span>Tổng số học bổng</span>
+            </div>
+            <div class="card-content">
+                <span>{{totalScholarship}}</span>
+            </div>
+        </div>
+        <div class="col-md-3 col-sm-3 col-12 card-info text-center" style="background-color: green;">
+            <div class="title-card">
+                <span>Tổng số học bổng đã duyệt</span>
+            </div>
+            <div class="card-content">
+                <span>{{verifiedScholarship}}</span>
+            </div>
+        </div>
+    </div>
+    <div class="row fillter-wrap">
+        <div class="col-12 col-sm-4 col-md-6 search-input">
+            <input type="text" class="form-control" placeholder="Tìm kiếm" aria-describedby="inputGroup-sizing-default" />
+            <button class="btn btn-primary"><i class="bi bi-search"></i></button>
+        </div>
+        <div class="col-12 col-sm-3 col-md-2">
+            <div class="item-fillter">
+              <select class="form-select" id="year">
+          <option option>2021</option>
+          <option>2022</option>
+          <option>2023</option>
+        </select>
+                <label for="year">Năm</label>
+            </div>
+        </div>
+        <div class="col-12 col-sm-2 col-md-2">
+            <div class="item-fillter">
+                <select class="form-select">
+          <option value="">Kỳ 1</option>
+          <option value="">Kỳ 2</option>
+        </select>
+                <label>Kỳ</label>
+            </div>
+        </div>
+        <div class="col-12 col-sm-3 col-md-2">
+            <div class="item-fillter">
+                <select class="form-select">
+          <option value="">Đã duyệt</option>
+          <option value="">Chưa duyệt</option>
+        </select>
+                <label for="">Trạng thái</label>
+            </div>
+        </div>
+    </div>
+    <div class="tbl-wrap">
+        <nz-table #rowSelectionTable nzShowPagination nzShowSizeChanger [nzData]="listScholarship" class="tbl">
+            <thead>
+                <tr>
+                    <th class="text-center">STT</th>
+                    <th>Trưởng phòng tuyển sinh</th>
+                    <th>Ngày thay đổi</th>
+                    <th>Tên tư vấn</th>
+                    <th>Mã số sinh viên</th>
+                    <th>Liên hệ</th>
+                    <th>Chuyên ngành</th>
+                    <th>Trạng thái</th>
+                </tr>
+            </thead>
+            <tbody>
+              <tr *ngFor="let data of rowSelectionTable.data, let i = index">
+                <td class="text-center">{{i+1}}</td>
+              </tr>
+            </tbody>
+        </nz-table>
+    </div>
+  </div>
+
+  <div class="officeScholarship-table">
+    <div class="row title-page text-center">
+        <span>Học bổng được phát ra và đã được sử dụng tổ hợp theo phòng</span>
+    </div>
+    <div>
+
+    <div class="row fillter-wrap">
+      <div class="col-12 col-sm-3 col-md-2">
+          <div class="item-fillter">
+            <select class="form-select">
+              <option value="">Golden Compass</option>
+              <option value="">Silver Compass</option>
+              <option value="">Big ben</option>
+            </select>
+              <label for="">Học bổng</label>
+          </div>
+      </div>
+    </div>
+    </div>
+    <div class="tbl-wrap">
+        <nz-table #rowSelectionTable nzShowPagination nzShowSizeChanger [nzData]="listScholarship" class="tbl">
+            <thead>
+                <tr>
+                    <th class="text-center">Phòng</th>
+                    <th>Tên trưởng phòng</th>
+                    <th>Tổng số học bổng được cấp</th>
+                    <th>Số học bổng đã sử dụng</th>
+                    <th>Liên hệ</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </nz-table>
+    </div>
+  </div>
+
+  <div class="admissionScholarship-table">
+    <div class="row title-page text-center">
+        <span>Học bổng được phát ra và đã được sử dụng tổ hợp theo tuyển sinh</span>
+    </div>
+    <div class="row fillter-wrap">
+      <div class="col-12 col-sm-3 col-md-2">
+          <div class="item-fillter">
+            <select class="form-select">
+              <option value="">1</option>
+              <option value="">2</option>
+              <option value="">3</option>
+            </select>
+              <label for="">Phòng</label>
+          </div>
+      </div>
+      <div class="col-12 col-sm-3 col-md-2">
+        <div class="item-fillter">
+          <select class="form-select">
+            <option value="">LinhDTD</option>
+            <option value="">NguyetNT</option>
+            <option value="">AnhNG</option>
+            <option value="">ThuyTT</option>
+            <option value="">MinhNA</option>
+          </select>
+            <label for="">Tuyển sinh</label>
+        </div>
+      </div>
+      <div class="col-12 col-sm-4 col-md-6 search-input">
+          <input type="text" class="form-control" placeholder="Tìm kiếm" aria-describedby="inputGroup-sizing-default" />
+          <button class="btn btn-primary"><i class="bi bi-search"></i></button>
+      </div>
+      <div class="col-12 col-sm-3 col-md-2">
+        <p>Liên hệ</p>
+      </div>
+    </div>
+    <div class="tbl-wrap">
+        <nz-table #rowSelectionTable nzShowPagination nzShowSizeChanger [nzData]="listScholarship" class="tbl">
+            <thead>
+                <tr>
+                    <th class="text-center">Loại học bổng</th>
+                    <th>Tổng số học bổng được cấp</th>
+                    <th>Số học bổng đã sử dụng</th>
+                    <th>Số học bổng thay đổi cần xét duyệt</th>
+                    <th>Mã số sinh viên</th>
+                    <th>Action</th>
+                </tr>
+            </thead>
+            <tbody>
+
+            </tbody>
+        </nz-table>
+    </div>
+  </div>
+
+</div>
+<!-- <nz-modal [(nzVisible)]="deleteModal" nzTitle="Xác nhận xóa" (nzOnCancel)="handleCancelModalDelete()" (nzOnOk)="handleOkDeleteFee()">
+  <ng-container *nzModalContent>
+      <span>Bạn có chắc chắn muốn xóa sinh viên này khỏi danh sách?</span>
+  </ng-container>
+</nz-modal>
+
+<nz-modal [(nzVisible)]="editModal" nzTitle="Cập nhật trạng thái" (nzOnCancel)="handleCancelModalEdit()" (nzOnOk)="handleOkEditFee()">
+  <ng-container *nzModalContent>
+      <div class="edit-status">
+          <nz-radio-group [(ngModel)]="radioValue">
+              <label nz-radio nzValue="0">
+        <div class="card-status card-status--notPayment">
+          <span>Chưa nộp phí</span>
+        </div></label
+      >
+      <label nz-radio nzValue="1"
+        ><div class="card-status card-status--completePayment">
+          <span>Đã nộp phí</span>
+        </div></label
+      >
+      <label nz-radio nzValue="2"
+        ><div class="card-status card-status--pendingPayment">
+          <span>Đang chờ xử lý</span>
+        </div></label
+      >
+    </nz-radio-group>
+  </div>
+
+</ng-container>
+</nz-modal> -->

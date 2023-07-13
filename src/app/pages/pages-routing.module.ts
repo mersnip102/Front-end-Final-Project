@@ -25,10 +25,11 @@ import { ManageAdmissionComponent } from './manage-admission/manage-admission.co
 import { ProfileStudentComponent } from './profile-student/profile-student.component';
 import { ResetPasswordComponent } from '../auth/reset-password/reset-password.component';
 import { ScholarshipProposalComponent } from './schoolarship/scholarship-proposal/scholarship-proposal.component';
+import { ManagementScholarshipComponent } from './management-scholarship/management-scholarship.component';
 
 const routes: Routes = [
   {
-    
+
     path: '',
     component: PagesComponent,
     children: [
@@ -123,6 +124,10 @@ const routes: Routes = [
         path: 'reset-password',
         component: ResetPasswordComponent,
       },
+      {
+        path: 'management-scholarship',
+        component: ManagementScholarshipComponent,
+      }
     ],
   },
 ];
