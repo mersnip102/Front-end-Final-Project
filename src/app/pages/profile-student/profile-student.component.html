@@ -132,16 +132,13 @@
         <form [formGroup]="uploadForm" enctype="multipart/form-data" (ngSubmit)="onSubmit()" novalidate>
             <div class="form-froup">
                 <h2 class="text-center mb-5">Thông tin chung</h2>
-                <div class="row mb-3">
-                    <div class="col-md-6">
-                    </div>
-
-                    <div class="col-md-3">
+                <div class="row mb-4">
+                    <div class="col-md-4">
                         <label for="yearApply" class="form-label">Năm nhập học(DK)</label>
                         <nz-date-picker id="yearApply" class="form-control" nzMode="year"
                             formControlName="yearApply"></nz-date-picker>
                     </div>
-                    <div class="col-md-3">
+                    <div class="col-md-4">
                         <label for="semester" class="form-label">Kỳ nhập học(DK)</label>
                         <select id="semester" type="text" formControlName="Semester" class="form-select">
                             <option *ngFor="let opt of ngOptionsSemester" [ngValue]="opt">
@@ -194,8 +191,8 @@
                     <div class="col-md-4">
                         <label for="licienseDate" class="form-label">Ngày cấp </label>
                         <!-- <input id="licienseDate" type="date" formControlName="DateCitizen" class="form-control"> -->
-                        
-                        <nz-date-picker [nzFormat]="dateFormat" id="licienseDate" type="date" class="form-control" 
+
+                        <nz-date-picker [nzFormat]="dateFormat" id="licienseDate" type="date" class="form-control"
                             formControlName="DateCitizen"></nz-date-picker>
                     </div>
 

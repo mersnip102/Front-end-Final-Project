@@ -34,11 +34,11 @@ registerLocaleData(en);
   imports: [BrowserModule, AppRoutingModule, FormsModule, HttpClientModule, BrowserAnimationsModule, NzEmptyModule, NzTableModule, NzUploadModule],
   providers: [
     { provide: NZ_I18N, useValue: en_US },
-    {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
-    },
+    // {
+    //   provide: HTTP_INTERCEPTORS,
+    //   useClass: AuthInterceptor,
+    //   multi: true,
+    // },
     NzMessageService
   ],
   bootstrap: [AppComponent],
