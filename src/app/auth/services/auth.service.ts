@@ -83,7 +83,7 @@ export class AuthService {
   }
 
   logout() {
-    this.setValueRole(4);
+    this.setValueRole(-1);
     localStorage.removeItem(this.accessTokenKey);
     localStorage.removeItem(this.refreshTokenKey);
 
